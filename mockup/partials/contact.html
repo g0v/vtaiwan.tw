@@ -1,0 +1,20 @@
+<div ng-controller="AuthCtrl">
+<div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
+
+<div class="nav_list_toolbar" ng-class="{'nav_list_toolbar_hide':!showUserMenu}">
+      <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-rss"></i> 訂閱</a>
+      <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-search"></i> 搜尋</a>
+</div>
+
+<div id="content">
+    <div class="wrapper">
+        <div class="about_item md-whiteframe-z1" id="Contact">
+            <div class="about_item_title">聯絡我們</div>
+            <div class="about_item_content">
+              <p></p>
+            </div>
+        </div>
+    </div><!-- end of wrapper -->
+</div><!-- end of content -->
+
+</div><!-- end of auth -->

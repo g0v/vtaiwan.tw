@@ -1,0 +1,53 @@
+<div class="notification_wrapper">
+<div id="notification" class="notification_hide"></div>
+</div>
+
+<div id="sidebar-shadow" ng-show="sidebar || showUserMenu" ></div>
+<div id="sidebar-container" ng-class="{'show':sidebar, 'hide':!sidebar}" ng-click="showsidebar(false)">
+  <div class="sidebar-container_left">
+    
+    <span ng-show="!topic">
+      <a class="nav_item_sidebar--left" href="#/" ng-click="showsidebar(false)">首頁</a>
+      <a class="nav_item_sidebar--left" href="#/topics" ng-click="showsidebar(false)">主題</a>
+      <a class="nav_item_sidebar--sub" ng-click="go('crowdfunding')">群眾募資<span class="nav_item_sidebar--switchmenu" ng-click="topic='crowdfunding';$event.stopPropagation();"><i class="fa fa-chevron-right"></i></span></a>
+      <a class="nav_item_sidebar--sub" href="#/topics" ng-click="showsidebar(false)">閉鎖型公司</a>
+      <a class="nav_item_sidebar--left" href="#/how"  ng-click="showsidebar(false)">如何發言</a>
+      <a class="nav_item_sidebar--left" href="#/about" ng-click="showsidebar(false)">關於</a>
+      <a class="nav_item_sidebar--left" href="#/contact" ng-click="showsidebar(false)">聯絡我們</a>
+    </span>
+    <span ng-show="topic">
+      
+      <!--<a class="nav_item_sidebar--bold" ng-click="$event.stopPropagation();">群眾募資</a>-->
+      <a class="nav_item_sidebar--bold" ng-click="topic=null; $event.stopPropagation();"><i class="fa fa-chevron-left"></i> 群眾募資</a>
+      
+      <span ng-repeat="q in currentTopic.questions" ng-click="toggleQuestion(q.id)">
+          <a class="nav_item_sidebar--left" >{{q.title}}</a>
+          <a class="nav_item_sidebar--sub" ng-repeat="i in q.issues">{{i.title}}</a>
+      </span>
+    </span>
+ 
+  </div>
+</div>
+
+<header class="md-whiteframe-z1 nav_background">
+
+  <div class="nav_list_toggle l_inline" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i></div>
+  
+  
+  <!--<div id="site_logo">虛擬世界法規調適<br/>vTaiwan.tw</div> 
+  <img id="site_logo" src="images/logo.png">-->
+ 
+  <div class="nav_list_function">
+    <!-- 登入選單 -->
+    <div class="nav_list_function_item_user l_inline" id="userMenu">
+       <!--<div class="nav_list_function_item_select" ng-click="toggleUserMenu()"><i class="fa fa-ellipsis-v"></i></div>-->
+       <div class="nav_list_function_item_select" ng-show="topic"><i class="fa fa-plus"></i></div
+
+        <div class="tri-up" ng-class="{'nav_list_function_item_hide':!showUserMenu}"></div>
+    </div>
+  </div>
+
+
+</header>
+
+
