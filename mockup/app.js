@@ -109,6 +109,7 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
       }else{
           $scope.sidebar = value;
       }
+      
   };
 
 }]);
@@ -136,6 +137,38 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
     }
     $scope.$apply();
   });
+  
+
+  $scope.topicref = 'crowdfunding';
+  DataService.getData('questions').then(function(data){
+    //console.log(data);
+      $scope.questionsObj = data[$scope.topicref].questions;
+      $scope.currentTopic = data[$scope.topicref];
+      $scope.questions = [];
+
+      for(var key in $scope.questionsObj){
+        $scope.questions.push($scope.questionsObj[key]);
+      }
+       
+  });
+  $scope.toggleQuestion = function(qid){
+    $scope.questionToggled = true;
+
+    if(qid === false){
+      $scope.focusQuestion = false;
+      
+    }else{
+ 
+      $scope.focusQuestion = qid;
+      //console.log($location.path());
+      $location.path('/crowdfunding/'+qid);
+      $scope.currentQ = $scope.questionsObj[qid];
+      //$location.hash(qid);
+      $("body").scrollTop(0);
+        
+    }
+    
+  };
   
 }]);
 

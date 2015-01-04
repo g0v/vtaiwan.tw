@@ -2,6 +2,8 @@
 <div ng-controller="NavCtrl">
 
 <div ng-include="'partials/nav.html'"></div>
+<div id="content--crowdfunding">
+
 
 <div class="nav_list_toolbar" ng-class="{'nav_list_toolbar_hide':!showUserMenu}">
       <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-rss"></i> 訂閱</a>
@@ -9,9 +11,9 @@
 </div>
 
 <!-- Focus Discusstion -->
-
-<div id="focus-discussion" ng-class="{'show':focusDiscussion, 'hide':!focusDiscussion}">
-  <div class="q_content_nav" ng-class="{'show':focusDiscussion, 'hide':focusDiscussion===false}">
+<div id="focus-discussion" ng-class="{'show':focusDiscussion}">
+  
+  <div class="q_content_nav" ng-class="{'show':focusDiscussion, 'hide':!focusDiscussion}">
       <div class="q_content_nav_remove" ng-click="toggleDiscussion(currentQ.id)"><i class="fa fa-chevron-left"></i></div>
 
       <div class="nav_list_function">
@@ -21,18 +23,14 @@
       </div>
   </div>
   
-    <div class="q_content">
-       <div class="wrapper">
-       <h3 class="issue_item_title">討論話題：{{currentQ.title}}</h3>
-       <p class="q_text" ng-repeat="p in currentQ.content">{{p}}</p>
-       (discourse posts)
-       </div>
-    </div>
-  
+  <div class="q_content">
+     <div class="wrapper">
+     <h3 class="issue_item_title">討論話題：{{currentQ.title}}</h3>
+     <p class="q_text" ng-repeat="p in currentQ.content">{{p}}</p>
+     (discourse posts)
+     </div>
+  </div>  
 </div>
-
-
-  
   <div class="wrapper">
   <!-- Question -->  
   <div class="q_content" id="q_content">

@@ -54,6 +54,11 @@ a {
 #content {
 	margin-top: 50px;
   min-height: 600px;
+  
+}
+#content--crowdfunding {
+  width: 100%;
+  overflow: hidden;
 
 }
 hr {
@@ -282,7 +287,7 @@ a.button--wide {
   }
 }
 #focus-discussion{
-  z-index: 400;
+  z-index: 500;
   background: white;
   position: absolute;
   text-align: center;
@@ -296,13 +301,11 @@ a.button--wide {
   overflow: scroll;
   height: 100%;
   width: 100%;
-
+  right: -100%;
   background: rgb(247,247,247);
 
 }
-#focus-discussion.hide{
-  right: -100%;
-}
+
 #focus-discussion.show{
   top: 0px;
   height: 100%;
@@ -375,6 +378,7 @@ a.nav_item_sidebar--bold {
   cursor: pointer;
   font-weight: 700;
   background: rgb(220,220,220);
+
 }
 a.nav_item_sidebar--half {
   display: inline-block;

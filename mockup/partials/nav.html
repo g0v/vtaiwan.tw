@@ -3,7 +3,7 @@
 </div>
 
 <div id="sidebar-shadow" ng-show="sidebar || showUserMenu" ></div>
-<div id="sidebar-container" ng-class="{'show':sidebar, 'hide':!sidebar}" ng-click="showsidebar(false)">
+<div id="sidebar-container" ng-class="{'show':sidebar, 'hide':!sidebar}" ng-click="showsidebar('toggle')">
   <div class="sidebar-container_left">
     
     <span ng-show="!topic">
@@ -16,9 +16,8 @@
       <a class="nav_item_sidebar--left" href="#/contact" ng-click="showsidebar(false)">聯絡我們</a>
     </span>
     <span ng-show="topic">
-      
       <!--<a class="nav_item_sidebar--bold" ng-click="$event.stopPropagation();">群眾募資</a>-->
-      <a class="nav_item_sidebar--bold" ng-click="topic=null; $event.stopPropagation();"><i class="fa fa-chevron-left"></i> 群眾募資</a>
+      <a class="nav_item_sidebar--bold" ng-click="topic=null;$event.stopPropagation();"><i class="fa fa-chevron-left"></i> 群眾募資</a>
       
       <span ng-repeat="q in currentTopic.questions" ng-click="toggleQuestion(q.id)">
           <a class="nav_item_sidebar--left" >{{q.title}}</a>
