@@ -892,4 +892,6 @@ a.more {
   float: right;
 }
 
-
+.about_item_content li {
+    line-height: 175%;
+}
