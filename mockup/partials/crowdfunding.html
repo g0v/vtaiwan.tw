@@ -14,7 +14,7 @@
 <div id="focus-discussion" ng-class="{'show':focusDiscussion}">
   
   <div class="q_content_nav" ng-class="{'show':focusDiscussion, 'hide':!focusDiscussion}">
-      <div class="q_content_nav_remove" ng-click="toggleDiscussion(currentQ.id)"><i class="fa fa-chevron-left"></i></div>
+      <div class="q_content_nav_remove" ng-click="toggleDiscussion(focusDiscussion.id)"><i class="fa fa-chevron-left"></i></div>
 
       <div class="nav_list_function">
         <div class="nav_list_function_item_user l_inline" id="userMenu">
@@ -25,8 +25,8 @@
   
   <div class="q_content">
      <div class="wrapper">
-     <h3 class="issue_item_title">討論話題：{{currentQ.title}}</h3>
-     <p class="q_text" ng-repeat="p in currentQ.content">{{p}}</p>
+     <h3 class="issue_item_title">討論話題：{{focusDiscussion.title}}</h3>
+     <p class="q_text" ng-repeat="p in focusDiscussion.content">{{p}}</p>
      (discourse posts)
      </div>
   </div>  
@@ -35,10 +35,11 @@
   <!-- Question -->  
   <div class="q_content" id="q_content">
   <div ng-repeat="q in questions" ng-show="isQuestionFocused(q.id)">
+    <div class="q_breadcrumbs">主題 > 群眾募資</div>
     <div class="q_title">{{q.title}}</div>
     <p class="q_text" ng-repeat="p in q.content">{{p}}</p>
     <div class="issue_item md-whiteframe-z1" ng-repeat="i in q.issues">
-        <div class="issue_item_discuss" ng-click="toggleDiscussion(q.id)"><i class="fa fa-comments-o"></i></div>
+        <div class="issue_item_discuss" ng-click="toggleDiscussion(i)"><i class="fa fa-comments-o"></i></div>
         <h3 class="issue_item_title">討論話題：{{i.title}}</h3>
         <p class="q_text" ng-repeat="p in i.content">{{p}}</p>
         <ul>

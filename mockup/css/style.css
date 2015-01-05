@@ -45,7 +45,7 @@ a {
   padding-top: 15px;
   margin-left: auto;
   margin-right: auto;
-  padding:8px;
+  
   box-sizing: border-box;
   position: relative;
 
@@ -99,11 +99,16 @@ header {
 /* ------------------------------------------------------------ */
 /* List Item
 /* ------------------------------------------------------------ */
+.q_breadcrumbs {
+  font-size: 16px;
+  color: rgb(140,140,140);
+  font-weight: 700;
+  line-height: 14px;
+}
 .q_title{
   display: inline-block;
   width: 100%;
   text-align: left;
-  padding: 3px 0px;
   font-size: 26px;
   font-weight: 700;
   height: auto;
@@ -234,7 +239,7 @@ a.button--wide {
   overflow: hidden;
   position: absolute;
   left:0px;
-  top: 50px;
+  
  
 }
 #sidebar-container {
@@ -259,6 +264,7 @@ a.button--wide {
 .sidebar-container_left {
   background: white;
   height: 100%;
+  overflow: scroll;
 }
 #sidebar-container.show{
   top: 0px;
@@ -292,15 +298,18 @@ a.button--wide {
   position: absolute;
   text-align: center;
  
-  top:0px;
   -moz-transition: .2s;
   -ms-transition: .2s;
   -webkit-transition: .2s;
   transition: .2s;
   transition-duration: .5s;
+  
+  /* [transition-property] [transition-duration] [transition-timing-function] [transition-delay] */
+ 
   overflow: scroll;
   height: 100%;
-  width: 100%;
+  width: 0px;
+  top:0px;
   right: -100%;
   background: rgb(247,247,247);
 
@@ -311,12 +320,10 @@ a.button--wide {
   height: 100%;
   overflow: scroll;
   right: 0px;
+  width: 100%;
   
-  -moz-transition: .2s;
-  -ms-transition: .2s;
-  -webkit-transition: .2s;
-  transition: .2s;
-  transition-duration: .5s;
+  -webkit-transition: right .5s ease-in-out;
+  transition: right .5s ease-in-out;
 
 }
 .q_content_nav {
@@ -614,7 +621,7 @@ a.nav_item_sidebar--sub {
 /* about
 /* ------------------------------------------------------------ */
 .about_paper {
-  height: 500px;
+  min-height: 500px;
   background: white;
   
 }

@@ -200,17 +200,17 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
     
   };
 
-  $scope.toggleDiscussion = function(qid){
+  $scope.toggleDiscussion = function(q){
     
-    if(qid === false){
+    if(q === false){
       $scope.focusDiscussion = false;
       document.getElementById('focus-discussion').scrollTop = 0;
     }else{
-      if($scope.focusDiscussion=== qid){
+      if($scope.focusDiscussion=== q){
         $scope.focusDiscussion = false;
         
       }else{
-        $scope.focusDiscussion = qid;      
+        $scope.focusDiscussion = q;      
       }
     }
     
