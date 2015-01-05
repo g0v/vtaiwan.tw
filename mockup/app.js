@@ -22,13 +22,17 @@ app.config(['$routeProvider','$locationProvider',
       controller: 'TopicsCtrl'
     }).
       when('/about',{
-      templateUrl: 'partials/about.html'
+      templateUrl: 'partials/about.html',
+      controller: 'IndexCtrl'
     }).
       when('/how',{
-      templateUrl: 'partials/how.html'
+      templateUrl: 'partials/how.html',
+      controller: 'IndexCtrl'
     }).
       when('/contact',{
-      templateUrl: 'partials/contact.html'
+      templateUrl: 'partials/contact.html',
+      controller: 'IndexCtrl'
+      
     }).
       otherwise({
       redirectTo:'/',
