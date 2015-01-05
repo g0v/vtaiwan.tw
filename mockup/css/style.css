@@ -486,17 +486,17 @@ a.nav_item_sidebar--sub {
   line-height: 18px;
   cursor: pointer;
 }
-.nav_list_toggle {
+.nav_left_toggle {
   position: absolute;
   cursor: pointer;
   top: 5px;
   padding-top: 10px;
-  left: 20px;
+  left: 5px;
   z-index: 10;
   width:40px;
   height:40px;
 }
-.nav_list_toggle:hover {
+.nav_left_toggle:hover {
   background: rgba(0,0,0,0.1);
   border-radius: 50%;
 
@@ -584,7 +584,7 @@ a.nav_item_sidebar--sub {
   height: 50px;
   overflow: hidden;
   top: 5px;
-  right: 10px;
+  right: 5px;
   padding-top: 10px;
   width:40px;
   height:40px;
