@@ -92,7 +92,7 @@
            <i class="fa fa-comments-o"></i>
            <div class="issue_item_discuss_count">4</div>
         </div>
-        <h3 class="issue_item_title" >討論話題：{{i.title}}</h3>
+        <h3 class="issue_item_title" ng-click="toggleDiscussion(i)">討論話題：{{i.title}}</h3>
         <p class="q_text" ng-repeat="p in i.content">{{p}}</p>
         <ul>
           <li ng-repeat="l in i.options">{{l}}</li>

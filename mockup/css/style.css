@@ -711,6 +711,12 @@ a.nav_item_sidebar--sub {
 }
 .issue_item_title {
   padding-right: 30px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0;
+}
+.issue_item_title:hover {
+  background: #eee;
 }
 .issue_item_discuss {
   position: absolute;
