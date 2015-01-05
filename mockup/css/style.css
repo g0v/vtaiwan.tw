@@ -790,10 +790,8 @@ a.nav_item_sidebar--sub {
 .issue_item_title {
   font-size: 22px;
   font-weight: 800;
-  margin-top: 10px;
-  padding-right: 30px;
   cursor: pointer;
-  padding: 10px;
+  padding-top: 10px;
   margin: 0;
 }
 
