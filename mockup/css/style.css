@@ -355,10 +355,19 @@ a.button--wide {
   display: inline-block;
   position: absolute;
   left: 20px;
-  top: 10px;
+  top: 5px;
+  padding-top: 8px;
   font-size: 20px;
   color: white;
   cursor: pointer;
+  width:40px;
+  height:40px;
+  text-align: center;
+}
+.q_content_nav_remove:hover {
+  background: rgba(0,0,0,0.1);
+  border-radius: 50%;
+
 }
 
 a.nav_item_sidebar {
@@ -431,7 +440,7 @@ a.nav_item_sidebar--sub {
 }
 .nav_item_sidebar--switchmenu {
   width: 40px;
-  height: 42px;
+  
   padding: 10px;
   text-align: center;
   display: block;
@@ -480,9 +489,17 @@ a.nav_item_sidebar--sub {
 .nav_list_toggle {
   position: absolute;
   cursor: pointer;
-  top: 14px;
+  top: 5px;
+  padding-top: 10px;
   left: 20px;
   z-index: 10;
+  width:40px;
+  height:40px;
+}
+.nav_list_toggle:hover {
+  background: rgba(0,0,0,0.1);
+  border-radius: 50%;
+
 }
 .nav_list_book {
   position: absolute;
@@ -561,19 +578,22 @@ a.nav_item_sidebar--sub {
 .nav_list_function_item_inner:hover{
   border-left: 5px solid gray;
 }
-.nav_list_function_item_select {
+.nav_right_toggle {
+  position: absolute;
   cursor: pointer;
-  padding: 15px 5px;
   height: 50px;
   overflow: hidden;
-
-
-}
-#userMenu {
-  position: absolute;
+  top: 5px;
   right: 10px;
-  top: 0px;
+  padding-top: 10px;
+  width:40px;
+  height:40px;
 }
+.nav_right_toggle:hover {
+  background: rgba(0,0,0,0.1);
+  border-radius: 50%;
+}
+
 
 /* ------------------------------------------------------------ */
 /* cover
@@ -865,3 +885,5 @@ a.more {
   right: 0;
   float: right;
 }
+
+
