@@ -19,7 +19,7 @@ app.config(['$routeProvider','$locationProvider',
     }).
       when('/topics',{
       templateUrl: 'partials/topics.html',
-      controller: 'TopicsCtrl'
+      controller: 'IndexCtrl'
     }).
       when('/about',{
       templateUrl: 'partials/about.html',
