@@ -42,7 +42,7 @@ a {
   height: 100%;
 }
 .wrapper {
-  padding-top: 15px;
+ 
   margin-left: auto;
   margin-right: auto;
   
@@ -103,7 +103,8 @@ header {
   font-size: 16px;
   color: rgb(140,140,140);
   font-weight: 700;
-  line-height: 14px;
+  line-height: 18px;
+  margin-top: 10px;
 }
 .q_title{
   display: inline-block;
@@ -135,23 +136,39 @@ header {
   margin-top: 50px; /* for fixed nav */
   text-align: left;
   padding: 5px 10px;
+
 }
+.q_content_reply {
+  margin-bottom: 50%;
+}
+
+
 
 /* ------------------------------------------------------------ */
 /* Button
 /* ------------------------------------------------------------ */
-
+a.cancel {
+  display: inline-block;
+  min-width: 70px;
+  font-size: 14px;
+  text-decoration: underline;
+  font-weight: 700;
+  text-align: center;
+  color: #C51162;
+  cursor: pointer;
+}
 a.button {
+  font-weight: 700;
   -moz-transition: .2s;
   -ms-transition: .2s;
   -webkit-transition: .2s;
   transition: .2s;
-  background: #26A69A;
+  background: #C51162;
   border-radius: 2px;
   box-shadow: 0 2px 2px rgba(0,0,0,.2);
   color: #fff;
   display: inline-block;
-  font-size: 13px;
+  font-size: 14px;
   text-decoration: none;
   text-transform: uppercase;
   padding: 7px 14px;
@@ -189,7 +206,7 @@ a.button.facebook{
 }
 a.button--square.inactive, a.button--wide.inactive{
   color: rgb(53,55,54);
-  background: #009688;
+  background: transparent;
   color: white;
   
 }
@@ -197,6 +214,7 @@ a.button.goodrating{
   background: #8BC34A;
 }
 a.button--wide {
+  border: 1px solid white;
   background: white;
   -moz-transition: .2s;
   -ms-transition: .2s;
@@ -211,19 +229,9 @@ a.button--wide {
   cursor: pointer;
   text-align: center;
   border-radius: 5px;
+  margin-right: 6px;
 
 
-}
-
-/* question bottom "more" function */
-.question_bottom {
-  text-align: center;
-  margin: 20px auto;
-}
-.question_bottom a.button {
-  color: #424242;
-  background: white;
-  width: 100px;
 }
 
 
@@ -303,7 +311,7 @@ a.button--wide {
   -webkit-transition: .2s;
   transition: .2s;
   transition-duration: .5s;
-  
+
   /* [transition-property] [transition-duration] [transition-timing-function] [transition-delay] */
  
   overflow: scroll;
@@ -326,11 +334,13 @@ a.button--wide {
   transition: right .5s ease-in-out;
 
 }
+
 .q_content_nav {
   width: 100%;
   height: 50px;
   background: #C51162;
   color: white;
+  z-index: 400;
 }
 .q_content_nav.show {
   position: fixed;
@@ -658,7 +668,7 @@ a.nav_item_sidebar--sub {
 }
 
 /* ------------------------------------------------------------ */
-/* topic
+/* topic 主題
 /* ------------------------------------------------------------ */ 
 .topic_page {
   padding: 10px;
@@ -670,7 +680,7 @@ a.nav_item_sidebar--sub {
   cursor: pointer;
 }
 /* ------------------------------------------------------------ */
-/* issue
+/* issue 話題
 /* ------------------------------------------------------------ */ 
 .issue_item {
   margin-bottom: 4px;
@@ -689,6 +699,139 @@ a.nav_item_sidebar--sub {
   cursor: pointer;
   font-size: 24px;
 }
+.issue_item_discuss_count {
+  
+  position: absolute;
+  bottom: -8px;
+  left: 5px;
+  color: rgb(100,100,100);
+  font-weight: 700;
+  font-size: 12px;
+  font-family: Helvetica,Arial,sans-serif;
+
+}
+/* ------------------------------------------------------------ */
+/* post 討論串
+/* ------------------------------------------------------------ */ 
+.order_control {
+  position: absolute;
+  top: 13px;
+  right: 50px;
+  z-index: 200;
+  text-align: center;
+  display: inline-block;
+  font-size: 12px;
+}
+.focusDiscussion_title {
+  font-weight: 700;
+  font-size: 20px;
+  font-size: 16px;
+  margin: 10px 0px;
+}
+.post_item {
+  background: white;
+  margin: 1px;
+  padding: 8px;
+  position: relative;
+  padding-bottom: 25px;
+
+}
+.post_item_img {
+  width: 50px;
+  float: left;
+}
+.post_item_info {
+  overflow: hidden;  
+  _overflow: visible;  
+  zoom: 1; 
+  padding: 0px 0px 0px 8px;
+}
+.post_item_author, .post_item_recommend, .post_item_date {
+  color: rgb(200,200,200);
+  font-weight: 700;
+  font-size: 12px;
+  font-family: Helvetica,Arial,sans-serif;
+}
+.post_item_recommend {
+  position: absolute;
+  right: 40px;
+  top: 9px;
+
+}
+.post_item_date {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}
+.post_item_text {
+  white-space: pre-wrap;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 6px 0px;
+}
+.post_reply_item {
+  position: fixed;
+  bottom: -50%;
+  left: 0px;
+  height: 50%;
+  width: 100%;
+  background: rgb(220,220,220);
+  padding: 5px 10px 40px 10px;
+  box-sizing: border-box;
+
+  -moz-transition: .2s;
+  -ms-transition: .2s;
+  -webkit-transition: .2s;
+  transition: .2s;
+  transition-duration: .5s;
+
+
+}
+.post_reply_item.show {
+  bottom: 0px;
+
+  -webkit-transition: bottom .5s ease-in-out;
+  transition: bottom .5s ease-in-out;
+
+}
+.post_reply_item_title {
+  margin: 8px 0px;
+  font-size: 14px;
+  margin-right: 40px;
+  position: relative;
+
+}
+.post_reply_item_minimize {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  cursor: pointer;
+  width: 40px;
+  text-align: center;
+}
+.post_reply_item textarea {
+  width: 100%;
+  height: 80%;
+  resize: none;
+
+}
+.post_reply_item_control {
+  margin: 5px 0px;
+}
+
+/* question bottom "more" function */
+.more_botton_wrapper {
+  text-align: center;
+  margin: 20px auto;
+}
+.more_botton_wrapper a.button {
+  width: 100px;
+}
+a.more {
+  color: #424242;
+  background: white;
+}
+
 /* ------------------------------------------------------------ */
 /* page navigation
 /* ------------------------------------------------------------ */ 

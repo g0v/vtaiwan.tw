@@ -177,6 +177,11 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
   $scope.order = 'signatures_count';
   $scope.topic = true;
   $scope.topicref = 'crowdfunding';
+  $scope.recommendFilter = 0;
+
+  $scope.toggleReplyItem = function() {
+    $scope.showReplyItem = !$scope.showReplyItem;
+  };
 
   $scope.isQuestionFocused = function (qid) {
     return $scope.focusQuestion === qid;
@@ -254,6 +259,10 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
       
       
   });
+  DataService.getData('posts').then(function(data){
+    $scope.posts = data; 
+  });
+ 
  
   
 

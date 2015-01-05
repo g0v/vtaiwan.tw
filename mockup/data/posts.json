@@ -1,0 +1,26 @@
+[
+    {
+      "user_id" : 6,
+      "user_name" : "audreyt",
+      "recommend" : 0,
+      "content":["礙於證券交易法的相關規定，目前我國發展投資型群眾募資有障礙，如要鬆綁法規發展群眾募資，您認為：\n1. 應同步開放股權模式以及債權模式群眾募資？\n2. 或者是先開放其一即可？\n3. 或您有其它看法？"]
+    },
+    {
+      "user_id" : 11,
+      "user_name" : "pofeng",
+      "recommend" : 1,
+      "content":["由於清償順序, 債優於股, 所以, seed funding, 好像多是可轉債, 這樣的話應該算是兩個都要開放吧？\n\n然後雖然說是可轉債, 但其實形式上是 '合約', 不知道在我國的法令裡面, 是否仍然算 '有價證券'\n\n美國 SEC 好像還是把這種合約, 歸在證券裡面管理"]
+    },
+    {
+      "user_id" : 6,
+      "user_name" : "audreyt",
+      "recommend" : 0,
+      "content":["感謝 @pofeng 提問！論壇目前還在建置中，下周二會邀請金管會的朋友開始上來回答。"]
+    },
+    {
+      "user_id" : 12,
+      "user_name" : "Stella_Hsieh",
+      "recommend" : 1,
+      "content":["沒錯，在美國，債權模式的群眾募資平台 Prosper 或 Lending club 都已經依法取得券商的資格。但是主要還是要看主管機關(金管會)的態度。"]
+    }
+]
