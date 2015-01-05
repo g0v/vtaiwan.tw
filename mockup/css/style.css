@@ -139,7 +139,7 @@ header {
 
 }
 .q_content_reply {
-  margin-bottom: 50%;
+  margin-bottom: 50vh;
 }
 
 
@@ -771,9 +771,9 @@ a.nav_item_sidebar--sub {
 }
 .post_reply_item {
   position: fixed;
-  bottom: -50%;
+  bottom: -50vh;
   left: 0px;
-  height: 50%;
+  height: 50vh;
   width: 100%;
   background: rgb(220,220,220);
   padding: 5px 10px 40px 10px;
