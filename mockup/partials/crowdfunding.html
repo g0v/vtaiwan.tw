@@ -65,9 +65,12 @@
     <div class="post_reply_item" ng-class="{'show':showReplyItem}">
         <div class="post_reply_item_title">回覆至 <b>{{focusDiscussion.title}}</b>：</div>
         <div class="post_reply_item_minimize" ng-click="toggleReplyItem()"><i class="fa fa-chevron-down"></i></div>
-        <textarea></textarea>
+        <div class="post_reply_item_textarea"><textarea></textarea></div>
+        
         <div class="post_reply_item_control">
-        <a class="button"><i class="fa fa-reply"></i> 回覆</a> <a class="cancel">取消</a>
+            <div class="post_reply_item_control_button">
+            <a class="button"><i class="fa fa-reply"></i> 回覆</a> <a class="cancel">取消</a>
+            </div>
         </div>
 
     </div>
