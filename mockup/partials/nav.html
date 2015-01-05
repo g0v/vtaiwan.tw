@@ -4,9 +4,10 @@
 
 <div id="sidebar-shadow" ng-show="sidebar || showUserMenu" ></div>
 <div id="sidebar-container" ng-class="{'show':sidebar, 'hide':!sidebar}" ng-click="showsidebar('toggle')">
-  <div class="sidebar-container_left">
+  <div class="sidebar-container_left md-whiteframe-z1">
     
-    <span ng-show="!topic">
+    <!--<div id="sidebar-container--top" ng-class="{'show':!topic}" ng-click="showsidebar('toggle')">-->
+    <div ng-show="!topic">
       <a class="nav_item_sidebar--left" href="#/" >首頁</a>
       <a class="nav_item_sidebar--left" href="#/topics" >主題</a>
       <a class="nav_item_sidebar--sub" ng-click="go('crowdfunding')">群眾募資<span class="nav_item_sidebar--switchmenu" ng-click="topic='crowdfunding';$event.stopPropagation();"><i class="fa fa-chevron-right"></i></span></a>
@@ -14,8 +15,9 @@
       <a class="nav_item_sidebar--left" href="#/how"  >如何發言</a>
       <a class="nav_item_sidebar--left" href="#/about" >關於</a>
       <a class="nav_item_sidebar--left" href="#/contact" >聯絡我們</a>
-    </span>
-    <span ng-show="topic">
+    </div>
+    <!--<div id="sidebar-container--down" ng-class="{'show':topic}">-->
+    <div ng-show="topic">
       <!--<a class="nav_item_sidebar--bold" ng-click="$event.stopPropagation();">群眾募資</a>-->
       <a class="nav_item_sidebar--bold" ng-click="topic=null;$event.stopPropagation();"><i class="fa fa-chevron-left"></i> 群眾募資</a>
       
@@ -23,7 +25,7 @@
           <a class="nav_item_sidebar--left" >{{q.title}}</a>
           <a class="nav_item_sidebar--sub" ng-repeat="i in q.issues">{{i.title}}</a>
       </span>
-    </span>
+    </div>
  
   </div>
 </div>
@@ -32,8 +34,11 @@
 
   <div class="nav_left_toggle" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i></div>
   
-  <!--<div id="site_logo">虛擬世界法規調適<br/>vTaiwan.tw</div> 
-  <img id="site_logo" src="images/logo.png">-->
+  <div id="site_logo"><a href="#/">
+    <img id="site_logo_img" src="images/logo1.png">
+    <div id="site_logo_text">vTaiwan</div></a>
+  </div>
+  
  
   <div class="nav_right_toggle">
       <i class="fa fa-plus"></i>

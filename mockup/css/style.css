@@ -7,7 +7,8 @@ body {
   padding: 0px;
   text-rendering: optimizeLegibility;
   min-width: 320px;
-  background: rgb(236,236,236);
+  background: white;
+
   color: rgb(55,53,54);
   font-size: 16px;
   
@@ -53,8 +54,12 @@ a {
 }
 #content {
 	margin-top: 50px;
+  padding-top: 10px;
+ 
+}
+#content--cover {
+  margin-top: 50px;
   min-height: 600px;
-  
 }
 #content--crowdfunding {
   width: 100%;
@@ -85,14 +90,15 @@ header {
   position: fixed;
   top: 0px;
   box-sizing: border-box;
-  padding: 10px;
+  
   background: rgb(220, 220, 220);
   text-align: center;
 
 }
 .nav_background {
-  background: #3F51B5; 
-  color: white;
+  /* background: #3F51B5;  indigo */
+  background: white;
+  color: rgb(53,55,54);
 
 }
 
@@ -154,7 +160,7 @@ a.cancel {
   text-decoration: underline;
   font-weight: 700;
   text-align: center;
-  color: #C51162;
+  color: rgb(63,159,155);
   cursor: pointer;
 }
 a.button {
@@ -163,7 +169,7 @@ a.button {
   -ms-transition: .2s;
   -webkit-transition: .2s;
   transition: .2s;
-  background: #C51162;
+  background: rgb(63,159,155);
   border-radius: 2px;
   box-shadow: 0 2px 2px rgba(0,0,0,.2);
   color: #fff;
@@ -243,12 +249,11 @@ a.button--wide {
   background: rgba(0,0,0,0.5);
   height: 100%;
   width: 100%;
-  z-index: 100;
+  z-index: 400;
   overflow: hidden;
   position: absolute;
+  top: 0px;
   left:0px;
-  
- 
 }
 #sidebar-container {
   z-index: 400;
@@ -268,9 +273,10 @@ a.button--wide {
   transition: .2s;
   transition-duration: .5s;
   
+  
 }
 .sidebar-container_left {
-  background: white;
+  background: rgb(53,55,54);
   height: 100%;
   overflow: scroll;
 }
@@ -284,6 +290,7 @@ a.button--wide {
   -webkit-transition: .2s;
   transition: .2s;
   transition-duration: .5s;
+
 }
 @media screen and (min-width: 600px){
   #sidebar-container {
@@ -299,6 +306,62 @@ a.button--wide {
   #sidebar-shadow {
     display: none;
   }
+}
+#sidebar-container--top {
+  width: 100%;
+  padding-right: 50px;
+  height: 100%;
+  top: 0px;
+  left: -100%;
+  overflow: scroll;
+  position: absolute;
+  -moz-transition: .2s;
+  -ms-transition: .2s;
+  -webkit-transition: .2s;
+  transition: .2s;
+  transition-duration: .5s;
+  
+}
+#sidebar-container--top.show {
+  width: 100%;
+  left: 0px;
+  -moz-transition: .2s;
+  -ms-transition: .2s;
+  -webkit-transition: .2s;
+  transition: .2s;
+  transition-duration: .5s;
+  
+
+}
+#sidebar-container--down {
+  width: 100%;
+  padding-right: 50px;
+  height: 100%;
+  
+  bottom: -100%;
+
+  overflow: scroll;
+  position: absolute;
+  
+  -moz-transition: .2s;
+  -ms-transition: .2s;
+  -webkit-transition: .2s;
+  transition: .2s;
+  transition-duration: .5s;
+
+  
+}
+#sidebar-container--down.show {
+
+  width: 100%;
+  bottom: 0px;
+  padding-right: 50px;
+  -moz-transition: .2s;
+  -ms-transition: .2s;
+  -webkit-transition: .2s;
+  transition: .2s;
+  transition-duration: .5s;
+
 }
 #focus-discussion{
   z-index: 500;
@@ -320,7 +383,7 @@ a.button--wide {
   top:0px;
   right: -100%;
   background: rgb(247,247,247);
-
+  
 }
 
 #focus-discussion.show{
@@ -338,7 +401,7 @@ a.button--wide {
 .q_content_nav {
   width: 100%;
   height: 50px;
-  background: #C51162;
+  background: rgb(63,159,155);
   color: white;
   z-index: 400;
 }
@@ -389,21 +452,30 @@ a.nav_item_sidebar--inner {
 
 a.nav_item_sidebar--left {
   display: block;
-  padding: 10px;
-  color: #3F51B5;
-  border-bottom: 1px solid rgb(240,240,240);
+  padding: 12px;
+  height: 50px;
+  color: rgb(247,247,247);
+  
+  font-size: 18px;
+  font-weight: 700;
+  background: rgb(53,55,54);
+  
+  border-bottom: 1px solid rgb(100,100,100);
   text-align: left;
   cursor: pointer;
 }
 a.nav_item_sidebar--bold {
   display: block;
-  padding: 10px;
-  color: #3F51B5;
-  border-left: 5px solid #3F51B5;
+  padding: 12px;
+  height: 50px;
+  font-size: 18px;
+  color: rgb(53,55,54);
+  background: rgb(220,220,220);
+  /* border-left: 5px solid rgb(53,55,54); */
   text-align: left;
   cursor: pointer;
   font-weight: 700;
-  background: rgb(220,220,220);
+  
 
 }
 a.nav_item_sidebar--half {
@@ -415,36 +487,32 @@ a.nav_item_sidebar--half {
   text-align: center;
 
 }
-a.nav_item_sidebar--gray {
-  display: block;
-  padding: 10px;
-  color: #3F51B5;
-  border-bottom: 1px solid rgb(240,240,240);
-  text-align: left;
-  cursor: pointer;
-  background: rgb(220,220,220);
-  color: rgb(53,55,54);
-  font-weight: 700;
 
-}
 a.nav_item_sidebar--sub {
   
   display: block;
-  padding: 10px;
-  color: #3F51B5;
-  border-bottom: 1px solid rgb(240,240,240);
+  padding: 12px;
+  min-height: 50px;
+ 
+  color: rgb(247,247,247);
+  
+  background: rgb(53,55,54);
+  
+  border-bottom: 1px solid rgb(100,100,100);
   text-align: left;
   cursor: pointer;
   padding-left: 20px;
   position: relative;
 }
 .nav_item_sidebar--switchmenu {
-  width: 40px;
-  
-  padding: 10px;
+  width: 50px;
+  padding: 14px;
+  height: 50px;
   text-align: center;
   display: block;
+  color: rgb(53,55,54);
   background: rgb(220,220,220);
+
   position: absolute;
   right: 0px;
   top: 0px;
@@ -477,14 +545,22 @@ a.nav_item_sidebar--sub {
   border-bottom: 10px solid white;
 }
 #site_logo {
-  position: absolute;
-  left: 50px;
-  top: 5px;
+  padding: 5px;
   height: 50px;
-  font-weight: 800;
-  font-size: 16px;
-  line-height: 18px;
   cursor: pointer;
+}
+#site_logo_img {
+  width: 40px;
+}
+#site_logo_text {
+  display: inline-block;
+  vertical-align: top;
+  padding: 8px 2px; 
+  font-weight: 800;
+  font-size: 18px;
+  color: rgb(53,55,54);
+  font-family: Helvetica, Arial, sans-serif;
+  
 }
 .nav_left_toggle {
   position: absolute;
@@ -588,6 +664,7 @@ a.nav_item_sidebar--sub {
   padding-top: 10px;
   width:40px;
   height:40px;
+  z-index: 10;
 }
 .nav_right_toggle:hover {
   background: rgba(0,0,0,0.1);
@@ -707,26 +784,29 @@ a.nav_item_sidebar--sub {
   background: white;
   padding: 5px 10px; 
   position: relative;
+  border: 1px solid rgb(220,220,220);
 
 }
 .issue_item_title {
-  padding-right: 30px;
-}
-.issue_item_discuss {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  cursor: pointer;
-  font-size: 24px;
-}
-.issue_item_discuss_count {
   
-  position: absolute;
-  bottom: -8px;
-  left: 5px;
-  color: rgb(100,100,100);
-  font-weight: 700;
-  font-size: 12px;
+  font-size: 22px;
+  font-weight: 800;
+  margin-top: 10px;
+  cursor: pointer;
+  display: inline;
+}
+@media screen and (max-width: 400px){
+  .issue_item_title {
+    font-size: 20px;
+  }
+}
+.issue_item_title:hover {
+  color: rgb(63,159,155);
+}
+
+.issue_item_discuss_count {
+  padding: 2px;
+  font-size: 18px;
   font-family: Helvetica,Arial,sans-serif;
 
 }
@@ -744,8 +824,13 @@ a.nav_item_sidebar--sub {
 }
 .focusDiscussion_title {
   font-weight: 700;
-  font-size: 16px;
+  font-size: 22px;
   margin: 10px 0px;
+}
+@media screen and (max-width: 400px) {
+  .focusDiscussion_title {
+    font-size: 20px;
+  }
 }
 .post_item {
   background: white;
@@ -786,7 +871,14 @@ a.nav_item_sidebar--sub {
   white-space: pre-wrap;
   font-size: 14px;
   line-height: 18px;
+  
   margin: 6px 0px;
+}
+@media screen and (min-width: 600px) {
+  .post_item_text {
+    font-size: 16px;
+    line-height: 20px;
+  }
 }
 .post_reply_item {
   position: fixed;
