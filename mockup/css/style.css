@@ -788,10 +788,19 @@ a.nav_item_sidebar--sub {
 
 }
 .issue_item_title {
-  
   font-size: 22px;
   font-weight: 800;
   margin-top: 10px;
+  padding-right: 30px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0;
+}
+
+.issue_item_discuss {
+  position: absolute;
+  right: 15px;
+  top: 15px;
   cursor: pointer;
   display: inline;
 }
@@ -998,4 +1007,6 @@ a.more {
   float: right;
 }
 
-
+.about_item_content li {
+    line-height: 175%;
+}
