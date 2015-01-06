@@ -45,7 +45,7 @@
     <!--ng-show="$index===0 || $last || isExpand()" -->
       <div class="post_item md-whiteframe-z1" ng-class="{'post_item_last':$last && ((posts).length) > 3 && !expand}">
 
-        <img class="post_item_img" src="{{p.avatar_url}}">
+        <img class="post_item_img" ng-src="{{p.avatar_url}}">
         <div class="post_item_info">
           <div class="post_item_author" >{{p.username}}</div>
           <div class="post_item_recommend" ng-if="p.recommend >= 1"><i class="fa fa-heart-o"></i></div>
