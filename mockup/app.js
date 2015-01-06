@@ -183,6 +183,22 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
   $scope.topicref = 'crowdfunding';
   $scope.recommendFilter = 0;
 
+  $scope.toggleExpand = function () {
+    $scope.expand = !$scope.expand;
+  };
+  $scope.isExpand = function() {
+    return $scope.expand;
+  };
+
+  $scope.recommendFilterFunction = function (n) {
+    //console.log(n.recommend + '---' + $scope.recommendFilter);
+    if(n.recommend >= $scope.recommendFilter)
+       return n;
+  };
+  $scope.setRecommendFilter = function (value) {
+    $scope.recommendFilter = value;
+  };
+
   $scope.toggleReplyItem = function() {
     $scope.showReplyItem = !$scope.showReplyItem;
   };
@@ -211,15 +227,22 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
 
   $scope.toggleDiscussion = function(q){
     
+
     if(q === false){
       $scope.focusDiscussion = false;
+     
       document.getElementById('focus-discussion').scrollTop = 0;
+
     }else{
+
       if($scope.focusDiscussion=== q){
         $scope.focusDiscussion = false;
         
+        
       }else{
-        $scope.focusDiscussion = q;      
+        $scope.focusDiscussion = q;
+        $scope.expand = null;
+           
       }
     }
     

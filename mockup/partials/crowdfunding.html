@@ -21,8 +21,8 @@
       <div class="nav_left_toggle" ng-click="toggleDiscussion(focusDiscussion.id)"><i class="fa fa-chevron-left"></i></div>
 
       <div class="order_control">
-          <a class="button--wide" ng-class="{'inactive':recommendFilter===1}" ng-click="recommendFilter=0"><i class="fa fa-thumbs-o-up"></i> 所有</a>
-          <a class="button--wide" ng-class="{'inactive':recommendFilter===0}" ng-click="recommendFilter=1"><i class="fa fa-clock-o"></i> 推薦</a>
+          <a class="button--wide" ng-class="{'inactive':recommendFilter===1}" ng-click="setRecommendFilter(0)"><i class="fa fa-thumbs-o-up"></i> 所有</a>
+          <a class="button--wide" ng-class="{'inactive':recommendFilter===0}" ng-click="setRecommendFilter(1)"><i class="fa fa-clock-o"></i> 推薦</a>
       </div>
 
       <div class="nav_right_toggle">
@@ -46,14 +46,23 @@
         <p class="q_text" ng-repeat="c in p.content">{{c}}</p>  
      </div>
     -->
-    <div class="post_item md-whiteframe-z1" ng-repeat="p in posts" ng-show="p.recommend >= recommendFilter">
+    <div ng-repeat="p in posts | filter:recommendFilterFunction">
+      <div class="post_item md-whiteframe-z1" ng-show="$index===0 || $last || isExpand()" ng-class="{'post_item_last':$last && ((posts | filter:recommendFilterFunction).length) > 3 && !expand}">
         <img class="post_item_img" src="images/users/{{p.user_id}}.png">
         <div class="post_item_info">
-          <div class="post_item_author" >{{p.user_name}} </div>
+          <div class="post_item_author" >{{p.user_name}} {{$index}}/{{$last}}</div>
           <div class="post_item_recommend" ng-if="p.recommend >= 1"><i class="fa fa-heart-o"></i></div>
           <div class="post_item_date" >5 天</div>
           <div class="post_item_text" ng-repeat="c in p.content">{{c}}</div>  
-        </div>   
+        </div>
+        
+        <!-- expand -->
+        <div class="post_item_intermediate" ng-if="$index===0 && ((posts | filter:recommendFilterFunction).length) > 3" ng-click="toggleExpand()" ng-show="!isExpand()">
+          <div class="post_item_intermediate_circle">{{(posts | filter:recommendFilterFunction).length-2}}</div>
+        </div> 
+        
+      </div>
+      
     </div>
     <div class="toggle_reply_button" ng-click="toggleReplyItem()" ng-show="focusDiscussion"><i class="fa fa-reply"></i></div>
    
