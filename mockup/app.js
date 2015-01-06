@@ -6,19 +6,19 @@ app.config(['$routeProvider','$locationProvider',
   function($routeProvider,$locationProvider){
     $routeProvider.
       when('/crowdfunding',{
-      templateUrl: 'partials/crowdfunding.html',
+      templateUrl: 'partials/proposal.html',
       controller: 'TopicCtrl'
     }).
       when('/closelyheld/:id',{
-      templateUrl: 'partials/closelyheld.html',
+      templateUrl: 'partials/proposal.html',
       controller: 'TopicCtrl'
     }).
       when('/closelyheld',{
-      templateUrl: 'partials/closelyheld.html',
+      templateUrl: 'partials/proposal.html',
       controller: 'TopicCtrl'
     }).
       when('/crowdfunding/:id',{
-      templateUrl: 'partials/crowdfunding.html',
+      templateUrl: 'partials/proposal.html',
       controller: 'TopicCtrl'
     }).
       when('/topics',{
@@ -80,7 +80,26 @@ app.factory('DataService', function ($http, $q){
     //[1] Get gitbook content
     proposals.map(function (proposal_item) {
         DataService.getBookData(proposal_item.title_eng).then(function (book_data){
-            CachedData[proposal_item.title_eng] = book_data;
+            CachedData[proposal_item.title_eng] = {};
+            CachedData[proposal_item.title_eng].categories = book_data;
+            CachedData[proposal_item.title_eng].title_cht = proposal_item.title_cht;
+
+            //Add id & preid & next id
+            var index = 1;
+            CachedData[proposal_item.title_eng].categories.map(function (category_item) {
+              category_item.id = index;
+
+              if(index > 1) 
+                  category_item.preid = index - 1;
+
+              if(index < CachedData[proposal_item.title_eng].categories.length) 
+                  category_item.nextid = index + 1;
+
+              index++;
+
+            });
+            
+
 
             //[2] Add topic id step1: get a list of all topics and ids
             DataService.getPostIdData(proposal_item.category_num).then(function (id_data){
@@ -92,13 +111,14 @@ app.factory('DataService', function ($http, $q){
                 });
 
                 //Add topic id step2: using fancy_title comparason to add id
-                CachedData[proposal_item.title_eng].map(function (category_item){
+                CachedData[proposal_item.title_eng].categories.map(function (category_item){
 
                     //category_item.children are the discuss topics
                     if(category_item.children){
-
+                        var cindex = 1;
                         category_item.children.map(function (children_item) {
                             children_item.id = topics_to_id_table[children_item.title];
+                            children_item.index = cindex;
                         
                             //[3] Get discuss data from discourse
                             DataService.getPostData(children_item.id).then(function (posts_data) {
@@ -118,7 +138,7 @@ app.factory('DataService', function ($http, $q){
                                 // (1) last proposal
                                 if(proposal_item.title_eng === proposals[proposals.length-1].title_eng){
                                     // (2) last proposal's last category
-                                    var categories = CachedData[proposal_item.title_eng];
+                                    var categories = CachedData[proposal_item.title_eng].categories;
                                     if(category_item.title === categories[categories.length-1].title){
                                         
                                         // (3) last proposal's last category's last children(topic)
@@ -132,6 +152,7 @@ app.factory('DataService', function ($http, $q){
                                 
 
                             });
+                            cindex++;
 
                         });
                     }else{
@@ -139,7 +160,7 @@ app.factory('DataService', function ($http, $q){
                         // (1) last proposal
                         if(proposal_item.title_eng === proposals[proposals.length-1].title_eng){
                             // (2) last proposal's last category
-                            var categories = CachedData[proposal_item.title_eng];
+                            var categories = CachedData[proposal_item.title_eng].categories;
                             if(category_item.title === categories[categories.length-1].title){
                                 console.log("back!(2)");
                                 deferred.resolve(CachedData);
@@ -308,8 +329,8 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
  
       $scope.focusQuestion = qid;
       //console.log($location.path());
-      $location.path('/'+$scope.topic+'/'+qid);
-      $scope.currentQ = $scope.questionsObj[qid];
+      $location.path('/'+$scope.topicref+'/'+qid);
+      $scope.currentQ = $scope.questions[qid];
       //$location.hash(qid);
       $("body").scrollTop(0);
         
@@ -345,32 +366,22 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
     }
     $scope.$apply();
   });
-  
+ 
 
-  
-
-
-
-  
   
 }]);
 
 app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){
 
   topicref = $location.$$url.split('/')[1] || 'crowdfunding';
+  //topicref = $location.path().split('/')[1] || 'crowdfunding';
+  //console.log($location.path().split('/')[1]);
 
-  
-  if(topicref === 'crowdfunding'){
-    $scope.categoryref = 6;
-  }else{
-    $scope.categoryref = 5;
-  }
+  $scope.topicref = topicref;
 
   $scope.order = 'signatures_count';
-  $scope.topic = true;
-  $scope.topicref = topicref;
   $scope.recommendFilter = 0;
-
+ 
   $scope.toggleExpand = function () {
     $scope.expand = !$scope.expand;
   };
@@ -393,7 +404,8 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
 
   $scope.isQuestionFocused = function (qid) {
     return $scope.focusQuestion === qid;
-  }
+  };
+
   $scope.toggleQuestion = function(qid){
     $scope.questionToggled = true;
 
@@ -401,12 +413,11 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
       $scope.focusQuestion = false;
       
     }else{
- 
       $scope.focusQuestion = qid;
       //console.log($location.path());
-
       $location.path('/' + topicref + '/'+qid);
-      $scope.currentQ = $scope.questionsObj[qid];
+      console.log($scope.questions[qid-1]);
+      $scope.currentQ = $scope.questions[qid-1];
       //$location.hash(qid);
       $("body").scrollTop(0);
         
@@ -414,159 +425,51 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
     
   };
 
-  
-  
-  $scope.showLoginTip = function () {
-    
-    $("#notification").text("請先登入");
-    setTimeout(function(){
-      $("#notification").addClass("notification_show");
-      setTimeout(function(){
-          $("#notification").removeClass("notification_show");
-
-      },2500);
-
-    },100);
-
-  };
-
   $scope.go = function(path){
       $("body").scrollTop(0);
       $location.path(path);
   };
 
-  $scope.getPostData = function (current_topic) {
-    console.log($scope.categoryref);
-    DataService.getPostID($scope.categoryref+'-category').then(function(list_data){//6-category for 群眾募資
-    //console.log(list_data.topic_list.topics);
-    //fancy_title: "群眾募資"
-    //id: 14
-    //console.log("focusDiscussion");
-    //console.log($scope.focusDiscussion);
-    list_data.topic_list.topics.map(function (item) {
-        if(item.fancy_title === current_topic){
-           $scope.currentTopicID = item.id;
-            DataService.getPostData($scope.currentTopicID).then(function(data){
-    
-                var all = data.post_stream.posts;
-                $scope.currentTopicPostCount = data.posts_count;
+  DataService.getCatchedData().then(function (d) {
+      $scope.currentProposal = d[$scope.topicref];
+      $scope.questions = d[$scope.topicref].categories;
 
-                $scope.posts = [];
-                for(var key in all){
-                  //console.log(all[key]);
-                  //https://talk.vtaiwan.tw/user_avatar/talk.vtaiwan.tw/{{p.username}}/50/{{p.uploaded_avatar_id}}.png
-                  all[key].avatar_url = 'https://talk.vtaiwan.tw/user_avatar/talk.vtaiwan.tw/'+all[key].username+'/50/'+all[key].uploaded_avatar_id+'.png';
-                  $scope.posts.push(all[key]);
-                }
-                
-                
-             
-            });
-
-        }
-
-    });
-
-
-  });
- 
-    
-  };
-
-  DataService.getBookData($scope.topicref).then(function(data){
-    //console.log(data);
-    
-    $scope.questionsObj = {};
-    $scope.questions = [];
-    var length = data.length;
-    var index = 1;
-    data.map(function(value){
-        value.id = index;
-        if(index > 1)
-            value.preid = index - 1;
-        if(index < length)
-            value.nextid = index + 1;
-        
-        /* get post count */
-        /*
-        DataService.getPostID('6-category').then(function(list_data){//6-category for 群眾募資
-    
-          list_data.topic_list.topics.map(function (item) {
-          if(item.fancy_title === value.title){
-              $scope.currentTopicID = item.id;
-              DataService.getPostData($scope.currentTopicID).then(function(data){
-    
-               
-              value.count = data.posts_count;
-              
-              });
-          }
-        });
-        });
-        */
-
-        /* -------------- */
-        $scope.questions.push(value);
-        $scope.questionsObj[index] = value;
-        index++;
-    });
-
-    if($routeParams.id){
+      console.log($scope.questions);
+      if($routeParams.id){
         $scope.toggleQuestion(parseInt($routeParams.id));
     
-    }else{
+      }else{
         $scope.toggleQuestion(1);
-    }
-    //console.log($scope.questionsObj[1]);
+
+      }
       
-  });
+  })
+
+  $scope.toggleDiscussion = function(index){
+    console.log(index);
+
   
-  
-
-  $scope.toggleDiscussion = function(q){
-    
-
-    if(q === false){
-      $scope.focusDiscussion = false;
-      $scope.currentTopicPostCount = null;
-     
-      document.getElementById('focus-discussion').scrollTop = 0;
-
-    }else{
-
-      if($scope.focusDiscussion === q){
+      if($scope.focusDiscussion === index){
         $scope.focusDiscussion = false;
+        document.getElementById('focus-discussion').scrollTop = 0;
         $scope.currentTopicPostCount = null;
         
         
       }else{
-        $scope.focusDiscussion = q;
-        if(q){
-          $scope.getPostData(q.title);
-        }
-
+        $scope.focusDiscussion = index;
+        $scope.currentDiscussion = $scope.currentQ.children[index-1];
+        
         $scope.expand = null;
            
       }
-    }
+   
     
   };
-  
-  
-  
  
- 
-  
-
   $scope.toTrusted = function(html_code) {
     return $sce.trustAsHtml(html_code);
   };
   
-  $scope.resetFocus = function(){
-      //console.log("RESET");
-      $scope.policyShowState = false;
-      $scope.focusQuestion = false;  
-  };
  
 }]);
 app.controller('TopicsCtrl', ['$scope', '$location', '$routeParams', '$route', function ($scope, $location, $routeParams, $route){
