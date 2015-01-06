@@ -6,7 +6,7 @@
 
 
 
-<div id="content--closelyheld">
+<div id="content--crowdfunding">
 
 
 <div class="nav_list_toolbar" ng-class="{'nav_list_toolbar_hide':!showUserMenu}">
@@ -21,8 +21,8 @@
       <div class="nav_left_toggle" ng-click="toggleDiscussion(focusDiscussion.id)"><i class="fa fa-chevron-left"></i></div>
 
       <div class="order_control">
-          <a class="button--wide" ng-class="{'inactive':recommendFilter===1}" ng-click="recommendFilter=0"><i class="fa fa-thumbs-o-up"></i> 所有</a>
-          <a class="button--wide" ng-class="{'inactive':recommendFilter===0}" ng-click="recommendFilter=1"><i class="fa fa-clock-o"></i> 推薦</a>
+          <a class="button--wide" ng-class="{'inactive':recommendFilter===1}" ng-click="setRecommendFilter(0)"><i class="fa fa-thumbs-o-up"></i> 所有</a>
+          <a class="button--wide" ng-class="{'inactive':recommendFilter===0}" ng-click="setRecommendFilter(1)"><i class="fa fa-clock-o"></i> 推薦</a>
       </div>
 
       <div class="nav_right_toggle">
@@ -46,22 +46,30 @@
         <p class="q_text" ng-repeat="c in p.content">{{c}}</p>  
      </div>
     -->
-    <div class="post_item md-whiteframe-z1" ng-repeat="p in posts" ng-show="p.recommend >= recommendFilter">
+    <div ng-repeat="p in posts | filter:recommendFilterFunction">
+      <div class="post_item md-whiteframe-z1" ng-show="$index===0 || $last || isExpand()" ng-class="{'post_item_last':$last && ((posts | filter:recommendFilterFunction).length) > 3 && !expand}">
         <img class="post_item_img" src="images/users/{{p.user_id}}.png">
         <div class="post_item_info">
-          <div class="post_item_author" >{{p.user_name}} </div>
+          <div class="post_item_author" >{{p.user_name}} {{$index}}/{{$last}}</div>
           <div class="post_item_recommend" ng-if="p.recommend >= 1"><i class="fa fa-heart-o"></i></div>
           <div class="post_item_date" >5 天</div>
           <div class="post_item_text" ng-repeat="c in p.content">{{c}}</div>  
-        </div>   
+        </div>
+        
+        <!-- expand -->
+        <div class="post_item_intermediate" ng-if="$index===0 && ((posts | filter:recommendFilterFunction).length) > 3" ng-click="toggleExpand()" ng-show="!isExpand()">
+          <div class="post_item_intermediate_circle">{{(posts | filter:recommendFilterFunction).length-2}}</div>
+        </div> 
+        
+      </div>
+      
     </div>
-    <div class="more_botton_wrapper">
-        <a class="button more">更多</a>
-        <a class="button" ng-click="toggleReplyItem()"><i class="fa fa-reply"></i> 回覆</a>
-    </div>
+    <div class="toggle_reply_button" ng-click="toggleReplyItem()" ng-show="focusDiscussion"><i class="fa fa-reply"></i></div>
+   
 
     
     <!-- Reply to posts / Comment -->
+    <!--
     <div class="post_reply_item" ng-class="{'show':showReplyItem}">
         <div class="post_reply_item_title">回覆至 <b>{{focusDiscussion.title}}</b>：</div>
         <div class="post_reply_item_minimize" ng-click="toggleReplyItem()"><i class="fa fa-chevron-down"></i></div>
@@ -74,6 +82,7 @@
         </div>
 
     </div>
+    -->
     
 
 
@@ -86,14 +95,17 @@
   <div class="wrapper">
   <!-- Question -->  
   <div class="q_content" id="q_content">
+
   <div ng-repeat="q in questions" ng-show="isQuestionFocused(q.id)">
     <div class="q_breadcrumbs">主題 &gt; 閉鎖型公司</div>
     <div class="q_title" >{{q.title}}</div>
-    <p class="q_text" ng-repeat="p in q.content">{{p}}</p>
-    <div class="issue_item md-whiteframe-z1" ng-repeat="i in q.issues" ng-click="toggleDiscussion(i)">
-        <div class="issue_item_title" ><span class="prompt">討論話題：</span>{{i.title}} <i class="fa fa-comments-o"></i><span class="issue_item_discuss_count">4</sapn></div>
+    <div ng-bind-html="toTrusted(q.content)"></div>
+  
+    <div class="issue_item md-whiteframe-z1" ng-repeat="i in q.children" ng-click="toggleDiscussion(i)" >
+        <div class="issue_item_title"><span class="prompt">討論話題：</span>{{i.title}} <i class="fa fa-comments-o"></i><span class="issue_item_discuss_count">4</sapn></div>
 
-        <p class="q_text" ng-repeat="p in i.content">{{p}}</p>
+       
+        <div class="q_text" ng-bind-html="toTrusted(i.content)"></div>
         <ul>
           <li ng-repeat="l in i.options">{{l}}</li>
         </ul>

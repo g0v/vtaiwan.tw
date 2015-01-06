@@ -59,6 +59,18 @@ app.factory('DataService', function ($http, $q){
   DataService.getData = function(path){
     var deferred = $q.defer();
     $http.get('data/'+path+'.json').
+    success(function(data, status, headers, config) {
+          deferred.resolve(data);
+        }).
+        error(function(data, status, headers, config) {
+          deferred.resolve(data);
+        });
+    return deferred.promise;
+  };
+
+  DataService.getBookData = function(path){
+    var deferred = $q.defer();
+    $http.get('http://' + path + '.vtaiwan.tw/content.json').
         success(function(data, status, headers, config) {
           deferred.resolve(data);
         }).
@@ -127,6 +139,49 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
       
   };
 
+  $scope.topics= {};
+  DataService.getBookData('crowdfunding').then(function(crowdfunding_data){
+    DataService.getBookData('closelyheld').then(function(closelyheld_data){
+      
+      $scope.topics['crowdfunding'] = crowdfunding_data;
+      $scope.topics['closelyheld'] = closelyheld_data;
+      
+
+    });
+  });
+
+  $scope.setTopic = function (value) {
+    $scope.topic = value;
+    $scope.currentTopic = $scope.topics[value];
+    
+  };
+
+  $scope.isTopicSet = function () {
+    return $scope.topic;
+  };
+
+  $scope.toggleQuestion = function(qid){
+    $scope.questionToggled = true;
+
+    if(qid === false){
+      $scope.focusQuestion = false;
+      
+    }else{
+ 
+      $scope.focusQuestion = qid;
+      //console.log($location.path());
+      $location.path('/crowdfunding/'+qid);
+      $scope.currentQ = $scope.questionsObj[qid];
+      //$location.hash(qid);
+      $("body").scrollTop(0);
+        
+    }
+    
+  };
+
+  
+  
+
 }]);
 app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
   
@@ -154,36 +209,11 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
   });
   
 
-  $scope.topicref = 'crowdfunding';
-  DataService.getData('questions').then(function(data){
-    //console.log(data);
-      $scope.questionsObj = data[$scope.topicref].questions;
-      $scope.currentTopic = data[$scope.topicref];
-      $scope.questions = [];
+  
 
-      for(var key in $scope.questionsObj){
-        $scope.questions.push($scope.questionsObj[key]);
-      }
-       
-  });
-  $scope.toggleQuestion = function(qid){
-    $scope.questionToggled = true;
 
-    if(qid === false){
-      $scope.focusQuestion = false;
-      
-    }else{
- 
-      $scope.focusQuestion = qid;
-      //console.log($location.path());
-      $location.path('/crowdfunding/'+qid);
-      $scope.currentQ = $scope.questionsObj[qid];
-      //$location.hash(qid);
-      $("body").scrollTop(0);
-        
-    }
-    
-  };
+
+  
   
 }]);
 
@@ -216,6 +246,7 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
   };
 
   $scope.isQuestionFocused = function (qid) {
+
     return $scope.focusQuestion === qid;
   }
   $scope.toggleQuestion = function(qid){
@@ -279,22 +310,33 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
       $location.path(path);
   };
 
-  DataService.getData('questions').then(function(data){
+  DataService.getBookData($scope.topicref).then(function(data){
     //console.log(data);
     
-      $scope.questionsObj = data[$scope.topicref].questions;
-      $scope.currentTopic = data[$scope.topicref];
-      $scope.questions = [];
+    $scope.questionsObj = {};
+    $scope.questions = [];
+    var length = data.length;
+    var index = 1;
+    data.map(function(value){
+        value.id = index;
+        if(index > 1)
+            value.preid = index - 1;
+        if(index < length)
+            value.nextid = index + 1;
 
-      for(var key in $scope.questionsObj){
-        $scope.questions.push($scope.questionsObj[key]);
-      }
-      if($routeParams.id){
-        $scope.toggleQuestion($routeParams.id);
-      }else{
-        $scope.toggleQuestion("1");
 
-      }
+        $scope.questions.push(value);
+        $scope.questionsObj[index] = value;
+        index++;
+    });
+
+    if($routeParams.id){
+        $scope.toggleQuestion(parseInt($routeParams.id));
+    
+    }else{
+        $scope.toggleQuestion(1);
+    }
+    //console.log($scope.questionsObj[1]);
       
       
   });

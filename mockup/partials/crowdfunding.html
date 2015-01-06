@@ -95,14 +95,17 @@
   <div class="wrapper">
   <!-- Question -->  
   <div class="q_content" id="q_content">
+
   <div ng-repeat="q in questions" ng-show="isQuestionFocused(q.id)">
     <div class="q_breadcrumbs">主題 &gt; 群眾募資</div>
     <div class="q_title" >{{q.title}}</div>
-    <p class="q_text" ng-repeat="p in q.content">{{p}}</p>
-    <div class="issue_item md-whiteframe-z1" ng-repeat="i in q.issues" ng-click="toggleDiscussion(i)" >
+    <div ng-bind-html="toTrusted(q.content)"></div>
+  
+    <div class="issue_item md-whiteframe-z1" ng-repeat="i in q.children" ng-click="toggleDiscussion(i)" >
         <div class="issue_item_title"><span class="prompt">討論話題：</span>{{i.title}} <i class="fa fa-comments-o"></i><span class="issue_item_discuss_count">4</sapn></div>
 
-        <p class="q_text" ng-repeat="p in i.content">{{p}}</p>
+       
+        <div class="q_text" ng-bind-html="toTrusted(i.content)"></div>
         <ul>
           <li ng-repeat="l in i.options">{{l}}</li>
         </ul>
