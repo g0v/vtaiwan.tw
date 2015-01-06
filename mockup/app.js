@@ -113,6 +113,9 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
   $scope.go = function(path){
       $("body").scrollTop(0);
       $location.path(path);
+      setTimeout(function(){
+          $("body").scrollTop(0);
+      }, 100);
   };
 
   $scope.showsidebar = function(value){

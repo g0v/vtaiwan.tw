@@ -792,6 +792,10 @@ a.nav_item_sidebar--sub {
   border: 1px solid rgb(220,220,220);
 
 }
+.issue_item:hover {
+  background: #eee;
+  cursor: pointer;
+}
 .issue_item_title {
   font-size: 22px;
   font-weight: 800;
@@ -812,7 +816,16 @@ a.nav_item_sidebar--sub {
     font-size: 20px;
   }
 }
-.issue_item_title:hover {
+.l_center .about_item_button:hover {
+    color: #ccc;
+}
+@media screen and (max-width: 400px){
+  .l_center .about_item_button {
+    width: 95%;
+    display: block;
+  }
+}
+.issue_item:hover .issue_item_title {
   color: rgb(63,159,155);
 }
 
