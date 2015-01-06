@@ -5,10 +5,6 @@ var app = angular.module("app", [
 app.config(['$routeProvider','$locationProvider',
   function($routeProvider,$locationProvider){
     $routeProvider.
-      when('/person/:cid',{
-      templateUrl: 'partials/person.html',
-      controller: 'PersonCtrl'
-    }).
       when('/crowdfunding',{
       templateUrl: 'partials/crowdfunding.html',
       controller: 'TopicCtrl'
