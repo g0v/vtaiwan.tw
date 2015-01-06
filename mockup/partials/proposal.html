@@ -1,7 +1,4 @@
-<div ng-controller="AuthCtrl">
-<div ng-controller="NavCtrl">
-
-<div ng-include="'partials/nav.html'"></div>
+<div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
 
 <div id="content--crowdfunding">
 
@@ -32,7 +29,7 @@
   <div class="q_content" ng-class="{'q_content_reply':showReplyItem}">
     <div class="wrapper">
     <div class="q_breadcrumbs">主題 &gt; {{currentProposal.title_cht}}</div>
-    <div class="q_title">{{currentQ.title}}</div>
+    <div class="q_title">{{currentCategory.title}}</div>
     <div class="focusDiscussion_title"><span class="prompt">討論話題：</span>{{currentDiscussion.title}} <i class="fa fa-comments-o"></i><span class="issue_item_discuss_count">{{currentDiscussion.post_count}}</sapn></div>
     <!-- <p class="q_text" ng-repeat="p in focusDiscussion.content">{{p}}</p> -->
 
@@ -94,14 +91,14 @@
 
 
   <div class="wrapper">
-  <!-- Question -->  
+  <!-- Category -->  
   <div class="q_content" id="q_content">
 
   <div class="q_breadcrumbs">主題 &gt; {{currentProposal.title_cht}}</div>
-    <div class="q_title" >{{currentQ.title}}</div>
-    <div ng-bind-html="toTrusted(currentQ.content)"></div>
+    <div class="q_title" >{{currentCategory.title}}</div>
+    <div ng-bind-html="toTrusted(currentCategory.content)"></div>
   
-    <div class="issue_item md-whiteframe-z1" ng-repeat="i in currentQ.children" ng-click="toggleDiscussion(i.index)" >
+    <div class="issue_item md-whiteframe-z1" ng-repeat="i in currentCategory.children" ng-click="toggleDiscussion(i.index)" >
         <div class="issue_item_title"><span class="prompt">討論話題：</span>{{i.title}} <i class="fa fa-comments-o"></i><span class="issue_item_discuss_count">{{i.post_count}}</sapn></div>
 
         <div class="q_text" ng-bind-html="toTrusted(i.content)"></div>
@@ -113,13 +110,12 @@
 
   <!-- LEFT & RIGHT NAV -->
 
-  <div ng-show="currentQ.preid" class="navigation navigation--pre" ng-click="toggleQuestion(currentQ.preid)"><i class="fa fa-chevron-left"></i></div>
-  <div ng-show="currentQ.nextid" class="navigation navigation--next" ng-click="toggleQuestion(currentQ.nextid)"><i class="fa fa-chevron-right"></i></div>
+  <div ng-show="currentCategory.preid" class="navigation navigation--pre" ng-click="toggleCategory(currentCategory.preid)"><i class="fa fa-chevron-left"></i></div>
+  <div ng-show="currentCategory.nextid" class="navigation navigation--next" ng-click="toggleCategory(currentCategory.nextid)"><i class="fa fa-chevron-right"></i></div>
 
 
   </div><!-- wrapper -->
   
   <!-- . . . . . . . . . . . . -->
 </div><!-- content -->
-</div><!-- Nav -->
-</div><!-- Auth -->
+

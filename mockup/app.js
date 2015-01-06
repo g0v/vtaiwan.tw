@@ -7,22 +7,22 @@ app.config(['$routeProvider','$locationProvider',
     $routeProvider.
       when('/crowdfunding',{
       templateUrl: 'partials/proposal.html',
-      controller: 'TopicCtrl'
+      controller: 'ProposalCtrl'
     }).
       when('/closelyheld/:id',{
       templateUrl: 'partials/proposal.html',
-      controller: 'TopicCtrl'
+      controller: 'ProposalCtrl'
     }).
       when('/closelyheld',{
       templateUrl: 'partials/proposal.html',
-      controller: 'TopicCtrl'
+      controller: 'ProposalCtrl'
     }).
       when('/crowdfunding/:id',{
       templateUrl: 'partials/proposal.html',
-      controller: 'TopicCtrl'
+      controller: 'ProposalCtrl'
     }).
-      when('/topics',{
-      templateUrl: 'partials/topics.html',
+      when('/proposals',{
+      templateUrl: 'partials/proposals.html',
       controller: 'IndexCtrl'
     }).
       when('/about',{
@@ -236,51 +236,14 @@ app.factory('DataService', function ($http, $q){
   return DataService;
 })
 
-app.controller('AuthCtrl',['$scope', 'DataService', '$location', function($scope, DataService, $location){
-  
-  $scope.login = function(){
-
-    $scope.user = {"name" : "username tool ongcanno tshowall"};
-    //$("#notification").removeClass("notification_hide");
-
-    $("#notification").text("成功登入！");
-    setTimeout(function(){
-      $("#notification").addClass("notification_show");
-      setTimeout(function(){
-        $("#notification").removeClass("notification_show");
-
-      },2500);
-
-    },100);
-    
-  };
-  $scope.logout = function(){
-    $scope.user = null;
-
-    $("#notification").text("成功登出！");
-    setTimeout(function(){
-      $("#notification").addClass("notification_show");
-      setTimeout(function(){
-        $("#notification").removeClass("notification_show");
-
-      },2500);
-    },100);
-  };
-
-  $scope.toggleUserMenu = function(){
-    $scope.showUserMenu = !$scope.showUserMenu;
-    
-  };
-  
-}]);
 app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scope, DataService, $location){
 
-  $scope.setTopic = function (value) {
+  $scope.setProposal = function (value) {
     console.log(value);
     console.log("***");
-    $scope.topic = value;//crowdfunding, closelyheld
+    $scope.proposal = value;//crowdfunding, closelyheld
     DataService.getCatchedData().then(function (data) {
-      $scope.currentTopic = data[value].categories;
+      $scope.currentProposal = data[value];
         
     });
 
@@ -302,10 +265,9 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scop
       
   };
 
-  $scope.isTopicSet = function () {
-    return $scope.topic;
+  $scope.isProposalSet = function () {
+    return $scope.proposal;
   };
-
 
 }]);
 app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
@@ -314,9 +276,6 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
       $("body").scrollTop(0);
       $location.path(path);
   };
-  $scope.topic = false;
-  
-  //console.log($( window ).width());
   
   $scope.cover = "cover_small";
   if($( window ).width() > 400){
@@ -337,7 +296,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
   
 }]);
 
-app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){
+app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){
 
   topicref = $location.$$url.split('/')[1] || 'crowdfunding';
   //topicref = $location.path().split('/')[1] || 'crowdfunding';
@@ -368,23 +327,20 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
     $scope.showReplyItem = !$scope.showReplyItem;
   };
 
-  $scope.isQuestionFocused = function (qid) {
-    return $scope.focusQuestion === qid;
+  $scope.isCategoryFocused = function (qid) {
+    return $scope.focusCategory === qid;
   };
 
-  $scope.toggleQuestion = function(qid){
-    $scope.questionToggled = true;
+  $scope.toggleCategory = function(qid){
+    $scope.categoryToggled = true;
 
     if(qid === false){
-      $scope.focusQuestion = false;
+      $scope.focusCategory = false;
       
     }else{
-      $scope.focusQuestion = qid;
-      //console.log($location.path());
+      $scope.focusCategory = qid;
       $location.path('/' + topicref + '/'+qid);
-      //console.log($scope.questions[qid-1]);
-      $scope.currentQ = $scope.questions[qid-1];
-      //$location.hash(qid);
+      $scope.currentCategory = $scope.categories[qid-1];
       $("body").scrollTop(0);
         
     }
@@ -398,14 +354,13 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
 
   DataService.getCatchedData().then(function (d) {
       $scope.currentProposal = d[$scope.topicref];
-      $scope.questions = d[$scope.topicref].categories;
+      $scope.categories = d[$scope.topicref].categories;
 
-      
       if($routeParams.id){
-        $scope.toggleQuestion(parseInt($routeParams.id));
+        $scope.toggleCategory(parseInt($routeParams.id));
     
       }else{
-        $scope.toggleQuestion(1);
+        $scope.toggleCategory(1);
 
       }
       
@@ -420,11 +375,9 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
         document.getElementById('focus-discussion').scrollTop = 0;
         $scope.currentTopicPostCount = null;
         
-        
       }else{
         $scope.focusDiscussion = index;
-        $scope.currentDiscussion = $scope.currentQ.children[index-1];
-        
+        $scope.currentDiscussion = $scope.currentCategory.children[index-1];
         $scope.expand = null;
            
       }
@@ -438,11 +391,4 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
   
  
 }]);
-app.controller('TopicsCtrl', ['$scope', '$location', '$routeParams', '$route', function ($scope, $location, $routeParams, $route){
-  $scope.go = function(path){
-      $("body").scrollTop(0);
-      $location.path(path);
-  };
 
- 
-}]);
