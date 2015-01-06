@@ -367,13 +367,10 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
   })
 
   $scope.toggleDiscussion = function(index){
-    console.log(index);
-
-  
+      //console.log(index);
       if($scope.focusDiscussion === index){
         $scope.focusDiscussion = false;
         document.getElementById('focus-discussion').scrollTop = 0;
-        $scope.currentTopicPostCount = null;
         
       }else{
         $scope.focusDiscussion = index;
@@ -381,7 +378,7 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
         $scope.expand = null;
            
       }
-   
+
     
   };
  
