@@ -6,7 +6,7 @@
 
 
 
-<div id="content--crowdfunding">
+<div id="content--closelyheld">
 
 
 <div class="nav_list_toolbar" ng-class="{'nav_list_toolbar_hide':!showUserMenu}">
@@ -33,7 +33,7 @@
   
   <div class="q_content" ng-class="{'q_content_reply':showReplyItem}">
     <div class="wrapper">
-    <div class="q_breadcrumbs">主題 &gt; 群眾募資</div>
+    <div class="q_breadcrumbs">主題 &gt; 閉鎖型公司</div>
     <div class="q_title">{{currentQ.title}}</div>
     <div class="focusDiscussion_title"><span class="prompt">討論話題：</span>{{focusDiscussion.title}} <i class="fa fa-comments-o"></i><span class="issue_item_discuss_count">4</sapn></div>
     <!-- <p class="q_text" ng-repeat="p in focusDiscussion.content">{{p}}</p> -->
@@ -87,7 +87,7 @@
   <!-- Question -->  
   <div class="q_content" id="q_content">
   <div ng-repeat="q in questions" ng-show="isQuestionFocused(q.id)">
-    <div class="q_breadcrumbs">主題 &gt; 群眾募資</div>
+    <div class="q_breadcrumbs">主題 &gt; 閉鎖型公司</div>
     <div class="q_title" >{{q.title}}</div>
     <p class="q_text" ng-repeat="p in q.content">{{p}}</p>
     <div class="issue_item md-whiteframe-z1" ng-repeat="i in q.issues">

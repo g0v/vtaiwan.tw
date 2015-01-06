@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Noto+Sans);
+@import url(http://fonts.googleapis.com/css?family=Gentium+Basic);
 
 body {
   font-family: "Source Han Sans TC", "Noto Sans", Helvetica, Arial, sans-serif;
@@ -111,6 +112,7 @@ header {
   font-weight: 700;
   line-height: 18px;
   margin-top: 10px;
+  margin-bottom: 5px;
 }
 .q_title{
   display: inline-block;
@@ -557,10 +559,13 @@ a.nav_item_sidebar--sub {
   vertical-align: top;
   padding: 8px 2px; 
   font-weight: 800;
-  font-size: 18px;
+  font-size: 20px;
   color: rgb(53,55,54);
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Gentium Basic', 'Gentium', serif;
   
+}
+.logo {
+  font-family: 'Gentium Basic', 'Gentium', serif;
 }
 .nav_left_toggle {
   position: absolute;
@@ -1005,6 +1010,13 @@ a.more {
   float: right;
 }
 
+.about_item_content a:hover, .topic_item:hover {
+  cursor: pointer;
+  background: #eee;
+}
 .about_item_content li {
     line-height: 175%;
+}
+.prompt {
+    font-weight: 500;
 }
