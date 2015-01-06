@@ -90,9 +90,8 @@
     <div class="q_breadcrumbs">主題 &gt; 閉鎖型公司</div>
     <div class="q_title" >{{q.title}}</div>
     <p class="q_text" ng-repeat="p in q.content">{{p}}</p>
-    <div class="issue_item md-whiteframe-z1" ng-repeat="i in q.issues">
-            
-        <div class="issue_item_title" ng-click="toggleDiscussion(i)"><span class="prompt">討論話題：</span>{{i.title}} <i class="fa fa-comments-o"></i><span class="issue_item_discuss_count">4</sapn></div>
+    <div class="issue_item md-whiteframe-z1" ng-repeat="i in q.issues" ng-click="toggleDiscussion(i)">
+        <div class="issue_item_title" ><span class="prompt">討論話題：</span>{{i.title}} <i class="fa fa-comments-o"></i><span class="issue_item_discuss_count">4</sapn></div>
 
         <p class="q_text" ng-repeat="p in i.content">{{p}}</p>
         <ul>
