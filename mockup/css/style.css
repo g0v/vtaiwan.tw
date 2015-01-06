@@ -458,10 +458,10 @@ a.nav_item_sidebar--left {
   padding: 12px;
   height: 50px;
   color: rgb(247,247,247);
+  background-color: #255;
   
   font-size: 18px;
   font-weight: 700;
-  background: rgb(53,55,54);
   
   border-bottom: 1px solid rgb(100,100,100);
   text-align: left;

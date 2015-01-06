@@ -39,7 +39,6 @@
     <!-- <p class="q_text" ng-repeat="p in focusDiscussion.content">{{p}}</p> -->
 
     <!-- (discourse posts) -->
-   
 
     <div ng-repeat="p in posts"><!--  | filter:recommendFilterFunction-->
     <!--ng-show="$index===0 || $last || isExpand()" -->
@@ -60,6 +59,7 @@
         
       </div>
       
+
     </div>
     <a href="https://talk.vtaiwan.tw/t/topic/{{currentTopicID}}" target="new"><div class="toggle_reply_button" ng-show="focusDiscussion"><i class="fa fa-reply"></i></div></a>
    
@@ -70,11 +70,17 @@
     <div class="post_reply_item" ng-class="{'show':showReplyItem}">
         <div class="post_reply_item_title">回覆至 <b>{{focusDiscussion.title}}</b>：</div>
         <div class="post_reply_item_minimize" ng-click="toggleReplyItem()"><i class="fa fa-chevron-down"></i></div>
-        <div class="post_reply_item_textarea"><textarea></textarea></div>
+        <div class="post_reply_item_textarea">
+            <textarea readonly>
+目前因議題文字調整中，我們本周會將 vTaiwan.tw 主站連上實際的討論區。
+您可按底下的「回覆」鈕連到測試站，進行先期討論。
+</textarea>
+        </div>
         
         <div class="post_reply_item_control">
             <div class="post_reply_item_control_button">
-            <a class="button"><i class="fa fa-reply"></i> 回覆</a> <a class="cancel" ng-click="toggleReplyItem()">取消</a>
+            <a class="button" target="_blank"
+                href="https://talk.vtaiwan.tw/c/5-category"><i class="fa fa-reply"></i> 回覆</a> <a class="cancel" ng-click="toggleReplyItem()">取消</a>
             </div>
         </div>
 
