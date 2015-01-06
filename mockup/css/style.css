@@ -826,9 +826,7 @@ a.nav_item_sidebar--sub {
     display: block;
   }
 }
-.issue_item:hover .issue_item_title {
-  color: rgb(63,159,155);
-}
+
 
 .issue_item_discuss_count {
   padding: 2px;
