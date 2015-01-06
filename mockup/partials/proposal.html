@@ -38,7 +38,7 @@
 
     <div ng-repeat="p in currentDiscussion.posts" ng-show="$index===0 || $last || isExpand()"><!--  | filter:recommendFilterFunction-->
     <!--ng-show="$index===0 || $last || isExpand()" -->
-      <div class="post_item md-whiteframe-z1" ng-class="{'post_item_last':$last && ((posts).length) > 3 && !expand}">
+      <div class="post_item md-whiteframe-z1" ng-class="{'post_item_last':$last && ((currentDiscussion.posts).length) > 3 && !expand}">
 
         <img class="post_item_img" ng-src="{{p.avatar_url}}">
         <div class="post_item_info">
@@ -49,9 +49,9 @@
         </div>
         
         <!-- expand -->
-        <div class="post_item_intermediate" ng-if="$index===0 && ((posts).length) > 3" ng-click="toggleExpand()" ng-show="!isExpand()">
-        <!--ng-if="$index===0 && ((posts | filter:recommendFilterFunction).length) > 3" -->
-          <div class="post_item_intermediate_circle">{{(posts).length-2}}</div>
+        <div class="post_item_intermediate" ng-if="($index === 0) && ((currentDiscussion.posts).length) > 3" ng-click="toggleExpand()" ng-show="!isExpand()">
+        <!--ng-if="$index===0 && ((currentDiscussion.posts | filter:recommendFilterFunction).length) > 3" -->
+          <div class="post_item_intermediate_circle">{{(currentDiscussion.posts).length-2}}</div>
         </div> 
         
       </div>
