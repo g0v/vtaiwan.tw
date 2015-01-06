@@ -55,10 +55,8 @@
           <div class="post_item_text" ng-repeat="c in p.content">{{c}}</div>  
         </div>   
     </div>
-    <div class="more_botton_wrapper">
-        <a class="button more">更多</a>
-        <a class="button" ng-click="toggleReplyItem()"><i class="fa fa-reply"></i> 回覆</a>
-    </div>
+    <div class="toggle_reply_button" ng-click="toggleReplyItem()" ng-show="focusDiscussion"><i class="fa fa-reply"></i></div>
+   
 
     
     <!-- Reply to posts / Comment -->

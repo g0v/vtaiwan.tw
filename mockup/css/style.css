@@ -142,6 +142,7 @@ header {
   margin-top: 50px; /* for fixed nav */
   text-align: left;
   padding: 5px 10px;
+  padding-bottom: 50px;
 
 }
 .q_content_reply {
@@ -886,6 +887,29 @@ a.nav_item_sidebar--sub {
     font-size: 16px;
     line-height: 20px;
   }
+}
+.toggle_reply_button {
+  background-color: rgb(63,159,155);
+  color: white;
+
+  height: 56px;
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  width: 56px;
+
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+  box-sizing: border-box;
+  cursor: pointer;
+ 
+  padding: 16px;
+
+ 
+  text-align: center;
+}
+.toggle_reply_button:hover {
+   box-shadow: 0 6px 6px rgba(0,0,0,.14),0 6px 16px rgba(0,0,0,.28);
 }
 .post_reply_item {
   position: fixed;
