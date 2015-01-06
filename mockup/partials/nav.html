@@ -27,7 +27,7 @@
     <div ng-show="isTopicSet()">
       <a class="nav_item_sidebar--bold"
           ng-click="setTopic(null);$event.stopPropagation();"><i class="fa
-              fa-chevron-left"></i> {{currentTopic.title}}</a>
+              fa-chevron-left"></i> {{currentTopicTitle}}</a>
       
       <span ng-repeat="q in currentTopic" ng-click="toggleQuestion(q.id)">
           <a class="nav_item_sidebar--left" >{{q.title}}</a>

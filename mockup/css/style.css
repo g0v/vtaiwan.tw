@@ -513,8 +513,8 @@ a.nav_item_sidebar--sub {
   height: 50px;
   text-align: center;
   display: block;
-  color: rgb(53,55,54);
-  background: rgb(220,220,220);
+  color: rgb(220,220,220);
+  /* background: rgb(220,220,220); */
 
   position: absolute;
   right: 0px;
@@ -930,8 +930,12 @@ a.nav_item_sidebar--sub {
   white-space: pre-wrap;
   font-size: 14px;
   line-height: 18px;
-  
   margin: 6px 0px;
+}
+.post_item_text p {
+  margin: 0px;
+  line-height: 20px;
+  font-size: 14px;
 }
 @media screen and (min-width: 600px) {
   .post_item_text {

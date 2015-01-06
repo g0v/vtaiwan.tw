@@ -21,8 +21,8 @@
       <div class="nav_left_toggle" ng-click="toggleDiscussion(focusDiscussion.id)"><i class="fa fa-chevron-left"></i></div>
 
       <div class="order_control">
-          <a class="button--wide" ng-class="{'inactive':recommendFilter===1}" ng-click="setRecommendFilter(0)"><i class="fa fa-thumbs-o-up"></i> 所有</a>
-          <a class="button--wide" ng-class="{'inactive':recommendFilter===0}" ng-click="setRecommendFilter(1)"><i class="fa fa-clock-o"></i> 推薦</a>
+          <!--<a class="button--wide" ng-class="{'inactive':recommendFilter===1}" ng-click="setRecommendFilter(0)"><i class="fa fa-thumbs-o-up"></i> 所有</a>
+          <a class="button--wide" ng-class="{'inactive':recommendFilter===0}" ng-click="setRecommendFilter(1)"><i class="fa fa-clock-o"></i> 推薦</a>-->
       </div>
 
       <div class="nav_right_toggle">
@@ -35,36 +35,34 @@
     <div class="wrapper">
     <div class="q_breadcrumbs">主題 &gt; 群眾募資</div>
     <div class="q_title">{{currentQ.title}}</div>
-    <div class="focusDiscussion_title"><span class="prompt">討論話題：</span>{{focusDiscussion.title}} <i class="fa fa-comments-o"></i><span class="issue_item_discuss_count">4</sapn></div>
+    <div class="focusDiscussion_title"><span class="prompt">討論話題：</span>{{focusDiscussion.title}} <i class="fa fa-comments-o"></i><span class="issue_item_discuss_count">{{currentTopicPostCount}}</sapn></div>
     <!-- <p class="q_text" ng-repeat="p in focusDiscussion.content">{{p}}</p> -->
 
     <!-- (discourse posts) -->
-    <!--
-     <div class="post_item" ng-repeat="p in focusDiscussion.posts">
-        {{p.user_name}}
-        <img  class="post_img" src="images/users/{{p.user_id}}.png">
-        <p class="q_text" ng-repeat="c in p.content">{{c}}</p>  
-     </div>
-    -->
-    <div ng-repeat="p in posts | filter:recommendFilterFunction">
-      <div class="post_item md-whiteframe-z1" ng-show="$index===0 || $last || isExpand()" ng-class="{'post_item_last':$last && ((posts | filter:recommendFilterFunction).length) > 3 && !expand}">
-        <img class="post_item_img" src="images/users/{{p.user_id}}.png">
+   
+
+    <div ng-repeat="p in posts" ng-show="$index===0 || $last || isExpand()"><!--  | filter:recommendFilterFunction-->
+    <!--ng-show="$index===0 || $last || isExpand()" -->
+      <div class="post_item md-whiteframe-z1" ng-class="{'post_item_last':$last && ((posts).length) > 3 && !expand}">
+
+        <img class="post_item_img" src="{{p.avatar_url}}">
         <div class="post_item_info">
-          <div class="post_item_author" >{{p.user_name}} {{$index}}/{{$last}}</div>
+          <div class="post_item_author" >{{p.username}}</div>
           <div class="post_item_recommend" ng-if="p.recommend >= 1"><i class="fa fa-heart-o"></i></div>
-          <div class="post_item_date" >5 天</div>
-          <div class="post_item_text" ng-repeat="c in p.content">{{c}}</div>  
+          <div class="post_item_date" >{{p.created_at | date }}</div>
+          <div class="post_item_text" ng-bind-html="toTrusted(p.cooked)"></div>  
         </div>
         
         <!-- expand -->
-        <div class="post_item_intermediate" ng-if="$index===0 && ((posts | filter:recommendFilterFunction).length) > 3" ng-click="toggleExpand()" ng-show="!isExpand()">
-          <div class="post_item_intermediate_circle">{{(posts | filter:recommendFilterFunction).length-2}}</div>
+        <div class="post_item_intermediate" ng-if="$index===0 && ((posts).length) > 3" ng-click="toggleExpand()" ng-show="!isExpand()">
+        <!--ng-if="$index===0 && ((posts | filter:recommendFilterFunction).length) > 3" -->
+          <div class="post_item_intermediate_circle">{{(posts).length-2}}</div>
         </div> 
         
       </div>
       
     </div>
-    <div class="toggle_reply_button" ng-click="toggleReplyItem()" ng-show="focusDiscussion"><i class="fa fa-reply"></i></div>
+    <a href="https://talk.vtaiwan.tw/t/topic/{{currentTopicID}}" target="new"><div class="toggle_reply_button" ng-show="focusDiscussion"><i class="fa fa-reply"></i></div></a>
    
 
     
@@ -102,7 +100,7 @@
     <div ng-bind-html="toTrusted(q.content)"></div>
   
     <div class="issue_item md-whiteframe-z1" ng-repeat="i in q.children" ng-click="toggleDiscussion(i)" >
-        <div class="issue_item_title"><span class="prompt">討論話題：</span>{{i.title}} <i class="fa fa-comments-o"></i><span class="issue_item_discuss_count">4</sapn></div>
+        <div class="issue_item_title"><span class="prompt">討論話題：</span>{{i.title}} <i class="fa fa-comments-o"></i><span class="issue_item_discuss_count">{{q.count}}</sapn></div>
 
        
         <div class="q_text" ng-bind-html="toTrusted(i.content)"></div>
