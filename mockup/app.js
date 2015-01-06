@@ -70,7 +70,7 @@ app.factory('DataService', function ($http, $q){
 
   DataService.getBookData = function(path){
     var deferred = $q.defer();
-    $http.get('http://' + path + '.vtaiwan.tw/content.json').
+    $http.get('https://' + path + '.vtaiwan.tw/content.json').
         success(function(data, status, headers, config) {
           deferred.resolve(data);
         }).
