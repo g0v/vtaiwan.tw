@@ -5,10 +5,12 @@
 
 <div id="content--crowdfunding">
 
+<!--
 <div class="nav_list_toolbar" ng-class="{'nav_list_toolbar_hide':!showUserMenu}">
       <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-rss"></i> 訂閱</a>
       <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-search"></i> 搜尋</a>
 </div>
+-->
 
 <!-- Focus Discusstion -->
 <div id="focus-discussion" ng-class="{'show':focusDiscussion}">
@@ -110,7 +112,7 @@
   </div>
 
   <!-- LEFT & RIGHT NAV -->
-  
+
   <div ng-show="currentQ.preid" class="navigation navigation--pre" ng-click="toggleQuestion(currentQ.preid)"><i class="fa fa-chevron-left"></i></div>
   <div ng-show="currentQ.nextid" class="navigation navigation--next" ng-click="toggleQuestion(currentQ.nextid)"><i class="fa fa-chevron-right"></i></div>
 

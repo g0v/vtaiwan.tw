@@ -53,6 +53,7 @@ app.factory('DataService', function ($http, $q){
 
   var DataService = {}; 
   var CachedData;  // get json data, properly merged, and save locally.
+  var CachedFetched = false;
 
   var proposals = [
       { "title_cht" : "群眾募資", "title_eng" : "crowdfunding", "category_num" : 6},
@@ -61,13 +62,19 @@ app.factory('DataService', function ($http, $q){
 
   DataService.getCatchedData = function(){
     var deferred = $q.defer();
-    if(CachedData){
+    
+    if(CachedFetched === true){
+        console.log("sending cached:");
+        console.log(CachedData);
         deferred.resolve(CachedData);
     
     }else{
+      
       DataService.getData().then(function (data) {
+        
         deferred.resolve(data);
-      })
+        CachedFetched = true;
+      });
 
     }
     return deferred.promise;
@@ -83,6 +90,7 @@ app.factory('DataService', function ($http, $q){
             CachedData[proposal_item.title_eng] = {};
             CachedData[proposal_item.title_eng].categories = book_data;
             CachedData[proposal_item.title_eng].title_cht = proposal_item.title_cht;
+            CachedData[proposal_item.title_eng].title_eng = proposal_item.title_eng;
 
             //Add id & preid & next id
             var index = 1;
@@ -121,7 +129,12 @@ app.factory('DataService', function ($http, $q){
                             children_item.index = cindex;
                         
                             //[3] Get discuss data from discourse
+                           
+                            if(!children_item.requested){//////////////////////////// TODO: workaround, angular run twice.
+                            children_item.requested = true;//////////////////////////// TODO: workaround, angular run twice.
+                            
                             DataService.getPostData(children_item.id).then(function (posts_data) {
+
                                 children_item.posts = posts_data.post_stream.posts;
                                 children_item.post_count = posts_data.posts_count;
                                 
@@ -150,9 +163,10 @@ app.factory('DataService', function ($http, $q){
                                     }
                                 }
                                 
-
                             });
+                            }//////////////////////////// TODO: workaround, angular run twice.
                             cindex++;
+
 
                         });
                     }else{
@@ -259,8 +273,18 @@ app.controller('AuthCtrl',['$scope', 'DataService', '$location', function($scope
   };
   
 }]);
-app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
+app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scope, DataService, $location){
 
+  $scope.setTopic = function (value) {
+    console.log(value);
+    console.log("***");
+    $scope.topic = value;//crowdfunding, closelyheld
+    DataService.getCatchedData().then(function (data) {
+      $scope.currentTopic = data[value].categories;
+        
+    });
+
+  };
   $scope.go = function(path){
       $("body").scrollTop(0);
       $location.path(path);
@@ -278,68 +302,10 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
       
   };
 
-  $scope.topics= {};
-  
-
-  $scope.setTopic = function (value) {
-    //console.log(value);
-    //console.log("***");
-    DataService.getBookData('crowdfunding').then(function(crowdfunding_data){
-        DataService.getBookData('closelyheld').then(function(closelyheld_data){
-        
-            $scope.topics['crowdfunding'] = crowdfunding_data;
-            $scope.topics['closelyheld'] = closelyheld_data;
-     
-            $scope.topic = value;//crowdfunding, closelyheld
-            $scope.currentTopic = $scope.topics[value];
-            
-            var index = 1;
-            for(var key in $scope.currentTopic){
-              $scope.currentTopic[key].id = index;
-              index++;
-            };
-     
-            if(value === 'crowdfunding'){
-                $scope.currentTopicTitle = '群眾募資';
-            }else{
-                $scope.currentTopicTitle = '閉鎖型公司';
-            }
-           
-        });
-    });
-
-    
-    
-  };
-
-  var current_t = $location.path().split('/')[1];
-  $scope.setTopic(current_t);
-
   $scope.isTopicSet = function () {
     return $scope.topic;
   };
 
-  $scope.toggleQuestion = function(qid){
-    $scope.questionToggled = true;
-
-    if(qid === false){
-      $scope.focusQuestion = false;
-      
-    }else{
- 
-      $scope.focusQuestion = qid;
-      //console.log($location.path());
-      $location.path('/'+$scope.topicref+'/'+qid);
-      $scope.currentQ = $scope.questions[qid];
-      //$location.hash(qid);
-      $("body").scrollTop(0);
-        
-    }
-    
-  };
-
-  
-  
 
 }]);
 app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
@@ -416,7 +382,7 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
       $scope.focusQuestion = qid;
       //console.log($location.path());
       $location.path('/' + topicref + '/'+qid);
-      console.log($scope.questions[qid-1]);
+      //console.log($scope.questions[qid-1]);
       $scope.currentQ = $scope.questions[qid-1];
       //$location.hash(qid);
       $("body").scrollTop(0);
@@ -434,7 +400,7 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
       $scope.currentProposal = d[$scope.topicref];
       $scope.questions = d[$scope.topicref].categories;
 
-      console.log($scope.questions);
+      
       if($routeParams.id){
         $scope.toggleQuestion(parseInt($routeParams.id));
     
