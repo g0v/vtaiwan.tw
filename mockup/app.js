@@ -13,6 +13,14 @@ app.config(['$routeProvider','$locationProvider',
       templateUrl: 'partials/crowdfunding.html',
       controller: 'TopicCtrl'
     }).
+      when('/closelyheld/:id',{
+      templateUrl: 'partials/closelyheld.html',
+      controller: 'TopicCtrl'
+    }).
+      when('/closelyheld',{
+      templateUrl: 'partials/closelyheld.html',
+      controller: 'TopicCtrl'
+    }).
       when('/crowdfunding/:id',{
       templateUrl: 'partials/crowdfunding.html',
       controller: 'TopicCtrl'
@@ -105,6 +113,9 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
   $scope.go = function(path){
       $("body").scrollTop(0);
       $location.path(path);
+      setTimeout(function(){
+          $("body").scrollTop(0);
+      }, 100);
   };
 
   $scope.showsidebar = function(value){
@@ -178,9 +189,10 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
 
 app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){
 
+  topicref = $location.$$url.split('/')[1] || 'crowdfunding';
   $scope.order = 'signatures_count';
   $scope.topic = true;
-  $scope.topicref = 'crowdfunding';
+  $scope.topicref = topicref;
   $scope.recommendFilter = 0;
 
   $scope.toggleExpand = function () {
@@ -216,7 +228,7 @@ app.controller('TopicCtrl', ['$scope', 'DataService', '$location', '$sce', '$rou
  
       $scope.focusQuestion = qid;
       //console.log($location.path());
-      $location.path('/crowdfunding/'+qid);
+      $location.path('/' + topicref + '/'+qid);
       $scope.currentQ = $scope.questionsObj[qid];
       //$location.hash(qid);
       $("body").scrollTop(0);
