@@ -7,8 +7,8 @@
   <div class="sidebar-container_left md-whiteframe-z1">
     
     <div ng-show="!isProposalSet()">
-      <a class="nav_item_sidebar--left" href="#/" >首頁</a>
-      <a class="nav_item_sidebar--left" href="#/proposals" >主題</a>
+      <a class="nav_item_sidebar--left" ng-click="go('')" >首頁</a>
+      <a class="nav_item_sidebar--left" ng-click="go('proposals')" >主題</a>
       <a class="nav_item_sidebar--sub"
           ng-click="go('crowdfunding')">群眾募資<span
               class="nav_item_sidebar--switchmenu" ng-click="setProposal('crowdfunding');$event.stopPropagation();"><i class="fa fa-chevron-right"></i></span></a>
@@ -17,8 +17,8 @@
           ng-click="go('closelyheld')">閉鎖型公司<span
               class="nav_item_sidebar--switchmenu" ng-click="setProposal('closelyheld');$event.stopPropagation();"><i class="fa fa-chevron-right"></i></span></a>
 
-      <a class="nav_item_sidebar--left" href="#/how"  >如何發言</a>
-      <a class="nav_item_sidebar--left" href="#/about" >關於</a>
+      <a class="nav_item_sidebar--left" ng-click="go('how')"  >如何發言</a>
+      <a class="nav_item_sidebar--left" ng-click="go('about')" >關於</a>
       <a class="nav_item_sidebar--left" target="_blank" href="https://talk.vtaiwan.tw/c/meta" >聯絡我們</a>
     </div>
 
@@ -40,7 +40,7 @@
 
   <div class="nav_left_toggle" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i></div>
   
-  <div id="site_logo"><a href="#/">
+  <div id="site_logo"><a ng-click="go('')">
     <img id="site_logo_img" src="images/logo1.png">
     <div id="site_logo_text">vTaiwan</div></a>
   </div>
