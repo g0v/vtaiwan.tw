@@ -1,5 +1,6 @@
 var express = require("express");
 var path = require("path");
+var fs = require("fs");
 var port = process.env.PORT || '8080';
 
 app = express();
@@ -19,8 +20,10 @@ app.use(express.static(path.resolve(__dirname + '/mockup')));
 app.use(require('prerender-node')).set('protocol', 'https');
 
 app.use('/', function (req, res) {
+  var html = fs.readFileSync(path.resolve(__dirname + '/index.html')).toString();
   res.type('text/html; charset=UTF-8');
-  res.sendFile(path.resolve(__dirname + '/index.html'));
+  res.send(html.replace('{{base}}', req.protocol + '://' + req.headers.host));
+
 });
 
 app.listen(port, function () {

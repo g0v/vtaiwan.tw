@@ -286,6 +286,8 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scop
 }]);
 app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
 
+  DataService.getCatchedData();
+
   $scope.go = function(path){
       $("body").scrollTop(0);
       $location.path(path);
@@ -305,8 +307,6 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
     }
     $scope.$apply();
   });
-
-
 
 }]);
 
