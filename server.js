@@ -22,7 +22,7 @@ app.use(require('prerender-node')).set('protocol', 'https');
 app.use('/', function (req, res) {
   var html = fs.readFileSync(path.resolve(__dirname + '/index.html')).toString();
   res.type('text/html; charset=UTF-8');
-  res.send(html.replace('{{base}}', req.protocol + '://' + req.headers.host));
+  res.send(html.replace('{{base}}', 'https://' + req.headers.host));
 
 });
 
