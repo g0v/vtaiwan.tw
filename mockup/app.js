@@ -2,8 +2,14 @@ var app = angular.module("app", [
   "ngRoute"
 ]);
 
-app.config(['$routeProvider','$locationProvider',
-  function($routeProvider,$locationProvider){
+app.config(['$routeProvider','$locationProvider','$sceDelegateProvider',
+  function($routeProvider,$locationProvider,$sceDelegateProvider){
+    $sceDelegateProvider.resourceUrlWhitelist([
+      'self',
+      'https://vtaiwan.tw/**',
+      'https://*.vtaiwan.tw/**'
+    ]);
+
     $routeProvider.
       when('/crowdfunding',{
       templateUrl: 'partials/proposal.html',
