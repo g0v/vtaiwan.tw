@@ -392,21 +392,20 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
       if($scope.focusDiscussion === index){
         $scope.focusDiscussion = false;
         document.getElementById('focus-discussion').scrollTop = 0;
-
+        $location.path('/' + topicref + '/' + $scope.currentCategory.id);
       }else{
+        $location.path('/' + topicref + '/' + $scope.currentCategory.id + '/' + $scope.currentCategory.children[index-1].id);
         $scope.focusDiscussion = index;
         $scope.currentDiscussion = $scope.currentCategory.children[index-1];
         $scope.expand = null;
 
       }
 
-
   };
 
   $scope.toTrusted = function(html_code) {
     return $sce.trustAsHtml(html_code);
   };
-
 
 }]);
 
