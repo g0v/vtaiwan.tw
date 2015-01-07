@@ -9,7 +9,11 @@ app.config(['$routeProvider','$locationProvider',
       templateUrl: 'partials/proposal.html',
       controller: 'ProposalCtrl'
     }).
-      when('/closelyheld/:id',{
+      when('/crowdfunding/:id',{
+      templateUrl: 'partials/proposal.html',
+      controller: 'ProposalCtrl'
+    }).
+      when('/crowdfunding/:id/:topic_id',{
       templateUrl: 'partials/proposal.html',
       controller: 'ProposalCtrl'
     }).
@@ -17,7 +21,11 @@ app.config(['$routeProvider','$locationProvider',
       templateUrl: 'partials/proposal.html',
       controller: 'ProposalCtrl'
     }).
-      when('/crowdfunding/:id',{
+      when('/closelyheld/:id',{
+      templateUrl: 'partials/proposal.html',
+      controller: 'ProposalCtrl'
+    }).
+      when('/closelyheld/:id/:topic_id',{
       templateUrl: 'partials/proposal.html',
       controller: 'ProposalCtrl'
     }).
@@ -36,7 +44,7 @@ app.config(['$routeProvider','$locationProvider',
       when('/contact',{
       templateUrl: 'partials/contact.html',
       controller: 'IndexCtrl'
-      
+
     }).
       otherwise({
       redirectTo:'/',
@@ -51,7 +59,7 @@ app.config(['$routeProvider','$locationProvider',
 
 app.factory('DataService', function ($http, $q){
 
-  var DataService = {}; 
+  var DataService = {};
   var CachedData;  // get json data, properly merged, and save locally.
   var CachedFetched = false;
 
@@ -62,16 +70,16 @@ app.factory('DataService', function ($http, $q){
 
   DataService.getCatchedData = function(){
     var deferred = $q.defer();
-    
+
     if(CachedFetched === true){
         console.log("sending cached:");
         console.log(CachedData);
         deferred.resolve(CachedData);
-    
+
     }else{
-      
+
       DataService.getData().then(function (data) {
-        
+
         deferred.resolve(data);
         CachedFetched = true;
       });
@@ -83,7 +91,7 @@ app.factory('DataService', function ($http, $q){
   DataService.getData = function(){
     CachedData = {};
     var deferred = $q.defer();
-    
+
     //[1] Get gitbook content
     proposals.map(function (proposal_item) {
         DataService.getBookData(proposal_item.title_eng).then(function (book_data){
@@ -97,16 +105,16 @@ app.factory('DataService', function ($http, $q){
             CachedData[proposal_item.title_eng].categories.map(function (category_item) {
               category_item.id = index;
 
-              if(index > 1) 
+              if(index > 1)
                   category_item.preid = index - 1;
 
-              if(index < CachedData[proposal_item.title_eng].categories.length) 
+              if(index < CachedData[proposal_item.title_eng].categories.length)
                   category_item.nextid = index + 1;
 
               index++;
 
             });
-            
+
 
 
             //[2] Add topic id step1: get a list of all topics and ids
@@ -127,17 +135,17 @@ app.factory('DataService', function ($http, $q){
                         category_item.children.map(function (children_item) {
                             children_item.id = topics_to_id_table[children_item.title];
                             children_item.index = cindex;
-                        
+
                             //[3] Get discuss data from discourse
-                           
+
                             if(!children_item.requested){//////////////////////////// TODO: workaround, angular run twice.
                             children_item.requested = true;//////////////////////////// TODO: workaround, angular run twice.
-                            
+
                             DataService.getPostData(children_item.id).then(function (posts_data) {
 
                                 children_item.posts = posts_data.post_stream.posts;
                                 children_item.post_count = posts_data.posts_count;
-                                
+
                                 // Parse direct image url
                                 // from: "/user_avatar/talk.vtaiwan.tw/audreyt/{size}/6.png"
                                 // to: "/user_avatar/talk.vtaiwan.tw/audreyt/50/6.png"
@@ -153,7 +161,7 @@ app.factory('DataService', function ($http, $q){
                                     // (2) last proposal's last category
                                     var categories = CachedData[proposal_item.title_eng].categories;
                                     if(category_item.title === categories[categories.length-1].title){
-                                        
+
                                         // (3) last proposal's last category's last children(topic)
                                         var topics = category_item.children;
                                         if(children_item.title === topics[topics.length-1].title){
@@ -162,7 +170,7 @@ app.factory('DataService', function ($http, $q){
                                         }
                                     }
                                 }
-                                
+
                             });
                             }//////////////////////////// TODO: workaround, angular run twice.
                             cindex++;
@@ -178,22 +186,22 @@ app.factory('DataService', function ($http, $q){
                             if(category_item.title === categories[categories.length-1].title){
                                 console.log("back!(2)");
                                 deferred.resolve(CachedData);
-                                
+
                             }
                         }
 
 
                     }
-                    
+
                 });
 
             });
 
         });
-        
+
     });
 
-    
+
     return deferred.promise;
   };
 
@@ -244,7 +252,7 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scop
     $scope.proposal = value;//crowdfunding, closelyheld
     DataService.getCatchedData().then(function (data) {
       $scope.currentProposal = data[value];
-        
+
     });
 
   };
@@ -262,7 +270,7 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scop
       }else{
           $scope.sidebar = value;
       }
-      
+
   };
 
   $scope.isProposalSet = function () {
@@ -271,12 +279,12 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scop
 
 }]);
 app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
-  
+
   $scope.go = function(path){
       $("body").scrollTop(0);
       $location.path(path);
   };
-  
+
   $scope.cover = "cover_small";
   if($( window ).width() > 400){
     $scope.cover = "cover_large";
@@ -291,9 +299,9 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
     }
     $scope.$apply();
   });
- 
 
-  
+
+
 }]);
 
 app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){
@@ -306,7 +314,7 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
 
   $scope.order = 'signatures_count';
   $scope.recommendFilter = 0;
- 
+
   $scope.toggleExpand = function () {
     $scope.expand = !$scope.expand;
   };
@@ -331,20 +339,34 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
     return $scope.focusCategory === qid;
   };
 
-  $scope.toggleCategory = function(qid){
+  $scope.toggleCategory = function(qid, topic_id){
     $scope.categoryToggled = true;
 
     if(qid === false){
       $scope.focusCategory = false;
-      
+
     }else{
+
+      if(topic_id) {
+        $location.path('/' + topicref + '/' + qid + '/' + topic_id);
+        DataService.getPostData(topic_id).then(function (d) {
+          $scope.currentCategory.children.map(function (child, index) {
+            if(child.id === topic_id) {
+              $scope.toggleDiscussion(index + 1);
+            }
+          });
+        });
+      } else {
+        $location.path('/' + topicref + '/' + qid);
+      }
+
       $scope.focusCategory = qid;
-      $location.path('/' + topicref + '/'+qid);
+
       $scope.currentCategory = $scope.categories[qid-1];
       $("body").scrollTop(0);
-        
+
     }
-    
+
   };
 
   $scope.go = function(path){
@@ -355,37 +377,36 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
   DataService.getCatchedData().then(function (d) {
       $scope.currentProposal = d[$scope.topicref];
       $scope.categories = d[$scope.topicref].categories;
-
       if($routeParams.id){
-        $scope.toggleCategory(parseInt($routeParams.id));
-    
+        $scope.toggleCategory(parseInt($routeParams.id), parseInt($routeParams.topic_id));
+
       }else{
         $scope.toggleCategory(1);
 
       }
-      
+
   })
 
   $scope.toggleDiscussion = function(index){
-      //console.log(index);
+      // console.log(index);
       if($scope.focusDiscussion === index){
         $scope.focusDiscussion = false;
         document.getElementById('focus-discussion').scrollTop = 0;
-        
+
       }else{
         $scope.focusDiscussion = index;
         $scope.currentDiscussion = $scope.currentCategory.children[index-1];
         $scope.expand = null;
-           
+
       }
 
-    
+
   };
- 
+
   $scope.toTrusted = function(html_code) {
     return $sce.trustAsHtml(html_code);
   };
-  
- 
+
+
 }]);
 
