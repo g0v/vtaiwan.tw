@@ -5,7 +5,7 @@ var port = process.env.PORT || '8080';
 app = express();
 
 app.use(express.static(path.resolve(__dirname + '/mockup')));
-app.use(require('prerender-node')).set('prerenderToken', process.env.PRERENDER_TOKEN).set('protocol', 'https');
+app.use(require('prerender-node')).set('protocol', 'https');
 
 app.use('/', function (req, res) {
   res.sendFile(path.resolve(__dirname + '/index.html'));
