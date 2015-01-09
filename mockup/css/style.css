@@ -12,7 +12,7 @@ body {
 
   color: rgb(55,53,54);
   font-size: 16px;
-  
+
 }
 a {
   text-decoration: none;
@@ -44,10 +44,10 @@ a {
   height: 100%;
 }
 .wrapper {
- 
+
   margin-left: auto;
   margin-right: auto;
-  
+
   box-sizing: border-box;
   position: relative;
 
@@ -56,7 +56,7 @@ a {
 #content {
 	margin-top: 50px;
   padding-top: 10px;
- 
+
 }
 #content--cover {
   margin-top: 50px;
@@ -91,7 +91,7 @@ header {
   position: fixed;
   top: 0px;
   box-sizing: border-box;
-  
+
   background: rgb(220, 220, 220);
   text-align: center;
 
@@ -217,7 +217,7 @@ a.button--square.inactive, a.button--wide.inactive{
   color: rgb(53,55,54);
   background: transparent;
   color: white;
-  
+
 }
 a.button.goodrating{
   background: #8BC34A;
@@ -275,8 +275,8 @@ a.button--wide {
   -webkit-transition: .2s;
   transition: .2s;
   transition-duration: .5s;
-  
-  
+
+
 }
 .sidebar-container_left {
   background: rgb(53,55,54);
@@ -323,7 +323,7 @@ a.button--wide {
   -webkit-transition: .2s;
   transition: .2s;
   transition-duration: .5s;
-  
+
 }
 #sidebar-container--top.show {
   width: 100%;
@@ -333,26 +333,26 @@ a.button--wide {
   -webkit-transition: .2s;
   transition: .2s;
   transition-duration: .5s;
-  
+
 
 }
 #sidebar-container--down {
   width: 100%;
   padding-right: 50px;
   height: 100%;
-  
+
   bottom: -100%;
 
   overflow: scroll;
   position: absolute;
-  
+
   -moz-transition: .2s;
   -ms-transition: .2s;
   -webkit-transition: .2s;
   transition: .2s;
   transition-duration: .5s;
 
-  
+
 }
 #sidebar-container--down.show {
 
@@ -371,7 +371,7 @@ a.button--wide {
   background: white;
   position: absolute;
   text-align: center;
- 
+
   -moz-transition: .2s;
   -ms-transition: .2s;
   -webkit-transition: .2s;
@@ -379,14 +379,14 @@ a.button--wide {
   transition-duration: .5s;
 
   /* [transition-property] [transition-duration] [transition-timing-function] [transition-delay] */
- 
+
   overflow: scroll;
   height: 100%;
   width: 0px;
   top:0px;
   right: -100%;
   background: rgb(247,247,247);
-  
+
 }
 
 #focus-discussion.show{
@@ -395,7 +395,7 @@ a.button--wide {
   overflow: scroll;
   right: 0px;
   width: 100%;
-  
+
   -webkit-transition: right .5s ease-in-out;
   transition: right .5s ease-in-out;
 
@@ -410,7 +410,7 @@ a.button--wide {
 }
 .q_content_nav.show {
   position: fixed;
-  
+
   -moz-transition: .2s;
   -ms-transition: .2s;
   -webkit-transition: .2s;
@@ -459,10 +459,10 @@ a.nav_item_sidebar--left {
   height: 50px;
   color: rgb(247,247,247);
   background-color: #255;
-  
+
   font-size: 18px;
   font-weight: 700;
-  
+
   border-bottom: 1px solid rgb(100,100,100);
   text-align: left;
   cursor: pointer;
@@ -478,7 +478,7 @@ a.nav_item_sidebar--bold {
   text-align: left;
   cursor: pointer;
   font-weight: 700;
-  
+
 
 }
 a.nav_item_sidebar--half {
@@ -492,15 +492,15 @@ a.nav_item_sidebar--half {
 }
 
 a.nav_item_sidebar--sub {
-  
+
   display: block;
   padding: 12px;
   min-height: 50px;
- 
+
   color: rgb(247,247,247);
-  
+
   background: rgb(53,55,54);
-  
+
   border-bottom: 1px solid rgb(100,100,100);
   text-align: left;
   cursor: pointer;
@@ -558,12 +558,12 @@ a.nav_item_sidebar--sub {
 #site_logo_text {
   display: inline-block;
   vertical-align: top;
-  padding: 8px 2px; 
+  padding: 8px 2px;
   font-weight: 800;
   font-size: 20px;
   color: rgb(53,55,54);
   font-family: 'Gentium Basic', 'Gentium', serif;
-  
+
 }
 .logo {
   font-family: 'Gentium Basic', 'Gentium', serif;
@@ -610,7 +610,7 @@ a.nav_item_sidebar--sub {
   box-sizing: border-box;
   vertical-align: top;
   position: relative;
-  
+
 }
 
 .nav_list_function_item_hide {
@@ -699,7 +699,7 @@ a.nav_item_sidebar--sub {
   background: rgba(0,0,0,0.12);
   box-shadow: 0 0 40px rgba(0,0,0,0.12);
   padding-left: 20px;
- 
+
 }
 .cover_img {
   width: 100%;
@@ -736,7 +736,7 @@ a.nav_item_sidebar--sub {
 .about_paper {
   min-height: 500px;
   background: white;
-  
+
 }
 
 .about_item {
@@ -760,7 +760,7 @@ a.nav_item_sidebar--sub {
   color: white;
   padding: 10px;
   margin: 5px;
- 
+
 
 }
 @media screen and (min-width: 600px){
@@ -772,7 +772,7 @@ a.nav_item_sidebar--sub {
 
 /* ------------------------------------------------------------ */
 /* topic 主題
-/* ------------------------------------------------------------ */ 
+/* ------------------------------------------------------------ */
 .topic_page {
   padding: 10px;
   background: white;
@@ -784,11 +784,11 @@ a.nav_item_sidebar--sub {
 }
 /* ------------------------------------------------------------ */
 /* issue 話題
-/* ------------------------------------------------------------ */ 
+/* ------------------------------------------------------------ */
 .issue_item {
   margin-bottom: 4px;
   background: white;
-  padding: 5px 10px; 
+  padding: 5px 10px;
   position: relative;
   border: 1px solid rgb(220,220,220);
 
@@ -836,7 +836,7 @@ a.nav_item_sidebar--sub {
 }
 /* ------------------------------------------------------------ */
 /* post 討論串
-/* ------------------------------------------------------------ */ 
+/* ------------------------------------------------------------ */
 .order_control {
   position: absolute;
   top: 13px;
@@ -867,18 +867,18 @@ a.nav_item_sidebar--sub {
 }
 .post_item_intermediate {
   background: white;
-  
+
   position: absolute;
   bottom: 0px;
   left: 0px;
   border-top: 1px solid rgb(240,240,240);
   border-bottom: 1px solid rgb(240,240,240);
-  
+
   z-index: 100;
   cursor: pointer;
   height: 10px;
   width: 100%;
-  
+
   box-sizing: border-box;
 
 }
@@ -888,12 +888,12 @@ a.nav_item_sidebar--sub {
   padding: 13px;
   text-align: center;
   border-radius: 50%;
-  color: rgb(200,200,200);
+  color: rgb(76,74,75);
   border: 1px solid rgb(240,240,240);
 
   z-index: 10;
   position: absolute;
-  
+
   top: -22px;
   left: 8px;
   background: white;
@@ -909,9 +909,9 @@ a.nav_item_sidebar--sub {
   border-radius: 50%;
 }
 .post_item_info {
-  overflow: hidden;  
-  _overflow: visible;  
-  zoom: 1; 
+  overflow: hidden;
+  _overflow: visible;
+  zoom: 1;
   padding: 0px 0px 0px 8px;
 }
 .post_item_author, .post_item_recommend, .post_item_date {
@@ -963,10 +963,10 @@ a.nav_item_sidebar--sub {
   box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
   box-sizing: border-box;
   cursor: pointer;
- 
+
   padding: 16px;
 
- 
+
   text-align: center;
 }
 .toggle_reply_button:hover {
@@ -1007,7 +1007,7 @@ a.nav_item_sidebar--sub {
 
   width: 100%;
   overflow: hidden;
-  white-space: nowrap; 
+  white-space: nowrap;
   text-overflow: ellipsis;
 
 }
@@ -1039,8 +1039,8 @@ a.nav_item_sidebar--sub {
 
 }
 .post_reply_item_control_button {
-  margin: auto 0;  
-  
+  margin: auto 0;
+
 }
 
 /* question bottom "more" function */
@@ -1058,7 +1058,7 @@ a.more {
 
 /* ------------------------------------------------------------ */
 /* page navigation
-/* ------------------------------------------------------------ */ 
+/* ------------------------------------------------------------ */
 .navigation {
   width: 48%;
   text-align: center;
