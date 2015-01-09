@@ -871,8 +871,8 @@ a.nav_item_sidebar--sub {
   position: absolute;
   bottom: 0px;
   left: 0px;
-  border-top: 1px solid rgb(240,240,240);
-  border-bottom: 1px solid rgb(240,240,240);
+  border-top: 1px solid rgb(231,231,231);
+  border-bottom: 1px solid rgb(231,231,231);
 
   z-index: 100;
   cursor: pointer;
@@ -889,7 +889,7 @@ a.nav_item_sidebar--sub {
   text-align: center;
   border-radius: 50%;
   color: rgb(76,74,75);
-  border: 1px solid rgb(240,240,240);
+  border: 1px solid rgb(231,231,231);
 
   z-index: 10;
   position: absolute;
