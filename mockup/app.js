@@ -1,3 +1,4 @@
+"use strict";
 var app = angular.module("app", [
   "ngRoute"
 ]);
@@ -50,7 +51,6 @@ app.config(['$routeProvider','$locationProvider','$sceDelegateProvider',
       when('/contact',{
       templateUrl: 'partials/contact.html',
       controller: 'IndexCtrl'
-
     }).
       otherwise({
       redirectTo:'/',
@@ -60,8 +60,7 @@ app.config(['$routeProvider','$locationProvider','$sceDelegateProvider',
 
     $locationProvider.hashPrefix('!');
 
-  }
-]);
+  }]);
 
 app.factory('DataService', function ($http, $q){
 
@@ -156,7 +155,7 @@ app.factory('DataService', function ($http, $q){
                                 // from: "/user_avatar/talk.vtaiwan.tw/audreyt/{size}/6.png"
                                 // to: "/user_avatar/talk.vtaiwan.tw/audreyt/50/6.png"
                                 for(var key in children_item.posts){
-                                    children_item.posts[key].avatar_url = 'https://talk.vtaiwan.tw/' + children_item.posts[key].avatar_template.replace('{size}', '90')
+                                    children_item.posts[key].avatar_url = 'https://talk.vtaiwan.tw/' + children_item.posts[key].avatar_template.replace('{size}', '90');
                                 }
 
                                 //console.log(CachedData);//debug check
@@ -312,7 +311,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
 
 app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){
 
-  topicref = $location.$$url.split('/')[1] || 'crowdfunding';
+  var topicref = $location.$$url.split('/')[1] || 'crowdfunding';
   //topicref = $location.path().split('/')[1] || 'crowdfunding';
   //console.log($location.path().split('/')[1]);
 
@@ -391,7 +390,7 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
 
       }
 
-  })
+  });
 
   $scope.toggleDiscussion = function(index){
       // console.log(index);

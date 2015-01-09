@@ -1,3 +1,6 @@
 .DS_Store
 mockup/web-server.js
 node_modules/
+rev/
+public/
+./index.html

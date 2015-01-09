@@ -1,0 +1,103 @@
+var gulp = require("gulp");
+var concat = require("gulp-concat");
+var rev = require("gulp-rev");
+var addSrc = require("gulp-add-src");
+var htmlmin = require("gulp-htmlmin");
+
+gulp.task("clean", function (next) {
+  var del = require("del");
+
+  del(["public"], next);
+
+});
+
+gulp.task("css", ["clean"], function () {
+  var uncss = require("gulp-uncss");
+  var glob = require("glob");
+  var cssmin = require("gulp-cssmin");
+  var stripCssComments = require("gulp-strip-css-comments");
+
+  return gulp.src([
+      "mockup/css/doc.css",
+      "mockup/css/font-awesome.min.css"
+    ])
+    .pipe(uncss({
+      html: glob.sync("mockup/**/*.html")
+    }))
+    .pipe(addSrc("mockup/css/style.css"))
+    .pipe(stripCssComments())
+    .pipe(concat("app.css"))
+    .pipe(cssmin())
+    .pipe(rev())
+    .pipe(gulp.dest("public/css"))
+    .pipe(rev.manifest())
+    .pipe(gulp.dest("rev/css"));
+
+});
+
+gulp.task("js", ["clean"], function () {
+  var ngAnnotate = require("gulp-ng-annotate");
+  var uglify = require("gulp-uglify");
+
+  return gulp.src("mockup/app.js")
+    .pipe(ngAnnotate({
+      remove: true,
+      add: true,
+      single_quotes: true
+    }))
+    .pipe(uglify())
+    .pipe(rev())
+    .pipe(gulp.dest("public"))
+    .pipe(rev.manifest())
+    .pipe(gulp.dest("rev/js"));
+
+});
+
+gulp.task("html", ["clean"], function () {
+
+  return gulp.src("mockup/partials/*.html")
+    .pipe(htmlmin({
+      collapseWhitespace: true,
+      removeComments: true
+    }))
+    .pipe(gulp.dest("public/partials"));
+
+});
+
+gulp.task("rev", ["css", "js"], function () {
+  var revCollector = require('gulp-rev-collector');
+  var htmlmin = require("gulp-htmlmin");
+
+  return gulp.src(['rev/**/*.json', 'mockup/index.html'])
+    .pipe(revCollector({
+      replaceReved: true
+    }))
+    .pipe(htmlmin({
+      collapseWhitespace: true,
+      removeComments: true
+    }))
+    .pipe(gulp.dest('.'));
+});
+
+gulp.task("image", ["clean"], function () {
+  var imagemin = require('gulp-imagemin');
+  var pngquant = require('imagemin-pngquant');
+
+  return gulp.src("mockup/images/*")
+    .pipe(imagemin({
+      progressive: true,
+      svgoPlugins: [{removeViewBox: false}],
+      use: [pngquant()]
+    }))
+    .pipe(gulp.dest("public/images"));
+
+});
+
+
+gulp.task("fonts", ["clean"], function () {
+  return gulp.src("mockup/fonts/*")
+    .pipe(gulp.dest("public/fonts"));
+
+});
+
+gulp.task("default", ["css", "js", "html", "image", "fonts", "rev"]);

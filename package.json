@@ -7,10 +7,28 @@
     "express": "^4.10.7",
     "prerender-node": "^1.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "del": "^1.1.1",
+    "glob": "^4.3.2",
+    "gulp": "^3.8.10",
+    "gulp-add-src": "^0.2.0",
+    "gulp-concat": "^2.4.3",
+    "gulp-cssmin": "^0.1.6",
+    "gulp-htmlmin": "^0.2.0",
+    "gulp-imagemin": "^2.1.0",
+    "gulp-ng-annotate": "^0.4.3",
+    "gulp-rev": "^2.0.1",
+    "gulp-rev-collector": "^0.1.2",
+    "gulp-strip-css-comments": "^1.0.0",
+    "gulp-uglify": "^1.0.2",
+    "gulp-uncss": "^0.5.2",
+    "imagemin-pngquant": "^4.0.0",
+    "ngmin": "^0.5.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "build": "gulp",
+    "start": "npm run build && node server.js"
   },
   "repository": {
     "type": "git",
