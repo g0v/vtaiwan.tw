@@ -80,8 +80,11 @@ hr {
   text-align: center;
 }
 @media screen and (max-width: 400px){
-  ol, ul {
+  ul{
     padding-left: 20px;
+  }
+  ol {
+    padding-left: 22px;
   }
   li {
     margin-bottom: 6px;
@@ -983,9 +986,9 @@ a.nav_item_sidebar--sub {
   cursor: pointer;
 
   padding: 16px;
-
-
   text-align: center;
+
+  z-index: 300;
 }
 .toggle_reply_button:hover {
    box-shadow: 0 6px 6px rgba(0,0,0,.14),0 6px 16px rgba(0,0,0,.28);
