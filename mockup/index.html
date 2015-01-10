@@ -12,6 +12,7 @@
     <meta content="" property="og:title" />
     <meta content=""/>
     <link rel="icon" type="image/png" href="images/logo1.png">
+    <!--[if gt IE 8]><!-->
 
     <!-- jQuery -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -23,10 +24,18 @@
 
     <link type="text/css" rel="stylesheet" href="css/doc.css"> 
     <link type="text/css" rel="stylesheet" href="css/style.css">
+
+    <!--<![endif]-->
     <link rel="stylesheet" href="css/font-awesome.min.css">
 
 </head>
 <body class="body">
+    <!--[if lte IE 8]>
+    <div id="result" style="position: absolute; top: 10%; left: 10%; right: 10%; padding: 20px; background: #ffe">
+      <p><br>很抱歉，我們不支援 Internet Explorer 8 和之前的版本。請您改用 <a href="https://www.mozilla.org/firefox/" class="fa-external-link">Firefox</a> 或 <a href="https://www.google.com/chrome/browser/" class="fa-external-link">Chrome</a> 瀏覽器。</p>
+      <p>Sorry, Internet Explorer 8 and earlier versions are not supported.</p>
+        <br>
+    </div><![endif]-->
     
     <div ng-view></div>
 
