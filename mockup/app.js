@@ -60,8 +60,7 @@ app.config(['$routeProvider','$locationProvider','$sceDelegateProvider',
 
     //$locationProvider.html5Mode(true);
 
-  }
-]);
+  }]);
 
 app.factory('DataService', function ($http, $q){
 
@@ -156,7 +155,7 @@ app.factory('DataService', function ($http, $q){
                                 // from: "/user_avatar/talk.vtaiwan.tw/audreyt/{size}/6.png"
                                 // to: "/user_avatar/talk.vtaiwan.tw/audreyt/50/6.png"
                                 for(var key in children_item.posts){
-                                    children_item.posts[key].avatar_url = 'https://talk.vtaiwan.tw/' + children_item.posts[key].avatar_template.replace('{size}', '90')
+                                    children_item.posts[key].avatar_url = 'https://talk.vtaiwan.tw/' + children_item.posts[key].avatar_template.replace('{size}', '90');
                                 }
 
                                 //console.log(CachedData);//debug check
@@ -176,6 +175,12 @@ app.factory('DataService', function ($http, $q){
                                         }
                                     }
                                 }
+
+                                // remove newlines posts content
+                                children_item.posts = children_item.posts.map(function(post) {
+                                  post.cooked = post.cooked.replace(/\n/g, '');
+                                  return post;
+                                });
 
                             });
                             }//////////////////////////// TODO: workaround, angular run twice.
@@ -391,7 +396,7 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
 
       }
 
-  })
+  });
 
   $scope.toggleDiscussion = function(index){
       // console.log(index);
