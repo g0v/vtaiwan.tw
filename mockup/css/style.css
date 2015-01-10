@@ -79,6 +79,17 @@ hr {
 .l_center {
   text-align: center;
 }
+@media screen and (max-width: 400px){
+  ol, ul {
+    padding-left: 20px;
+  }
+  li {
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+
+}
+
 /* ------------------------------------------------------------ */
 /* Navigation
 /* ------------------------------------------------------------ */
@@ -939,19 +950,19 @@ a.nav_item_sidebar--sub {
 }
 .post_item_text {
   white-space: pre-wrap;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+    line-height: 1.6;
   margin: 6px 0px;
 }
 .post_item_text p {
   margin: 20px 0;
+  font-size: 16px;
   line-height: 1.6;
-  
+
 }
 @media screen and (min-width: 600px) {
   .post_item_text {
-    font-size: 16px;
-    line-height: 1.6;
+    
     margin: 0px 10px;
   }
 }
