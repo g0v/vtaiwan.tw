@@ -938,7 +938,7 @@ a.nav_item_sidebar--sub {
   margin: 6px 0px;
 }
 .post_item_text p {
-  margin: 0px;
+  margin: 20px 0;
   line-height: 20px;
   font-size: 14px;
 }
