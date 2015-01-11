@@ -3,4 +3,4 @@ mockup/web-server.js
 node_modules/
 rev/
 public/
-./index.html
+/index.html
