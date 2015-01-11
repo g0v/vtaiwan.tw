@@ -575,11 +575,13 @@ a.nav_item_sidebar--sub {
   font-weight: 800;
   font-size: 20px;
   color: rgb(53,55,54);
-  font-family: 'Gentium Basic', 'Gentium', serif;
-
 }
-.logo {
+#site_logo_text, .logo {
   font-family: 'Gentium Basic', 'Gentium', serif;
+  display: inline-block;
+}
+#site_logo_text::first-letter, .logo::first-letter {
+  margin-right: 1px;
 }
 .nav_left_toggle {
   position: absolute;
