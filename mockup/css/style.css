@@ -952,16 +952,15 @@ a.nav_item_sidebar--sub {
   top: 10px;
 }
 .post_item_text {
-  white-space: pre-wrap;
+  word-wrap: break-word;
   font-size: 16px;
-    line-height: 1.6;
+  line-height: 1.6;
   margin: 6px 0px;
 }
 .post_item_text p {
-  margin: 20px 0;
+  margin: 0 0 8px;
   font-size: 16px;
   line-height: 1.6;
-
 }
 @media screen and (min-width: 600px) {
   .post_item_text {
