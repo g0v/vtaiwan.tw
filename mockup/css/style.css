@@ -951,17 +951,48 @@ a.nav_item_sidebar--sub {
   right: 10px;
   top: 10px;
 }
+
 .post_item_text {
   word-wrap: break-word;
   font-size: 16px;
   line-height: 1.6;
   margin: 6px 0px;
 }
+
 .post_item_text p {
   margin: 20px 0;
   font-size: 16px;
   line-height: 1.6;
 }
+
+.post_item_text h1,
+.post_item_text h2,
+.post_item_text h3 {
+  margin: 0.4em 0 0.2em;
+}
+
+.post_item_text ul,
+.post_item_text ol {
+  margin: 0 0 10px 30px;
+  padding: 0;
+}
+
+blockquote {
+  background: #f0f0f0;
+  border-left: 1px solid #ddd;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 10px;
+}
+
+blockquote > *:first-child {
+  margin-top: 0;
+}
+
+blockquote > *:last-child {
+  margin-bottom: 0;
+}
+
 @media screen and (min-width: 600px) {
   .post_item_text {
     
