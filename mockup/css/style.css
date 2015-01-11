@@ -932,13 +932,13 @@ a.nav_item_sidebar--sub {
   top: 8px;
 }
 .post_item_text {
-  white-space: pre-wrap;
+  word-wrap: break-word;
   font-size: 14px;
   line-height: 18px;
   margin: 6px 0px;
 }
 .post_item_text p {
-  margin: 0px;
+  margin: 0 0 8px;
   line-height: 20px;
   font-size: 14px;
 }
