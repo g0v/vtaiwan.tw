@@ -9,9 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <!-- Site Properities -->
     <title>vTaiwan</title>
-    <meta content="" property="og:site_name" />
-    <meta content="" property="og:title" />
-    <meta content=""/>
+    <meta content="{{meta.title}}" property="og:site_name" />
+    <meta content="{{meta.title}}" property="og:title" />
+    <meta content="website" property="og:type" />
+    <meta content="images/logo1.png" property="og:image" />
+    <meta content="{{meta.description}}" property="og:description" />
+    <meta content="summary" name="twitter:card" />
+    <meta content="{{meta.title}}" name="twitter:site" />
+    <meta content="{{meta.title}}" name="twitter:title" />
+    <meta content="{{meta.description}}" name="twitter:description" />
+    <meta content="images/logo1.png" name="twitter:image" />
     <link rel="icon" type="image/png" href="images/logo1.png">
     <!--[if gt IE 8]><!-->
 
@@ -20,6 +27,7 @@
     <!-- AngularJS -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
+    <script src="js/angular-meta.js"></script>
 
     <script type="text/javascript" src="/app.js"></script>
 
@@ -34,7 +42,7 @@
       <p>Sorry, Internet Explorer 8 and earlier versions are not supported.</p>
         <br>
     </div><![endif]-->
-    
+
     <div ng-view></div>
 
 </body>
