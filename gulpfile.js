@@ -39,12 +39,13 @@ gulp.task("js", ["clean"], function () {
   var ngAnnotate = require("gulp-ng-annotate");
   var uglify = require("gulp-uglify");
 
-  return gulp.src("mockup/app.js")
+  return gulp.src("mockup/**/*.js")
     .pipe(ngAnnotate({
       remove: true,
       add: true,
       single_quotes: true
     }))
+    .pipe(concat("app.js"))
     .pipe(uglify())
     .pipe(rev())
     .pipe(gulp.dest("public"))
