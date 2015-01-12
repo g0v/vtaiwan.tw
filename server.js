@@ -24,7 +24,7 @@ app.use('/', function (req, res) {
   var protocol = (process.env.USE_HTTPS)? 'https://' : 'http://';
 
   res.type('text/html; charset=UTF-8');
-  res.send(html.replace('{{base}}', protocol + req.headers.host));
+  res.send(html.replace(/\{\{base\}\}/g, protocol + req.headers.host));
 
 });
 
