@@ -1,9 +1,10 @@
 var app = angular.module("app", [
-  "ngRoute"
+  "ngRoute",
+  "meta"
 ]);
 
-app.config(['$routeProvider','$locationProvider','$sceDelegateProvider',
-  function($routeProvider,$locationProvider,$sceDelegateProvider){
+app.config(['$routeProvider','$locationProvider','$sceDelegateProvider','MetaProvider',
+  function($routeProvider,$locationProvider,$sceDelegateProvider,MetaProvider){
     $sceDelegateProvider.resourceUrlWhitelist([
       'self',
       'https://vtaiwan.tw/**',
@@ -58,9 +59,19 @@ app.config(['$routeProvider','$locationProvider','$sceDelegateProvider',
       controller: 'IndexCtrl'
     });
 
+    MetaProvider.
+      otherwise({
+        title: 'vTaiwan 線上法規討論平台',
+        description: '這是行政院虛擬世界發展法規調適規劃方案的線上法規討論平台，由資策會科技法律研究所與 g0v vTaiwan.tw 專案參與者共同建置。'
+    });
+
     //$locationProvider.html5Mode(true);
 
   }]);
+
+app.run(function (Meta) {
+  Meta.init();
+});
 
 app.factory('DataService', function ($http, $q){
 
