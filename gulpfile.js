@@ -25,6 +25,7 @@ gulp.task("css", ["clean"], function () {
       html: glob.sync("mockup/**/*.html")
     }))
     .pipe(addSrc("mockup/css/style.css"))
+    .pipe(addSrc("mockup/css/lexicon.css"))
     .pipe(stripCssComments())
     .pipe(concat("app.css"))
     .pipe(cssmin())
