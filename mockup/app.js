@@ -120,7 +120,6 @@ app.factory('DataService', function ($http, $q){
             var index = 1;
             CachedData[proposal_item.title_eng].categories.map(function (category_item) {
               category_item.id = index;
-
               if(index > 1)
                   category_item.preid = index - 1;
 
@@ -128,6 +127,17 @@ app.factory('DataService', function ($http, $q){
                   category_item.nextid = index + 1;
 
               index++;
+
+              // remove lexicon
+              if(category_item.children) {
+                category_item.children = category_item.children.map(function (child) {
+                  var hint = /<span\ class=\"hint\"\ data-hint=\".+\">(.+)<\/span>/;
+                  child.title = child.title.replace(hint, function (matched, noHint) {
+                    return noHint;
+                  });
+                  return child;
+                });
+              }
 
             });
 
