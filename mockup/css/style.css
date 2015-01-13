@@ -448,7 +448,10 @@ a.button--wide {
   border-radius: 50%;
 
 }
-
+.nav_item_left_icon {
+  display: inline-block;
+  margin: 0px 5px;
+}
 a.nav_item_sidebar {
   display: block;
   padding: 10px;

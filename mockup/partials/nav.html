@@ -24,8 +24,8 @@
 
     <div ng-show="isProposalSet()">
       <a class="nav_item_sidebar--bold"
-          ng-click="setProposal(null);$event.stopPropagation();"><i class="fa
-              fa-chevron-left"></i> {{currentProposal.title_cht}}</a>
+          ng-click="setProposal(null);$event.stopPropagation();"><div class="nav_item_left_icon"><i class="fa
+              fa-chevron-left"></i></div> {{currentProposal.title_cht}}</a></div>
       
       <span ng-repeat="q in currentProposal.categories" ng-click="go(proposal+'/'+q.id)">
           <a class="nav_item_sidebar--left" >{{q.title}}</a>
