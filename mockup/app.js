@@ -85,7 +85,7 @@ app.factory('DataService', function ($http, $q){
   ];
 
   function removeLexicon (text) {
-    var hint = /<span\ class=\"hint\"\ data-hint=\".+\">(.+)<\/span>/;
+    var hint = /<span\ class=\"hint\"\ data-hint=\"(?:.+\n?)+\">(.+)<\/span>/;
     return text.replace(hint, function (matched, raw) {
       return raw;
     });
