@@ -16,6 +16,7 @@
     z-index: 1000000;
     font-size: 14px;
     font-weight: normal;
+    top: 0;
 }
 
 .hint:hover:before {
@@ -32,7 +33,7 @@
     .hint:hover:after {
         transform: translateY(26px);
         left: 0px;
-        width: 91%;
+        width: auto;
     }
 }
 

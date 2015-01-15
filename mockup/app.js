@@ -84,6 +84,13 @@ app.factory('DataService', function ($http, $q){
       { "title_cht" : "閉鎖型公司", "title_eng" : "closelyheld", "category_num" : 5}
   ];
 
+  function removeLexicon (text) {
+    var hint = /<span\ class=\"hint\"\ data-hint=\"(?:.+\n?)+\">(.+)<\/span>/;
+    return text.replace(hint, function (matched, raw) {
+      return raw;
+    });
+  }
+
   DataService.getCatchedData = function(){
     var deferred = $q.defer();
 
@@ -130,11 +137,9 @@ app.factory('DataService', function ($http, $q){
 
               // remove lexicon
               if(category_item.children) {
+                category_item.title = removeLexicon(category_item.title);
                 category_item.children = category_item.children.map(function (child) {
-                  var hint = /<span\ class=\"hint\"\ data-hint=\".+\">(.+)<\/span>/;
-                  child.title = child.title.replace(hint, function (matched, noHint) {
-                    return noHint;
-                  });
+                  child.title = removeLexicon(child.title);
                   return child;
                 });
               }
