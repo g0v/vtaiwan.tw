@@ -323,10 +323,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
   DataService.getCatchedData().then(function (d) {
     Object.keys(d).map(function (title){
       var blockquote = d[title].categories[0].content.match(/<blockquote>\n((?:.+\n)+)<\/blockquote>\n/);
-      $scope.proposal[title] = "";
-      if(blockquote) {
-        $scope.proposal[title] = blockquote[1];
-      }
+      $scope.proposal[title] = (blockquote)? blockquote[1] : "";
     });
   });
 
