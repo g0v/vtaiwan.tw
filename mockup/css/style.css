@@ -1012,12 +1012,18 @@ blockquote > *:last-child {
   width:100%;
   margin-top: 30px;
   border-top: 1px solid rgb(240,240,240);
+  position: relative;
 }
 .post_item_action_btn {
   width: 40px;
   padding: 8px;
   text-align: center;
   display: inline-block;
+}
+.post_item_action_btn.right {
+  position: absolute;
+  right: 0px;
+  top: 0px;
 }
 
 .toggle_reply_button {

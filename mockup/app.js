@@ -353,6 +353,9 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
   $scope.order = 'signatures_count';
   $scope.recommendFilter = 0;
 
+
+        
+
   $scope.toggleExpand = function () {
     $scope.expand = !$scope.expand;
   };
@@ -401,14 +404,14 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
       $scope.focusCategory = qid;
 
       $scope.currentCategory = $scope.categories[qid-1];
-      $("body").scrollTop(0);
+      //$("body").scrollTop(0);
 
     }
 
   };
 
   $scope.go = function(path){
-      $("body").scrollTop(0);
+      //$("body").scrollTop(0);
       $location.path(path);
   };
 
@@ -427,10 +430,20 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
 
   $scope.toggleDiscussion = function(index){
       // console.log(index);
+
       if($scope.focusDiscussion === index){
         $scope.focusDiscussion = false;
-        document.getElementById('focus-discussion').scrollTop = 0;
+        
+        var top = document.getElementById('issue_item_'+index).offsetTop;
+        setTimeout(function () {
+          $("body").scrollTop(top);
+          //console.log(top);
+        },100);
+  
+        //document.getElementById('focus-discussion').scrollTop = 0;
         $location.path('/' + topicref + '/' + $scope.currentCategory.id);
+        
+
       }else{
         $location.path('/' + topicref + '/' + $scope.currentCategory.id + '/' + $scope.currentCategory.children[index-1].id);
         $scope.focusDiscussion = index;
