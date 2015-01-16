@@ -1,6 +1,7 @@
-<div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
+<div ng-controller="NavCtrl">
+<div ng-include="'partials/nav.html'"></div>
 
-<div id="content--proposal" ng-class="{'limit':focusDiscussion}">
+<div id="content--proposal" ng-class="{'limit':focusDiscussion || sidebar}">
 
 <!--
 <div class="nav_list_toolbar" ng-class="{'nav_list_toolbar_hide':!showUserMenu}">
@@ -8,86 +9,8 @@
       <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-search"></i> 搜尋</a>
 </div>
 -->
+  <div ng-include="'partials/discussion.html'"></div>
 
-<!-- Focus Discusstion -->
-<div id="focus-discussion" ng-class="{'show':focusDiscussion}">
-  
-  <div class="q_content_nav md-whiteframe-z1" ng-class="{'show':focusDiscussion, 'hide':!focusDiscussion}">
-      <div class="nav_left_toggle" ng-click="toggleDiscussion(currentDiscussion.index)"><i class="fa fa-chevron-left"></i></div>
-
-      <div class="order_control">
-          <!--<a class="button--wide" ng-class="{'inactive':recommendFilter===1}" ng-click="setRecommendFilter(0)"><i class="fa fa-thumbs-o-up"></i> 所有</a>
-          <a class="button--wide" ng-class="{'inactive':recommendFilter===0}" ng-click="setRecommendFilter(1)"><i class="fa fa-clock-o"></i> 推薦</a>-->
-      </div>
-
-      <div class="nav_right_toggle">
-        <i class="fa fa-ellipsis-v"></i>
-      </div>
-       
-  </div>
-  
-  <div class="q_content" ng-class="{'q_content_reply':showReplyItem}">
-    <div class="wrapper">
-    <div class="q_breadcrumbs">主題 &gt; {{currentProposal.title_cht}}</div>
-    <div class="q_title">{{currentCategory.title}}</div>
-    <div class="focusDiscussion_title"><span class="prompt">討論話題：</span>{{currentDiscussion.title}} <i class="fa fa-comments-o"></i><span class="issue_item_discuss_count">{{currentDiscussion.post_count}}</sapn></div>
-    <!-- <p class="q_text" ng-repeat="p in focusDiscussion.content">{{p}}</p> -->
-
-    <!-- (discourse posts) -->
-    
-
-    <div ng-repeat="p in currentDiscussion.posts" ng-show="$index===0 || $last || isExpand()"><!--  | filter:recommendFilterFunction-->
-    <!--ng-show="$index===0 || $last || isExpand()" -->
-      <div class="post_item md-whiteframe-z1" ng-class="{'post_item_last':$last && ((currentDiscussion.posts).length) > 3 && !expand}">
-
-        <img class="post_item_img" ng-src="{{p.avatar_url}}">
-        <div class="post_item_info">
-          <div class="post_item_author" >{{p.username}}</div>
-          <div class="post_item_recommend" ng-if="p.recommend >= 1"><i class="fa fa-heart-o"></i></div>
-          <div class="post_item_date" >{{p.created_at | date }}</div>
-          <div class="post_item_text" ng-bind-html="toTrusted(p.cooked)"></div>  
-        </div>
-        
-        <!-- expand -->
-        <div class="post_item_intermediate" ng-if="($index === 0) && ((currentDiscussion.posts).length) > 3" ng-click="toggleExpand()" ng-show="!isExpand()">
-        <!--ng-if="$index===0 && ((currentDiscussion.posts | filter:recommendFilterFunction).length) > 3" -->
-          <div class="post_item_intermediate_circle">{{(currentDiscussion.posts).length-2}}</div>
-        </div> 
-        
-      </div>
-      
-    </div>
-    <a href="https://talk.vtaiwan.tw/t/topic/{{currentDiscussion.id}}" target="_blank"><div class="toggle_reply_button" ng-show="focusDiscussion"><i class="fa fa-reply"></i></div></a>
-   
-
-    
-    <!-- Reply to posts / Comment -->
-    <!--
-    <div class="post_reply_item" ng-class="{'show':showReplyItem}">
-        <div class="post_reply_item_title">回覆至 <b>{{focusDiscussion.title}}</b>：</div>
-        <div class="post_reply_item_minimize" ng-click="toggleReplyItem()"><i class="fa fa-chevron-down"></i></div>
-        <div class="post_reply_item_textarea">
-            <textarea readonly>
-目前因議題文字調整中，我們本周會將 vTaiwan.tw 主站連上實際的討論區。
-您可按底下的「回覆」鈕連到測試站，進行先期討論。
-</textarea>
-        </div>
-        
-        <div class="post_reply_item_control">
-            <div class="post_reply_item_control_button">
-            <a class="button" target="_blank" href="https://talk.vtaiwan.tw/c/6-category"><i class="fa fa-reply"></i> 回覆</a> <a class="cancel" ng-click="toggleReplyItem()">取消</a>
-            </div>
-        </div>
-
-    </div>
-    -->
-    
-
-
-    </div>
-  </div>  
-</div>
-<!-- ................ -->
 
 
   <div class="wrapper">
@@ -118,4 +41,4 @@
   
   <!-- . . . . . . . . . . . . -->
 </div><!-- content -->
-
+</div><!-- Nav -->
