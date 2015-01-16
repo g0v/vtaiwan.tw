@@ -302,6 +302,7 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scop
   };
 
   $scope.showsidebar = function(value){
+      $("body").scrollTop(0);
       if(value === 'toggle'){
           $scope.sidebar = !$scope.sidebar;
       }else{

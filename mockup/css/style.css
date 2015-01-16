@@ -56,7 +56,8 @@ a {
 #content {
 	margin-top: 50px;
   padding-top: 10px;
-
+  height: 100vh;
+  overflow: scroll;
 }
 #content--cover {
   margin-top: 50px;
@@ -67,7 +68,7 @@ a {
 }
 #content--proposal.limit {
   height: 100vh;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 hr {
