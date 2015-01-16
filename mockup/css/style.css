@@ -1016,7 +1016,7 @@ blockquote > *:last-child {
 }
 .post_item_action_btn {
   width: 40px;
-  padding: 8px;
+  padding: 14px;
   text-align: center;
   display: inline-block;
 }
