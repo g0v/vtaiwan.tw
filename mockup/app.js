@@ -316,7 +316,19 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scop
   };
 
 }]);
+
 app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
+  $scope.proposal = {};
+
+  DataService.getCatchedData().then(function (d) {
+    Object.keys(d).map(function (title){
+      var blockquote = d[title].categories[0].content.match(/<blockquote>\n((?:.+\n)+)<\/blockquote>\n/);
+      $scope.proposal[title] = "";
+      if(blockquote) {
+        $scope.proposal[title] = blockquote[1];
+      }
+    });
+  });
 
   $scope.go = function(path){
       $("body").scrollTop(0);
@@ -338,7 +350,9 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
     $scope.$apply();
   });
 
-
+  $scope.toTrusted = function(html_code) {
+    return $sce.trustAsHtml(html_code);
+  };
 
 }]);
 
