@@ -354,7 +354,7 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
   $scope.recommendFilter = 0;
 
 
-        
+
 
   $scope.toggleExpand = function () {
     $scope.expand = !$scope.expand;
@@ -405,7 +405,6 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
 
       $scope.currentCategory = $scope.categories[qid-1];
       //$("body").scrollTop(0);
-
     }
 
   };
@@ -433,16 +432,16 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
 
       if($scope.focusDiscussion === index){
         $scope.focusDiscussion = false;
-        
+
         var top = document.getElementById('issue_item_'+index).offsetTop;
         setTimeout(function () {
           $("body").scrollTop(top);
           //console.log(top);
         },100);
-  
+
         //document.getElementById('focus-discussion').scrollTop = 0;
         $location.path('/' + topicref + '/' + $scope.currentCategory.id);
-        
+
 
       }else{
         $location.path('/' + topicref + '/' + $scope.currentCategory.id + '/' + $scope.currentCategory.children[index-1].id);
@@ -456,6 +455,16 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
 
   $scope.toTrusted = function(html_code) {
     return $sce.trustAsHtml(html_code);
+  };
+
+  $scope.shareToFacebook = function() {
+    var url = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent('https://vtaiwan.tw/#!' + $location.$$path);
+    window.open(url, 'fbshare', 'width=640,height=320');
+  };
+
+  $scope.shareToTwitter = function() {
+    var url = "https://twitter.com/intent/tweet?text="+ $scope.currentDiscussion.title + "&amp;url=" + encodeURIComponent('https://vtaiwan.tw/#!' + $location.$$path);
+    window.open(url, 'twittershare', 'width=640,height=320');
   };
 
 }]);
