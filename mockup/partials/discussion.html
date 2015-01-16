@@ -35,6 +35,13 @@
           <div class="post_item_recommend" ng-if="p.recommend >= 1"><i class="fa fa-heart-o"></i></div>
           <div class="post_item_date" >{{p.created_at | date }}</div>
           <div class="post_item_text" ng-bind-html="toTrusted(p.cooked)"></div>  
+
+          <div class="post_item_action">
+              <div class="post_item_action_btn"><i class="fa fa-facebook"></i></div>
+              <div class="post_item_action_btn"><i class="fa fa-envelope-o"></i></div>
+              <div class="post_item_action_btn"><i class="fa fa-link"></i></div>
+              <div class="post_item_action_btn right"><i class="fa fa-reply"></i></div> 
+          </div>
         </div>
         
         <!-- expand -->
@@ -46,7 +53,8 @@
       </div>
       
     </div>
-    <a href="https://talk.vtaiwan.tw/t/topic/{{currentDiscussion.id}}" target="_blank"><div class="toggle_reply_button" ng-show="focusDiscussion"><i class="fa fa-reply"></i></div></a>
+    
+    <!-- <a href="https://talk.vtaiwan.tw/t/topic/{{currentDiscussion.id}}" target="_blank"><div class="toggle_reply_button" ng-show="focusDiscussion"><i class="fa fa-reply"></i></div></a> -->
    
 
     
