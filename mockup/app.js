@@ -427,17 +427,23 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
 
   });
 
+  /* Prevent page relaod when selecting discussion. (So user won't get lost) */
+  var lastRoute = $route.current;
+  $scope.$on('$locationChangeSuccess', function(event) {
+      if($route.current.pathParams){
+          //console.log($route.current.pathParams);
+          //if($route.current.pathParams.topic_id)
+          if($route.current.pathParams.id === lastRoute.pathParams.id)
+            $route.current = lastRoute;
+       
+      }
+  });
+
   $scope.toggleDiscussion = function(index){
-      // console.log(index);
+      console.log(index);
 
       if($scope.focusDiscussion === index){
         $scope.focusDiscussion = false;
-
-        var top = document.getElementById('issue_item_'+index).offsetTop;
-        setTimeout(function () {
-          $("body").scrollTop(top);
-          //console.log(top);
-        },100);
 
         //document.getElementById('focus-discussion').scrollTop = 0;
         $location.path('/' + topicref + '/' + $scope.currentCategory.id);
