@@ -316,7 +316,16 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scop
   };
 
 }]);
+
 app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
+  $scope.proposal = {};
+
+  DataService.getCatchedData().then(function (d) {
+    Object.keys(d).map(function (title){
+      var blockquote = d[title].categories[0].content.match(/<blockquote>\n((?:.+\n)+)<\/blockquote>\n/);
+      $scope.proposal[title] = (blockquote)? blockquote[1] : "";
+    });
+  });
 
   DataService.getCatchedData();
 
@@ -340,6 +349,11 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
     $scope.$apply();
   });
 
+
+  $scope.toTrusted = function(html_code) {
+    return $sce.trustAsHtml(html_code);
+  };
+
 }]);
 
 app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){
@@ -352,6 +366,9 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
 
   $scope.order = 'signatures_count';
   $scope.recommendFilter = 0;
+
+
+
 
   $scope.toggleExpand = function () {
     $scope.expand = !$scope.expand;
@@ -401,14 +418,13 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
       $scope.focusCategory = qid;
 
       $scope.currentCategory = $scope.categories[qid-1];
-      $("body").scrollTop(0);
-
+      //$("body").scrollTop(0);
     }
 
   };
 
   $scope.go = function(path){
-      $("body").scrollTop(0);
+      //$("body").scrollTop(0);
       $location.path(path);
   };
 
@@ -425,12 +441,28 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
 
   });
 
+  /* Prevent page relaod when selecting discussion. (So user won't get lost) */
+  var lastRoute = $route.current;
+  $scope.$on('$locationChangeSuccess', function(event) {
+      if($route.current.pathParams){
+          //console.log($route.current.pathParams);
+          //if($route.current.pathParams.topic_id)
+          if($route.current.pathParams.id === lastRoute.pathParams.id)
+            $route.current = lastRoute;
+       
+      }
+  });
+
   $scope.toggleDiscussion = function(index){
-      // console.log(index);
+      console.log(index);
+
       if($scope.focusDiscussion === index){
         $scope.focusDiscussion = false;
+
         document.getElementById('focus-discussion').scrollTop = 0;
         $location.path('/' + topicref + '/' + $scope.currentCategory.id);
+
+
       }else{
         $location.path('/' + topicref + '/' + $scope.currentCategory.id + '/' + $scope.currentCategory.children[index-1].id);
         $scope.focusDiscussion = index;
@@ -443,6 +475,16 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
 
   $scope.toTrusted = function(html_code) {
     return $sce.trustAsHtml(html_code);
+  };
+
+  $scope.shareToFacebook = function() {
+    var url = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent('https://vtaiwan.tw/#!' + $location.$$path);
+    window.open(url, 'fbshare', 'width=640,height=320');
+  };
+
+  $scope.shareToTwitter = function() {
+    var url = "https://twitter.com/intent/tweet?text="+ $scope.currentDiscussion.title + "&amp;url=" + encodeURIComponent('https://vtaiwan.tw/#!' + $location.$$path);
+    window.open(url, 'twittershare', 'width=640,height=320');
   };
 
 }]);

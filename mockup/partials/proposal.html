@@ -9,9 +9,8 @@
       <a class="nav_item_sidebar nav_item_sidebar--half" ng-click="showsidebar(false)" ><i class="fa fa-search"></i> 搜尋</a>
 </div>
 -->
+
   <div ng-include="'partials/discussion.html'"></div>
-
-
 
   <div class="wrapper">
   <!-- Category -->  
@@ -21,7 +20,7 @@
     <div class="q_title" >{{currentCategory.title}}</div>
     <div ng-bind-html="toTrusted(currentCategory.content)"></div>
   
-    <div class="issue_item md-whiteframe-z1" ng-repeat="i in currentCategory.children" ng-click="toggleDiscussion(i.index)" >
+    <div class="issue_item md-whiteframe-z1" ng-repeat="i in currentCategory.children" ng-click="toggleDiscussion(i.index)" id="issue_item_{{i.index}}">
         <div class="issue_item_title"><span class="prompt">討論話題：</span>{{i.title}} <i class="fa fa-comments-o"></i><span class="issue_item_discuss_count">{{i.post_count}}</sapn></div>
 
         <div class="q_text" ng-bind-html="toTrusted(i.content)"></div>

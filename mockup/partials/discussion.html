@@ -1,6 +1,6 @@
 <!-- Focus Discusstion -->
 <div id="focus-discussion" ng-class="{'show':focusDiscussion}">
-  
+
   <div class="q_content_nav md-whiteframe-z1" ng-class="{'show':focusDiscussion, 'hide':!focusDiscussion}">
       <div class="nav_left_toggle" ng-click="toggleDiscussion(currentDiscussion.index)"><i class="fa fa-chevron-left"></i></div>
 
@@ -12,9 +12,9 @@
       <div class="nav_right_toggle">
         <i class="fa fa-ellipsis-v"></i>
       </div>
-       
+
   </div>
-  
+
   <div class="q_content" ng-class="{'q_content_reply':showReplyItem}">
     <div class="wrapper">
     <div class="q_breadcrumbs">主題 &gt; {{currentProposal.title_cht}}</div>
@@ -23,7 +23,7 @@
     <!-- <p class="q_text" ng-repeat="p in focusDiscussion.content">{{p}}</p> -->
 
     <!-- (discourse posts) -->
-    
+
 
     <div ng-repeat="p in currentDiscussion.posts" ng-show="$index===0 || $last || isExpand()"><!--  | filter:recommendFilterFunction-->
     <!--ng-show="$index===0 || $last || isExpand()" -->
@@ -34,22 +34,38 @@
           <div class="post_item_author" >{{p.username}}</div>
           <div class="post_item_recommend" ng-if="p.recommend >= 1"><i class="fa fa-heart-o"></i></div>
           <div class="post_item_date" >{{p.created_at | date }}</div>
-          <div class="post_item_text" ng-bind-html="toTrusted(p.cooked)"></div>  
+          <div class="post_item_text" ng-bind-html="toTrusted(p.cooked)"></div>
+
+          <div class="post_item_action">
+              <a ng-click="shareToFacebook()" target="_blank">
+                <div class="post_item_action_btn"><i class="fa fa-facebook"></i></div>
+              </a>
+              <a ng-href="mailto:?to=&amp;subject={{currentDiscussion.title}}&amp;body=https://vtaiwan.tw/#!/closelyheld/{{focusCategory}}/{{currentDiscussion.id}}" target="_blank">
+                <div class="post_item_action_btn"><i class="fa fa-envelope-o"></i></div>
+              </a>
+              <a ng-click="shareToTwitter()" target="_blank">
+                <div class="post_item_action_btn"><i class="fa fa-twitter"></i></div>
+              </a>
+              <a ng-href="https://talk.vtaiwan.tw/t/topic/{{currentDiscussion.id}}/{{$index + 1}}" target="_blank">
+                <div class="post_item_action_btn right"><i class="fa fa-reply"></i></div>
+              </a>
+          </div>
         </div>
-        
+
         <!-- expand -->
         <div class="post_item_intermediate" ng-if="($index === 0) && ((currentDiscussion.posts).length) > 3" ng-click="toggleExpand()" ng-show="!isExpand()">
         <!--ng-if="$index===0 && ((currentDiscussion.posts | filter:recommendFilterFunction).length) > 3" -->
           <div class="post_item_intermediate_circle">{{(currentDiscussion.posts).length-2}}</div>
-        </div> 
-        
-      </div>
-      
-    </div>
-    <a href="https://talk.vtaiwan.tw/t/topic/{{currentDiscussion.id}}" target="_blank"><div class="toggle_reply_button" ng-show="focusDiscussion"><i class="fa fa-reply"></i></div></a>
-   
+        </div>
 
-    
+      </div>
+
+    </div>
+
+    <!-- <a href="https://talk.vtaiwan.tw/t/topic/{{currentDiscussion.id}}" target="_blank"><div class="toggle_reply_button" ng-show="focusDiscussion"><i class="fa fa-reply"></i></div></a> -->
+
+
+
     <!-- Reply to posts / Comment -->
     <!--
     <div class="post_reply_item" ng-class="{'show':showReplyItem}">
@@ -61,7 +77,7 @@
 您可按底下的「回覆」鈕連到測試站，進行先期討論。
 </textarea>
         </div>
-        
+
         <div class="post_reply_item_control">
             <div class="post_reply_item_control_button">
             <a class="button" target="_blank" href="https://talk.vtaiwan.tw/c/6-category"><i class="fa fa-reply"></i> 回覆</a> <a class="cancel" ng-click="toggleReplyItem()">取消</a>
@@ -70,10 +86,10 @@
 
     </div>
     -->
-    
+
 
 
     </div>
-  </div>  
+  </div>
 </div>
 <!-- ................ -->
