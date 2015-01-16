@@ -883,7 +883,8 @@ a.nav_item_sidebar--sub {
   background: white;
   margin: 0px 1px;
   position: relative;
-  padding: 8px 8px 25px 8px;
+  //padding: 8px 8px 25px 8px;
+  padding: 20px 16px 16px 8px;
 }
 .post_item_last {
   padding-top: 30px;
@@ -1021,6 +1022,11 @@ blockquote > *:last-child {
   padding: 14px;
   text-align: center;
   display: inline-block;
+  cursor: pointer;
+  color: rgb(130,130,130);
+}
+.post_item_action_btn:hover {
+  color: rgb(63,159,155);
 }
 .post_item_action_btn.right {
   position: absolute;

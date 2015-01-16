@@ -459,7 +459,7 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
       if($scope.focusDiscussion === index){
         $scope.focusDiscussion = false;
 
-        //document.getElementById('focus-discussion').scrollTop = 0;
+        document.getElementById('focus-discussion').scrollTop = 0;
         $location.path('/' + topicref + '/' + $scope.currentCategory.id);
 
 
