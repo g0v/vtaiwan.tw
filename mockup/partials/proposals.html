@@ -5,9 +5,8 @@
             <div class="about_item_title">主題：群眾募資</div>
             <div class="about_item_content">
 
-                <p>目前我國創業籌資管道，包含創投、天使投資人、銀行貸款、親友集資、創櫃板等。</p>
-                <p>是否應就現有籌資管道（例如創櫃板）進行改善？是否開放新的籌資管道，例如群眾募資？</p>
- 
+              <span ng-bind-html="toTrusted(proposal['crowdfunding'])"></span>
+
               <div ng-hide="true">
               <p>「群眾募資」簡單來說就是向公眾募集資金，然而資金需求者必須要向公眾說明資金用途，並爭取支持。</p>
 
@@ -27,8 +26,7 @@
             <div class="about_item_title">主題：閉鎖型公司</div>
             <div class="about_item_content">
 
-              <p>目前國內公司經營環境，對新創公司是否友善？</p>
-              <p>在鼓勵創新創業政策下，我國是否應新增閉鎖型公司規範？</p>
+              <span ng-bind-html="toTrusted(proposal['closelyheld'])"></span>
 
               <div ng-hide="true">
 
