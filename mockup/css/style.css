@@ -62,11 +62,14 @@ a {
   margin-top: 50px;
   min-height: 600px;
 }
-#content--crowdfunding {
+#content--proposal {
   width: 100%;
-  overflow: hidden;
-
 }
+#content--proposal.limit {
+  height: 100vh;
+  overflow: scroll;
+}
+
 hr {
   border: 0;
   height: 1px;
