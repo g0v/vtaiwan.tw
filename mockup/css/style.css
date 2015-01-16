@@ -880,8 +880,8 @@ a.nav_item_sidebar--sub {
 .post_item {
   background: white;
   margin: 0px 1px;
-  padding: 8px 8px 25px 8px;
   position: relative;
+  padding: 8px 8px 25px 8px;
 }
 .post_item_last {
   padding-top: 30px;
@@ -1006,6 +1006,18 @@ blockquote > *:last-child {
     
     margin: 0px 10px;
   }
+}
+.post_item_action {
+  height: 40px;
+  width:100%;
+  margin-top: 30px;
+  border-top: 1px solid rgb(240,240,240);
+}
+.post_item_action_btn {
+  width: 40px;
+  padding: 8px;
+  text-align: center;
+  display: inline-block;
 }
 
 .toggle_reply_button {
