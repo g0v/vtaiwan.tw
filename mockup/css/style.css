@@ -694,6 +694,7 @@ a.nav_item_sidebar--sub {
   width:40px;
   height:40px;
   z-index: 10;
+  display: none; /* for now */
 }
 .nav_right_toggle:hover {
   background: rgba(0,0,0,0.1);

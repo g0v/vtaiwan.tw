@@ -3,9 +3,9 @@
 </div>
 
 <div id="sidebar-shadow" ng-show="sidebar || showUserMenu" ></div>
-<div id="sidebar-container" ng-class="{'show':sidebar, 'hide':!sidebar}" ng-click="showsidebar('toggle')">
+<div id="sidebar-container" ng-class="{'show':sidebar, 'hide':!sidebar}" ng-click="setProposal(null);showsidebar('toggle');">
   <div class="sidebar-container_left md-whiteframe-z1">
-    
+
     <div ng-show="!isProposalSet()">
       <a class="nav_item_sidebar--left" ng-click="go('')" >首頁</a>
       <a class="nav_item_sidebar--left" ng-click="go('proposals')" >主題</a>
@@ -26,25 +26,25 @@
       <a class="nav_item_sidebar--bold"
           ng-click="setProposal(null);$event.stopPropagation();"><div class="nav_item_left_icon"><i class="fa
               fa-chevron-left"></i></div> {{currentProposal.title_cht}}</a></div>
-      
+
       <span ng-repeat="q in currentProposal.categories" ng-click="go(proposal+'/'+q.id)">
           <a class="nav_item_sidebar--left" >{{q.title}}</a>
           <a class="nav_item_sidebar--sub" ng-repeat="i in q.children">{{i.title}}</a>
       </span>
     </div>
- 
+
   </div>
 </div>
 
 <header class="md-whiteframe-z1 nav_background">
 
-  <div class="nav_left_toggle" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i></div>
-  
+  <div class="nav_left_toggle" ng-click="setProposal(null);showsidebar('toggle');"><i class="fa fa-align-justify"></i></div>
+
   <div id="site_logo"><a ng-click="go('')">
     <img id="site_logo_img" src="images/logo1.png"><div id="site_logo_text">vTaiwan</div></a>
   </div>
-  
- 
+
+
   <div class="nav_right_toggle" ng-hide="true">
       <i class="fa fa-plus"></i>
   </div>
