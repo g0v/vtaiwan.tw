@@ -108,7 +108,7 @@ gulp.task("image", ["clean"], function () {
   var imagemin = require('gulp-imagemin');
   var pngquant = require('imagemin-pngquant');
 
-  return gulp.src("mockup/images/*")
+  return gulp.src("mockup/images/**/*")
     .pipe(imagemin({
       progressive: true,
       svgoPlugins: [{removeViewBox: false}],
