@@ -14,6 +14,7 @@ app.use(function(req, res, next) {
   if (/.*\.js$/.test(req.path)) { res.type('application/javascript; charset=UTF-8'); }
   if (/.*\.json$/.test(req.path)) { res.type('application/json; charset=UTF-8'); }
   if (/.*\.html$/.test(req.path)) { res.type('text/html; charset=UTF-8'); }
+  if (/.*\.css$/.test(req.path)) { res.type('text/css; charset=UTF-8'); }
   next();
 });
 app.use(express.static(path.resolve(__dirname + '/public')));
