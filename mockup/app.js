@@ -450,7 +450,7 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
           //if($route.current.pathParams.topic_id)
           if($route.current.pathParams.id === lastRoute.pathParams.id)
             $route.current = lastRoute;
-       
+
       }
   });
 
@@ -475,6 +475,10 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
   };
 
   $scope.toTrusted = function(html_code) {
+    if(!html_code) return;
+    html_code = html_code.replace(/(\/user_avatar.+\.png)/, function (matched) {
+      return "https://talk.vtaiwan.tw" + matched;
+    });
     return $sce.trustAsHtml(html_code);
   };
 
