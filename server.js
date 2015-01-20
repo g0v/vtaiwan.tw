@@ -29,6 +29,6 @@ app.use('/', function (req, res) {
 
 });
 
-app.listen(port, function () {
+app.listen(port, 'localhost', function () {
   console.log('Server Listen on', port);
 });
