@@ -3,6 +3,7 @@ var concat = require("gulp-concat");
 var rev = require("gulp-rev");
 var addSrc = require("gulp-add-src");
 var htmlmin = require("gulp-htmlmin");
+var download = require("gulp-download");
 
 gulp.task("clean", function (next) {
   var del = require("del");
@@ -37,7 +38,6 @@ gulp.task("css", ["clean"], function () {
 });
 
 gulp.task("download", ["clean"], function () {
-  var download = require("gulp-download");
   if(!process.env.INDEX_URL) return;
   return download(process.env.INDEX_URL)
     .pipe(gulp.dest("public"));
@@ -56,6 +56,11 @@ gulp.task("js", ["download"], function () {
   if(process.env.INDEX_URL) {
     proposals = JSON.parse(fs.readFileSync(__dirname + "/public/proposals.json").toString());
   }
+  proposals.forEach(function (proposal) {
+    var title = proposal.title_eng;
+    download("http://g0v.github.io/" + title + "-gitbook/content.json")
+    .pipe(gulp.dest("public/" + title ));
+  });
 
   return gulp.src("mockup/**/*.js")
     .pipe(replace(/\{\{proposals\}\}/, JSON.stringify(proposals)))
