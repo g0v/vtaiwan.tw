@@ -79,10 +79,7 @@ app.factory('DataService', function ($http, $q){
   var CachedData;  // get json data, properly merged, and save locally.
   var CachedFetched = false;
 
-  var proposals = [
-      { "title_cht" : "群眾募資", "title_eng" : "crowdfunding", "category_num" : 6},
-      { "title_cht" : "閉鎖型公司", "title_eng" : "closelyheld", "category_num" : 5}
-  ];
+  var proposals = {{proposals}};
 
   function removeLexicon (text) {
     var hint = /<span\ class=\"hint\"\ data-hint=\"(?:.+\n?)+\">(.+)<\/span>/;
@@ -449,7 +446,7 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
           //if($route.current.pathParams.topic_id)
           if($route.current.pathParams.id === lastRoute.pathParams.id)
             $route.current = lastRoute;
-       
+
       }
   });
 
