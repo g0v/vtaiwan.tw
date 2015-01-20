@@ -24,8 +24,7 @@
     "gulp-strip-css-comments": "^1.0.0",
     "gulp-uglify": "^1.0.2",
     "gulp-uncss": "^0.5.2",
-    "imagemin-pngquant": "^4.0.0",
-    "ngmin": "^0.5.0"
+    "imagemin-pngquant": "^4.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
