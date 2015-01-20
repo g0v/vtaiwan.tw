@@ -53,7 +53,7 @@
         </div>
 
         <!-- expand -->
-        <div class="post_item_intermediate" ng-if="($index === 0) && ((currentDiscussion.posts).length) > 3" ng-click="toggleExpand()" ng-show="!isExpand()">
+        <div class="post_item_intermediate" ng-if="($index === 0) && ((currentDiscussion.posts).length) >= 3" ng-click="toggleExpand()" ng-show="!isExpand()">
         <!--ng-if="$index===0 && ((currentDiscussion.posts | filter:recommendFilterFunction).length) > 3" -->
           <div class="post_item_intermediate_circle">{{(currentDiscussion.posts).length-2}}</div>
         </div>
