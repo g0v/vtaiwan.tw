@@ -53,6 +53,11 @@ app.config(['$routeProvider','$locationProvider','$sceDelegateProvider','MetaPro
       templateUrl: 'partials/contact.html',
       controller: 'IndexCtrl'
     }).
+      when('/tutorial',{
+      templateUrl: 'partials/tutorial.html',
+      controller: 'IndexCtrl'
+
+    }).
       otherwise({
       redirectTo:'/',
       templateUrl: 'partials/index.html',
