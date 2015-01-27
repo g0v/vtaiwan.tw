@@ -1247,7 +1247,13 @@ a.more {
   right: 0;
   float: right;
 }
-
+@media screen and (min-width: 1200px){
+  .navigation {
+    position: fixed;
+    top: 40vh;
+    width: 100px;
+  }
+}
 .about_item_content a:hover, .topic_item:hover {
   cursor: pointer;
   background: #eee;
