@@ -1151,7 +1151,7 @@ a.more {
   height: 50px;
   padding: 10px;
   font-size: 40px;
-  color: rgb(200,200,200);
+  color: rgb(100,100,255);
   cursor: pointer;
   margin-bottom: 100px;
 
@@ -1161,7 +1161,7 @@ a.more {
 
 }
 .navigation:hover {
-  color: rgb(53,55,54);
+  color: rgb(53,55,128);
 
   transition-property: all;
   transition-duration: .5s;
