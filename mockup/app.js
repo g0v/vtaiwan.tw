@@ -204,12 +204,6 @@ app.factory('DataService', function ($http, $q){
                                     }
                                 }
 
-                                // remove newlines posts content
-                                children_item.posts = children_item.posts.map(function(post) {
-                                  post.cooked = post.cooked.replace(/\n/g, '');
-                                  return post;
-                                });
-
                             });
                             }//////////////////////////// TODO: workaround, angular run twice.
                             cindex++;
@@ -425,9 +419,11 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
 
   };
 
-  $scope.go = function(path){
+  $scope.go = function(path, replace){
       //$("body").scrollTop(0);
+
       $location.path(path);
+      if (replace) $location.replace();
   };
 
   DataService.getCatchedData().then(function (d) {
@@ -437,8 +433,7 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
         $scope.toggleCategory(parseInt($routeParams.id), parseInt($routeParams.topic_id));
 
       }else{
-        $scope.toggleCategory(1);
-
+        $scope.go($scope.currentProposal.title_eng + '/1', true);
       }
 
   });
@@ -491,6 +486,17 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
   $scope.shareToTwitter = function() {
     var url = "https://twitter.com/intent/tweet?text="+ $scope.currentDiscussion.title + "&amp;url=" + encodeURIComponent('https://vtaiwan.tw/#!' + $location.$$path);
     window.open(url, 'twittershare', 'width=640,height=320');
+  };
+
+  $scope.setSharePanel = function (value) {
+    $scope.sharePanelIndex = value;
+    if(value !==  false){
+      var current = document.getElementById("input_"+value);
+      current.setSelectionRange(0, current.value.length);
+    }
+  };
+  $scope.shouldShowSharePanel = function (value) {
+    return $scope.sharePanelIndex === value;
   };
 
 }]);
