@@ -409,8 +409,7 @@ a.button--wide {
 
 #focus-discussion.show{
   top: 0px;
-  height: 100%;
-  overflow: scroll;
+  height: auto;
   right: 0px;
   width: 100%;
 
