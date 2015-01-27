@@ -786,7 +786,7 @@ a.nav_item_sidebar--sub {
 
 
 }
-@media screen and (min-width: 600px){
+@media screen and (min-width: 400px){
   .about_item_button {
       display: inline-block;
       width: 150px;
