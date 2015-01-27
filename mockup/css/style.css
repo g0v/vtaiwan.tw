@@ -989,6 +989,10 @@ a.nav_item_sidebar--sub {
   padding: 0;
 }
 
+.post_item_text pre {
+  overflow-x: auto;
+}
+
 blockquote {
   background: #f0f0f0;
   border-left: 1px solid #ddd;
@@ -1007,7 +1011,7 @@ blockquote > *:last-child {
 
 @media screen and (min-width: 600px) {
   .post_item_text {
-    
+
     margin: 0px 10px;
   }
 }

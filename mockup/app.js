@@ -206,12 +206,6 @@ app.factory('DataService', function ($http, $q){
                                     }
                                 }
 
-                                // remove newlines posts content
-                                children_item.posts = children_item.posts.map(function(post) {
-                                  post.cooked = post.cooked.replace(/\n/g, '');
-                                  return post;
-                                });
-
                             });
                             }//////////////////////////// TODO: workaround, angular run twice.
                             cindex++;
