@@ -206,12 +206,6 @@ app.factory('DataService', function ($http, $q){
                                     }
                                 }
 
-                                // remove newlines posts content
-                                children_item.posts = children_item.posts.map(function(post) {
-                                  post.cooked = post.cooked.replace(/\n/g, '');
-                                  return post;
-                                });
-
                             });
                             }//////////////////////////// TODO: workaround, angular run twice.
                             cindex++;
@@ -424,9 +418,11 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
 
   };
 
-  $scope.go = function(path){
+  $scope.go = function(path, replace){
       //$("body").scrollTop(0);
+
       $location.path(path);
+      if (replace) $location.replace();
   };
 
   DataService.getCatchedData().then(function (d) {
@@ -436,8 +432,7 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
         $scope.toggleCategory(parseInt($routeParams.id), parseInt($routeParams.topic_id));
 
       }else{
-        $scope.toggleCategory(1);
-
+        $scope.go($scope.currentProposal.title_eng + '/1', true);
       }
 
   });

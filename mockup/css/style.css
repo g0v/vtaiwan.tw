@@ -3,7 +3,6 @@
 
 body {
   font-family: "Source Han Sans TC", "Noto Sans", Helvetica, Arial, sans-serif;
-  background: rgb;
   margin: 0px;
   padding: 0px;
   text-rendering: optimizeLegibility;
@@ -787,7 +786,7 @@ a.nav_item_sidebar--sub {
 
 
 }
-@media screen and (min-width: 600px){
+@media screen and (min-width: 400px){
   .about_item_button {
       display: inline-block;
       width: 150px;
@@ -989,6 +988,15 @@ a.nav_item_sidebar--sub {
   padding: 0;
 }
 
+.post_item_text pre {
+  overflow-x: auto;
+   white-space: pre-wrap;       /* css-3 */
+   white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+   white-space: -pre-wrap;      /* Opera 4-6 */
+   white-space: -o-pre-wrap;    /* Opera 7 */
+   word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
 blockquote {
   background: #f0f0f0;
   border-left: 1px solid #ddd;
@@ -1007,7 +1015,7 @@ blockquote > *:last-child {
 
 @media screen and (min-width: 600px) {
   .post_item_text {
-    
+
     margin: 0px 10px;
   }
 }
