@@ -492,5 +492,16 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
     window.open(url, 'twittershare', 'width=640,height=320');
   };
 
+  $scope.setSharePanel = function (value) {
+    $scope.sharePanelIndex = value;
+    if(value !==  false){
+      var current = document.getElementById("input_"+value);
+      current.setSelectionRange(0, current.value.length);
+    }
+  };
+  $scope.shouldShowSharePanel = function (value) {
+    return $scope.sharePanelIndex === value;
+  };
+
 }]);
 
