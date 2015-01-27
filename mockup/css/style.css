@@ -1039,26 +1039,61 @@ blockquote > *:last-child {
 }
 .post_item_share_panel {
   position: absolute;
+  left: 0px;
   bottom: 0px;
   z-index: 200;
-  padding: 10px 10px 30px 10px;
+  padding: 10px 10px 20px 10px;
   background: white;
   box-shadow: 2px 2px 10px rgba(0,0,0,.24);
 
 }
 .post_item_share_panel-input {
-  border: 1px solid rgb(220,220,220);
-  padding: 3px;
+  display: none;
+}
+.post_item_share_panel-mobile {
+  width: 100%;
   font-size: 14px;
 }
+.web {
+  display: none;
+}
 @media screen and (min-width: 600px){
+  .post_item_share_panel {
+    left: auto;
+    padding: 10px 10px 30px 10px;
+  }
   .post_item_share_panel-input {
     min-width: 300px;
     padding: 3px 10px;
+    border: 1px solid rgb(220,220,220);
+    padding: 3px;
+    font-size: 14px;
+    display: block;
+
+  }
+  .web {
+    display: block;
+  }
+  .mobile {
+    display: none;
+  }
+}
+@media screen and (min-width: 600px){
+  .post_item_share_panel-mobile {
+    display: none;
 
   }
 }
-.post_item_share_panel-remove {
+.post_item_share_panel-remove-top {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  padding: 6px 10px;
+  cursor: pointer;
+  color: gray;
+}
+
+.post_item_share_panel-remove-bottom {
   position: absolute;
   right: 0px;
   bottom: 0px;
