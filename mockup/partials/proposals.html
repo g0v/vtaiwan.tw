@@ -1,49 +1,68 @@
 <div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
 <div id="content">
     <div class="wrapper">
-        <div class="about_item topic_item md-whiteframe-z1" ng-click="go('crowdfunding')">
-            <div class="about_item_title">主題：群眾募資</div>
-            <div class="about_item_content">
-
-              <span ng-bind-html="toTrusted(proposal['crowdfunding'])"></span>
-
-              <div ng-hide="true">
-              <p>「群眾募資」簡單來說就是向公眾募集資金，然而資金需求者必須要向公眾說明資金用途，並爭取支持。</p>
-
-              <p>實際上群眾募資發展已有相當時間，群眾募資過去主要運用於藝術作品的創作上，藝術家事先向公眾說明自己的創作作品理念，爭取大眾支持並且募集資金，並於作品完成之後提供與資金提供者。</p>
-
-              <p>例如1713年英國詩人亞歷山大透過群眾募資爭取到575名支持者募集了一筆經費，花了五年完成《依利亞特》的翻譯，這些支持者的名字也被印在早期翻譯版的《依利亞特》上。又例如1783年莫札特想在維也納音樂廳表演，但是苦無經費，於是提供鋼琴協奏曲手稿，取得176名支持者的贊助。</p>
-
-              <p>群眾募資最初的原型多搭配商品或服務的提供，這類群眾募資稱為預購模式或捐贈模式。這類的群眾募資網路平臺，包含美國的Kickstarter，我國的FlyingV、嘖嘖等。</p>
-
-              <p>目前我國創業籌資管道，包含創投、天使投資人、銀行貸款、親友集資、創櫃板等。是否應就現有籌資管道（例如創櫃板）進行改善？是否開放新的籌資管道，例如群眾募資？</p>
-
-              </div>
-
-            </div>
-        </div>
-        <div class="about_item topic_item md-whiteframe-z1" ng-click="go('closelyheld')">
-            <div class="about_item_title">主題：閉鎖型公司</div>
-            <div class="about_item_content">
-
-              <span ng-bind-html="toTrusted(proposal['closelyheld'])"></span>
-
-              <div ng-hide="true">
-
-                <p>一般而言，網路公司等新創事業於初始成立時，具有股東人數少，經營與所有結合之特性而呈現閉鎖型；而公司型態則多為股份有限公司或有限公司。</p>
-
-                <p>我國公司法立法之初，股份有限公司規定乃是專為大型公司而設，因此強調經營與所有分離，一股一表決權。</p>
-
-                <p>有限公司則強調經營與所有結合，無監察人及股東會之設置。然而新創企業，以Facebook為例，在創立之初雖屬小規模，但是未來仍有成為大型企業之可能性。為此，日本、美國、德國等國家，特於公司法制中，針對閉鎖型公司做出特殊規定。</p>
-
-                <p>例如美國針對閉鎖型公司設計契約型股份有限公司及德拉瓦州公司法的閉鎖型公司專章。前者以股東書面協議為中心，也就是股東透過訂立契約約定的方式，就股份轉讓限制條款等公司法有強制規定之事項自行約定。</p>
-
-                <p>後者，多數條款為授權性，授權符合該法定義下的閉鎖公司股東得藉由契約的方式來達成調整股東及董事間的關係。</p>
-
-                <p>在鼓勵創新創業政策下，擬對外徵集是否新增閉鎖型公司規範之相關意見，做為政策參考。</p>
+        <div class="Proposal md-whiteframe-z1" ng-click="go('crowdfunding')">
+            <div class="Proposal-mainText">
+              <div class="Proposal-title">主題：群眾募資</div>
+              <div class="Proposal-content">
+                <span ng-bind-html="toTrusted(proposal['crowdfunding'])"></span>
               </div>
             </div>
+            <div class="ProgressBar">
+                
+                <div class="ProgressBar-stepTitle" ng-click="">
+                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab('step1');$event.stopPropagation();" ng-class="{'is-active':isFocusTab('step1'),'is-inactive':!isFocusTab('step1')}">討論
+                        <div ng-class="{'ProgressBar-triangleRight':isFocusTab('step1'),'ProgressBar-triangleRight-inactive':!isFocusTab('step1')}"></div>
+                    </div>
+                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab('step2');$event.stopPropagation();" ng-class="{'is-active':isFocusTab('step2'),'is-inactive':!isFocusTab('step2')}">草案
+                        <div ng-class="{'ProgressBar-triangleRight':isFocusTab('step2'),'ProgressBar-triangleRight-inactive':!isFocusTab('step2')}"></div>
+                    </div>
+                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab('step3');$event.stopPropagation();" ng-class="{'is-active':isFocusTab('step3'),'is-inactive':!isFocusTab('step3')}">定案
+                        <div ng-class="{'ProgressBar-triangleRight':isFocusTab('step3'),'ProgressBar-triangleRight-inactive':!isFocusTab('step3')}"></div>
+                    </div>
+                </div>
+                <!-- <div class="ProgressBar-stepInfo">已經過了 {{proposalMeta['crowdfunding'].percentage }}%，還有 {{proposalMeta['crowdfunding'].diff_day}} 天 {{proposalMeta['crowdfunding'].diff_hour}} 小時</div> -->
+                <div class="ProgressBar-barBackground">
+                  <div class="ProgressBar-startDate">{{ proposalMeta['crowdfunding'].step1_start_date | date:'M/d' }}</div>
+                  <div class="ProgressBar-endDate">{{ proposalMeta['crowdfunding'].step1_end_date | date:'M/d' }}</div>
+                  <div class="ProgressBar-barProgress" style="width:{{proposalMeta['crowdfunding'].percentage}}%;"></div>
+                </div>
+                
+                <div class="ProgressBar-stat"><div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].diff_day}} 天</div>剩餘</div>
+                <div class="ProgressBar-stat"><div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].TopicCount}}</div>主題</div>
+                <div class="ProgressBar-stat"><div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].PostCount}}</div>意見</div>
+            </div>
         </div>
+        <div class="Proposal md-whiteframe-z1" ng-click="go('closelyheld')">
+            <div class="Proposal-mainText">
+              <div class="Proposal-title">主題：閉鎖型公司</div>
+              <div class="Proposal-content">
+                <span ng-bind-html="toTrusted(proposal['closelyheld'])"></span>
+              </div>
+            </div>
+            <div class="ProgressBar">
+                <div class="ProgressBar-stepTitle" ng-click="$event.stopPropagation();">
+                    <div class="ProgressBar-stepTitle-tab is-active">討論
+                        <div class="ProgressBar-triangleRight"></div>
+                    </div>
+                    <div class="ProgressBar-stepTitle-tab is-inactive">草案
+                        <div class="ProgressBar-triangleRight-inactive"></div>
+                    </div>
+                    <div class="ProgressBar-stepTitle-tab is-inactive">定案
+                        <div class="ProgressBar-triangleRight-inactive"></div>
+                    </div>
+                </div>
+                <div class="ProgressBar-barBackground">
+                  <div class="ProgressBar-startDate">{{ proposalMeta['closelyheld'].step1_start_date | date:'M/d' }}</div>
+                  <div class="ProgressBar-endDate">{{ proposalMeta['closelyheld'].step1_end_date | date:'M/d' }}</div>
+                  <div class="ProgressBar-barProgress" style="width:{{proposalMeta['closelyheld'].percentage}}%;"></div>
+                </div>
+                <div class="ProgressBar-stat"><div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].diff_day}} 天</div>剩餘</div>
+                <div class="ProgressBar-stat"><div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].TopicCount}}</div>主題</div>
+                <div class="ProgressBar-stat"><div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].PostCount}}</div>意見</div>
+            </div>
+        </div>
+        
         <div class="l_center">
             <a class="about_item_button" ng-click="go('tutorial')">使用手冊</a>
         </div>

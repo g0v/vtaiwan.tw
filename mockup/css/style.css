@@ -1270,3 +1270,136 @@ a.more {
     border: 3px solid #999;
     border-radius: 5px;
 }
+/* Proposal Items */
+.Proposal {
+  background: white;
+  margin: 5px;
+  cursor: pointer;
+}
+/*@media screen and (min-width: 600px){
+  .Proposal {
+      width: 48%;
+      vertical-align: top;
+      display: inline-block;
+  }
+}*/
+.Proposal-mainText {
+  padding: 10px 10px 5px 10px;
+}
+.Proposal-title {
+  font-size: 22px;
+  font-weight: 800;
+  border-bottom: 1px solid rgb(220,220,220);
+  padding-bottom: 5px;
+  
+}
+.Proposal-content a:hover{
+  cursor: pointer;
+  background: #eee;
+}
+.Proposal-content li {
+    line-height: 175%;
+}
+.ProgressBar {
+  width: 100%;
+  padding: 10px;
+  padding-left: 14px;
+}
+.ProgressBar-stepTitle {
+}
+.ProgressBar-stepTitle-tab {
+  display: inline-block;
+  width: 70px;
+  padding: 3px;
+  padding-left: 10px;
+  text-align: center;
+  position: relative;
+  margin-right: 14px;
+  height: 30px;
+}
+@media screen and (min-width: 360px){
+  .ProgressBar-stepTitle-tab {
+    
+  }
+}
+.ProgressBar-triangleRight:before{
+  content: '';
+  position: absolute;
+  right: -30px;
+  top: -1px;
+  height: 0;
+  border-color: transparent transparent transparent gray;
+  border-style: solid;
+  border-width: 15px;
+}
+.ProgressBar-triangleRight-inactive:before{
+  content: '';
+  position: absolute;
+  right: -30px;
+  top: -1px;
+  height: 0;
+  border-color: transparent transparent transparent rgb(220,220,220);
+  border-style: solid;
+  border-width: 15px;
+}
+.ProgressBar-triangleRight:after,.ProgressBar-triangleRight-inactive:after {
+  content: '';
+  position: absolute;
+  right: -28px;
+  top: 0px;
+  width: 0;
+  height: 0;
+  border-color: transparent transparent transparent white;
+  border-style: solid;
+  border-width: 14px;
+}
+.ProgressBar-stepTitle-tab.is-active {
+  font-weight: 800;
+  border: 1px solid rgb(180,180,180);
+}
+.ProgressBar-stepTitle-tab.is-inactive {
+  border: 1px solid rgb(230,230,230);
+  color: rgb(220,220,220);
+}
+.ProgressBar-stepInfo {
+
+}
+.ProgressBar-barBackground {
+  width: 96%;
+  margin: 12px 0px 24px 0px;
+  position: relative;
+  background: rgb(230,230,230);
+}
+.ProgressBar-barProgress {
+  background: rgb(63,159,155);
+  height: 8px;
+}
+.ProgressBar-startDate {
+  position: absolute;
+  bottom: -24px;
+  font-size: 14px;
+  left: 0px;
+  font-weight: 700;
+  display: inline-block;
+  font-family: Lucida Console, Monaco, monospace;
+}
+.ProgressBar-endDate {
+  display: inline-block;
+  position: absolute;
+  bottom: -24px;
+  font-size: 14px;
+  right: 0px;
+  font-weight: 700;
+  display: inline-block;
+  font-family: Lucida Console, Monaco, monospace;
+}
+.ProgressBar-stat {
+  display: inline-block;
+  width: 30%;
+  padding: 25px 0px;
+  text-align: center;
+}
+.ProgressBar-statHighlight {
+  font-size: 20px;
+  font-weight: 800;
+}

@@ -166,6 +166,12 @@ app.factory('DataService', function ($http, $q){
 
                     //category_item.children are the discuss topics
                     if(category_item.children){
+
+                        //Count Topics
+                        if(!CachedData[proposal_item.title_eng].TopicCount)
+                          CachedData[proposal_item.title_eng].TopicCount = 0;
+                        CachedData[proposal_item.title_eng].TopicCount += category_item.children.length;
+
                         var cindex = 1;
                         category_item.children.map(function (children_item) {
                             children_item.id = topics_to_id_table[children_item.title];
@@ -180,6 +186,11 @@ app.factory('DataService', function ($http, $q){
 
                                 children_item.posts = posts_data.post_stream.posts;
                                 children_item.post_count = posts_data.posts_count;
+
+                                //Count Posts
+                                if(!CachedData[proposal_item.title_eng].PostCount)
+                                    CachedData[proposal_item.title_eng].PostCount = 0;
+                                    CachedData[proposal_item.title_eng].PostCount += posts_data.posts_count;
 
                                 // Parse direct image url
                                 // from: "/user_avatar/talk.vtaiwan.tw/audreyt/{size}/6.png"
@@ -276,6 +287,18 @@ app.factory('DataService', function ($http, $q){
     return deferred.promise;
   };
 
+  DataService.getProposalMetaData = function(topicID){
+    var deferred = $q.defer();
+    $http.get('data/proposal_meta.json').
+    success(function(data, status, headers, config) {
+          deferred.resolve(data);
+        }).
+        error(function(data, status, headers, config) {
+          deferred.resolve(data);
+        });
+    return deferred.promise;
+  };
+
   return DataService;
 })
 
@@ -319,10 +342,62 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
   $scope.proposal = {};
 
   DataService.getCatchedData().then(function (d) {
+
     Object.keys(d).map(function (title){
       var blockquote = d[title].categories[0].content.match(/<blockquote>\n((?:.+\n)+)<\/blockquote>\n/);
       $scope.proposal[title] = (blockquote)? blockquote[1] : "";
+      console.log(d[title]);////
+      console.log(d[title].TopicCount);
+      console.log(d[title].PostCount);////
+      console.log(title);
+      
+      if(!$scope.proposalMeta)
+          $scope.proposalMeta = {};
+      if(!$scope.proposalMeta[title])
+          $scope.proposalMeta[title] = {};
+      
+      $scope.proposalMeta[title].TopicCount = d[title].TopicCount;
+      $scope.proposalMeta[title].PostCount = d[title].PostCount;
+      
     });
+  });
+
+  DataService.getProposalMetaData().then(function (data) {
+      
+      if(!$scope.proposalMeta)
+        $scope.proposalMeta = {};
+
+      data.map(function(item){
+          //Parse date strings to JS date object
+          item.step1_start_date = new Date(item.step1_start_date);
+          item.step1_end_date = new Date(item.step1_end_date);
+          
+          //Count times left from now (days & hours)
+          var now = new Date("February 3, 2015 00:00:00");
+          var diff = item.step1_end_date.getTime() - now.getTime();
+          diff = diff / (3600*1000);// diff in hours
+          item.diff_hour = parseInt(diff % 24);
+          item.diff_day = parseInt(diff / 24);
+
+          //Count times left from start date (in percentage)
+          if(now > item.step1_start_date){
+            var total_hours = (item.step1_end_date.getTime() - item.step1_start_date.getTime())/ (3600*1000);
+            item.percentage = Math.round(item.diff_hour / total_hours * 100);
+          }else{
+            item.percentage = 0;
+          }
+
+          if(!$scope.proposalMeta[item.title_eng])
+             $scope.proposalMeta[item.title_eng] = {};
+         
+          //// Can be improve
+          $scope.proposalMeta[item.title_eng].diff_hour = item.diff_hour;
+          $scope.proposalMeta[item.title_eng].diff_day = item.diff_hour;
+          $scope.proposalMeta[item.title_eng].step1_start_date = item.step1_start_date;
+          $scope.proposalMeta[item.title_eng].step1_end_date = item.step1_end_date;
+          $scope.proposalMeta[item.title_eng].percentage = item.percentage;
+
+      });
   });
 
   $scope.go = function(path){
@@ -347,6 +422,14 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
 
   $scope.toTrusted = function(html_code) {
     return $sce.trustAsHtml(html_code);
+  };
+  
+  $scope.focusTab = 'step1';
+  $scope.setFocusTab = function (value){
+    $scope.focusTab = value;
+  };
+  $scope.isFocusTab = function (value){
+    return $scope.focusTab === value;
   };
 
 }]);

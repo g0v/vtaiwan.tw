@@ -1,0 +1,12 @@
+[
+  { "title_eng" : "closelyheld",
+ 	"title_cht" : "閉鎖型公司",
+    "step1_start_date" : "February 1, 2015 00:00:00",
+    "step1_end_date" : "February 28, 2015 23:59:59"
+  },
+  { "title_eng" : "crowdfunding",
+  	"title_cht" : "群眾募資",
+    "step1_start_date" : "February 1, 2015 00:00:00",
+    "step1_end_date" : "February 28, 2015 23:59:59"
+  }
+]
