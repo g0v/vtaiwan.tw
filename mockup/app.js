@@ -342,14 +342,13 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
   $scope.proposal = {};
 
   DataService.getCatchedData().then(function (d) {
-
     Object.keys(d).map(function (title){
       var blockquote = d[title].categories[0].content.match(/<blockquote>\n((?:.+\n)+)<\/blockquote>\n/);
       $scope.proposal[title] = (blockquote)? blockquote[1] : "";
-      console.log(d[title]);////
-      console.log(d[title].TopicCount);
-      console.log(d[title].PostCount);////
-      console.log(title);
+      // console.log(d[title]);
+      // console.log(d[title].TopicCount);
+      // console.log(d[title].PostCount);
+      // console.log(title);
       
       if(!$scope.proposalMeta)
           $scope.proposalMeta = {};
@@ -372,18 +371,23 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
           item.step1_start_date = new Date(item.step1_start_date);
           item.step1_end_date = new Date(item.step1_end_date);
           
-          //Count times left from now (days & hours)
-          var now = new Date("February 3, 2015 00:00:00");
-          var diff = item.step1_end_date.getTime() - now.getTime();
-          diff = diff / (3600*1000);// diff in hours
-          item.diff_hour = parseInt(diff % 24);
-          item.diff_day = parseInt(diff / 24);
-
+          //Count hours passed & days left
+          //var now = new Date("February 16, 2015 00:00:00");
+          var now = new Date();
+          
           //Count times left from start date (in percentage)
-          if(now > item.step1_start_date){
-            var total_hours = (item.step1_end_date.getTime() - item.step1_start_date.getTime())/ (3600*1000);
-            item.percentage = Math.round(item.diff_hour / total_hours * 100);
+          var total_hours = (item.step1_end_date.getTime() - item.step1_start_date.getTime())/ (3600*1000);
+          if(now >= item.step1_start_date){
+            var passed =  (now.getTime() - item.step1_start_date.getTime());
+            item.passed_hour = passed / (3600*1000);
+            var left = (item.step1_end_date.getTime() - now.getTime());
+            item.left_day = Math.round(left / (3600*1000) / 24);
+            item.percentage = Math.round(item.passed_hour / total_hours * 100);
+
+            console.log(item.percentage);
+
           }else{
+            item.left_day = Math.round(total_hours / 24);
             item.percentage = 0;
           }
 
@@ -391,8 +395,8 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
              $scope.proposalMeta[item.title_eng] = {};
          
           //// Can be improve
-          $scope.proposalMeta[item.title_eng].diff_hour = item.diff_hour;
-          $scope.proposalMeta[item.title_eng].diff_day = item.diff_hour;
+          $scope.proposalMeta[item.title_eng].passsed_hour = item.passsed_hour;
+          $scope.proposalMeta[item.title_eng].left_day = item.left_day;
           $scope.proposalMeta[item.title_eng].step1_start_date = item.step1_start_date;
           $scope.proposalMeta[item.title_eng].step1_end_date = item.step1_end_date;
           $scope.proposalMeta[item.title_eng].percentage = item.percentage;
@@ -424,12 +428,16 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
     return $sce.trustAsHtml(html_code);
   };
   
-  $scope.focusTab = 'step1';
-  $scope.setFocusTab = function (value){
-    $scope.focusTab = value;
+  //default choice
+  $scope.focusTab = {};
+  $scope.focusTab['crowdfunding'] = 'step1';
+  $scope.focusTab['closelyheld'] = 'step1';
+
+  $scope.setFocusTab = function (title, value){
+    $scope.focusTab[title] = value;
   };
-  $scope.isFocusTab = function (value){
-    return $scope.focusTab === value;
+  $scope.isFocusTab = function (title, value){
+    return $scope.focusTab[title] === value;
   };
 
 }]);

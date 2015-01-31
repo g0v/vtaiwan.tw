@@ -1317,11 +1317,6 @@ a.more {
   margin-right: 14px;
   height: 30px;
 }
-@media screen and (min-width: 360px){
-  .ProgressBar-stepTitle-tab {
-    
-  }
-}
 .ProgressBar-triangleRight:before{
   content: '';
   position: absolute;
@@ -1365,7 +1360,6 @@ a.more {
 
 }
 .ProgressBar-barBackground {
-  width: 96%;
   margin: 12px 0px 24px 0px;
   position: relative;
   background: rgb(230,230,230);
@@ -1374,6 +1368,7 @@ a.more {
   background: rgb(63,159,155);
   height: 8px;
 }
+
 .ProgressBar-startDate {
   position: absolute;
   bottom: -24px;
@@ -1402,4 +1397,11 @@ a.more {
 .ProgressBar-statHighlight {
   font-size: 20px;
   font-weight: 800;
+}
+.ProgressBar-infoTitle {
+  margin-top: 40px;
+  font-weight: 800;
+}
+.ProgressBAr-infoContent {
+  min-height: 90px;
 }
