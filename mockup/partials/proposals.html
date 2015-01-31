@@ -62,6 +62,35 @@
                 <div class="ProgressBar-stat"><div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].PostCount}}</div>意見</div>
             </div>
         </div>
+        <div class="Proposal md-whiteframe-z1" ng-click="go('etax')">
+            <div class="Proposal-mainText">
+              <div class="Proposal-title">主題：網路交易課稅</div>
+              <div class="Proposal-content">
+                <span ng-bind-html="toTrusted(proposal['etax'])"></span>
+              </div>
+            </div>
+            <div class="ProgressBar">
+                <div class="ProgressBar-stepTitle" ng-click="$event.stopPropagation();">
+                    <div class="ProgressBar-stepTitle-tab is-active">討論
+                        <div class="ProgressBar-triangleRight"></div>
+                    </div>
+                    <div class="ProgressBar-stepTitle-tab is-inactive">草案
+                        <div class="ProgressBar-triangleRight-inactive"></div>
+                    </div>
+                    <div class="ProgressBar-stepTitle-tab is-inactive">定案
+                        <div class="ProgressBar-triangleRight-inactive"></div>
+                    </div>
+                </div>
+                <div class="ProgressBar-barBackground">
+                  <div class="ProgressBar-startDate">{{ proposalMeta['etax'].step1_start_date | date:'M/d' }}</div>
+                  <div class="ProgressBar-endDate">{{ proposalMeta['etax'].step1_end_date | date:'M/d' }}</div>
+                  <div class="ProgressBar-barProgress" style="width:{{proposalMeta['etax'].percentage}}%;"></div>
+                </div>
+                <div class="ProgressBar-stat"><div class="ProgressBar-statHighlight">{{proposalMeta['etax'].diff_day}} 天</div>剩餘</div>
+                <div class="ProgressBar-stat"><div class="ProgressBar-statHighlight">{{proposalMeta['etax'].TopicCount}}</div>主題</div>
+                <div class="ProgressBar-stat"><div class="ProgressBar-statHighlight">{{proposalMeta['etax'].PostCount}}</div>意見</div>
+            </div>
+        </div>
         
         <div class="l_center">
             <a class="about_item_button" ng-click="go('tutorial')">使用手冊</a>
