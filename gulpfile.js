@@ -51,14 +51,8 @@ gulp.task("js", ["download"], function () {
   var ngAnnotate = require("gulp-ng-annotate");
   var uglify = require("gulp-uglify");
   var replace = require("gulp-replace");
-  var proposals = [
-      { "title_cht" : "群眾募資", "title_eng" : "crowdfunding", "category_num" : 6},
-      { "title_cht" : "閉鎖型公司", "title_eng" : "closelyheld", "category_num" : 5}
-  ];
+  var proposals = JSON.parse(fs.readFileSync(__dirname + "/public/proposals.json").toString());
 
-  if(process.env.INDEX_URL) {
-    proposals = JSON.parse(fs.readFileSync(__dirname + "/public/proposals.json").toString());
-  }
   proposals.forEach(function (proposal) {
     var title = proposal.title_eng;
     download("http://g0v.github.io/" + title + "-gitbook/content.json")
