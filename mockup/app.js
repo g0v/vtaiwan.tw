@@ -302,7 +302,7 @@ app.factory('DataService', function ($http, $q){
 
   DataService.getProposalMetaData = function(topicID){
     var deferred = $q.defer();
-    $http.get('data/proposal_meta.json').
+    $http.get('proposals.json').
     success(function(data, status, headers, config) {
           deferred.resolve(data);
         }).
@@ -387,7 +387,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
           //Count hours passed & days left
           //var now = new Date("February 16, 2015 00:00:00");
           var now = new Date();
-          
+
           //Count times left from start date (in percentage)
           var total_hours = (item.step1_end_date.getTime() - item.step1_start_date.getTime())/ (3600*1000);
           if(now >= item.step1_start_date){
@@ -408,6 +408,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
              $scope.proposalMeta[item.title_eng] = {};
          
           //// Can be improve
+
           $scope.proposalMeta[item.title_eng].passsed_hour = item.passsed_hour;
           $scope.proposalMeta[item.title_eng].left_day = item.left_day;
           $scope.proposalMeta[item.title_eng].step1_start_date = item.step1_start_date;

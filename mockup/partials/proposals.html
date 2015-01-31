@@ -28,9 +28,11 @@
                         <div class="ProgressBar-endDate">{{ proposalMeta['crowdfunding'].step1_end_date | date:'M/d' }}</div>
                     <div class="ProgressBar-barProgress" style="width:{{proposalMeta['crowdfunding'].percentage}}%;"></div>
                     </div>
-                    <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].left_day}} 天</div></div>
-                    <div class="ProgressBar-stat">主題數<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].TopicCount}}</div></div>
-                    <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].PostCount}}</div></div>
+                    <div class="ProgressBAr-infoContent">
+                        <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].left_day}} 天</div></div>
+                        <div class="ProgressBar-stat">主題數<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].TopicCount}}</div></div>
+                        <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].PostCount}}</div></div>
+                    </div>
                 </div>
                 <!-- step 2 info -->
                 <div ng-show="isFocusTab('crowdfunding','step2')">
@@ -94,11 +96,12 @@
                         <div class="ProgressBar-endDate">{{ proposalMeta['closelyheld'].step1_end_date | date:'M/d' }}</div>
                     <div class="ProgressBar-barProgress" style="width:{{proposalMeta['closelyheld'].percentage}}%;"></div>
                     </div>
-                    <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].left_day}} 天</div></div>
-                    <div class="ProgressBar-stat">主題數<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].TopicCount}}</div></div>
-                    <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].PostCount}}</div></div>
+                    <div class="ProgressBAr-infoContent">
+                        <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].left_day}} 天</div></div>
+                        <div class="ProgressBar-stat">主題數<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].TopicCount}}</div></div>
+                        <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].PostCount}}</div></div>
+                    </div>
                 </div>
-
                 <!-- step 2 info -->
                 <div ng-show="isFocusTab('closelyheld','step2')">
                 <!-- ProgressBar -->
@@ -161,11 +164,12 @@
                         <div class="ProgressBar-endDate">{{ proposalMeta['etax'].step1_end_date | date:'M/d' }}</div>
                     <div class="ProgressBar-barProgress" style="width:{{proposalMeta['etax'].percentage}}%;"></div>
                     </div>
-                    <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].left_day}} 天</div></div>
-                    <div class="ProgressBar-stat">主題數<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].TopicCount}}</div></div>
-                    <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].PostCount}}</div></div>
+                    <div class="ProgressBAr-infoContent">
+                        <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].left_day}} 天</div></div>
+                        <div class="ProgressBar-stat">主題數<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].TopicCount}}</div></div>
+                        <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].PostCount}}</div></div>
+                    </div>
                 </div>
-
                 <!-- step 2 info -->
                 <div ng-show="isFocusTab('etax','step2')">
                 <!-- ProgressBar -->
@@ -201,6 +205,7 @@
                 </div>
             </div><!-- end of ProgressBar -->
         </div><!-- end of Proposal -->
+
         
         <div class="l_center">
             <a class="about_item_button" ng-click="go('tutorial')">使用手冊</a>
