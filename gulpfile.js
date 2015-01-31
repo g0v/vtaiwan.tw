@@ -38,7 +38,10 @@ gulp.task("css", ["clean"], function () {
 });
 
 gulp.task("download", ["clean"], function () {
-  if(!process.env.INDEX_URL) return;
+  if(!process.env.INDEX_URL) {
+    return gulp.src("mockup/proposals.json")
+      .pipe(gulp.dest("public"));
+  }
   return download(process.env.INDEX_URL)
     .pipe(gulp.dest("public"));
 });
