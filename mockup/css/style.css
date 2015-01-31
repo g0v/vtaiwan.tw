@@ -1276,6 +1276,10 @@ a.more {
   margin: 5px;
   cursor: pointer;
 }
+.Proposal:hover .Proposal-title {
+  color: rgb(63,159,155);
+  font-weight: 900;
+}
 /*@media screen and (min-width: 600px){
   .Proposal {
       width: 48%;
@@ -1288,7 +1292,7 @@ a.more {
 }
 .Proposal-title {
   font-size: 22px;
-  font-weight: 800;
+  font-weight: 900;
   border-bottom: 1px solid rgb(220,220,220);
   padding-bottom: 5px;
   
@@ -1305,8 +1309,7 @@ a.more {
   padding: 10px;
   padding-left: 14px;
 }
-.ProgressBar-stepTitle {
-}
+
 .ProgressBar-stepTitle-tab {
   display: inline-block;
   width: 70px;
@@ -1348,6 +1351,19 @@ a.more {
   border-style: solid;
   border-width: 14px;
 }
+
+.ProgressBar-stepTitle-tab:hover {
+  background: rgb(255,255,153);
+}
+.ProgressBar-stepTitle-tab:hover .ProgressBar-triangleRight:after,
+.ProgressBar-stepTitle-tab:hover .ProgressBar-triangleRight-inactive:after {
+  border-color: transparent transparent transparent rgb(255,255,153);
+}
+.ProgressBar-stepTitle-tab:hover.is-inactive {
+  color: rgb(53,55,54);
+  font-weight: 800;
+}
+
 .ProgressBar-stepTitle-tab.is-active {
   font-weight: 800;
   border: 1px solid rgb(180,180,180);
