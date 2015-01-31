@@ -37,6 +37,18 @@ app.config(['$routeProvider','$locationProvider','$sceDelegateProvider','MetaPro
       templateUrl: 'partials/proposal.html',
       controller: 'ProposalCtrl'
     }).
+      when('/etax',{
+      templateUrl: 'partials/proposal.html',
+      controller: 'ProposalCtrl'
+    }).
+      when('/etax/:id',{
+      templateUrl: 'partials/proposal.html',
+      controller: 'ProposalCtrl'
+    }).
+      when('/etax/:id/:topic_id',{
+      templateUrl: 'partials/proposal.html',
+      controller: 'ProposalCtrl'
+    }).
       when('/proposals',{
       templateUrl: 'partials/proposals.html',
       controller: 'IndexCtrl'
@@ -164,6 +176,12 @@ app.factory('DataService', function ($http, $q){
 
                     //category_item.children are the discuss topics
                     if(category_item.children){
+
+                        //Count Topics
+                        if(!CachedData[proposal_item.title_eng].TopicCount)
+                          CachedData[proposal_item.title_eng].TopicCount = 0;
+                        CachedData[proposal_item.title_eng].TopicCount += category_item.children.length;
+
                         var cindex = 1;
                         category_item.children.map(function (children_item) {
                             children_item.id = topics_to_id_table[children_item.title];
@@ -178,6 +196,11 @@ app.factory('DataService', function ($http, $q){
 
                                 children_item.posts = posts_data.post_stream.posts;
                                 children_item.post_count = posts_data.posts_count;
+
+                                //Count Posts
+                                if(!CachedData[proposal_item.title_eng].PostCount)
+                                    CachedData[proposal_item.title_eng].PostCount = 0;
+                                    CachedData[proposal_item.title_eng].PostCount += posts_data.posts_count;
 
                                 // Parse direct image url
                                 // from: "/user_avatar/talk.vtaiwan.tw/audreyt/{size}/6.png"
@@ -274,6 +297,18 @@ app.factory('DataService', function ($http, $q){
     return deferred.promise;
   };
 
+  DataService.getProposalMetaData = function(topicID){
+    var deferred = $q.defer();
+    $http.get('proposals.json').
+    success(function(data, status, headers, config) {
+          deferred.resolve(data);
+        }).
+        error(function(data, status, headers, config) {
+          deferred.resolve(data);
+        });
+    return deferred.promise;
+  };
+
   return DataService;
 })
 
@@ -282,7 +317,7 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scop
   $scope.setProposal = function (value) {
     console.log(value);
     console.log("***");
-    $scope.proposal = value;//crowdfunding, closelyheld
+    $scope.proposal = value;//crowdfunding, closelyheld, etax
     DataService.getCatchedData().then(function (data) {
       $scope.currentProposal = data[value];
 
@@ -320,10 +355,65 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
     Object.keys(d).map(function (title){
       var blockquote = d[title].categories[0].content.match(/<blockquote>\n((?:.+\n)+)<\/blockquote>\n/);
       $scope.proposal[title] = (blockquote)? blockquote[1] : "";
+      // console.log(d[title]);
+      // console.log(d[title].TopicCount);
+      // console.log(d[title].PostCount);
+      // console.log(title);
+
+      if(!$scope.proposalMeta)
+          $scope.proposalMeta = {};
+      if(!$scope.proposalMeta[title])
+          $scope.proposalMeta[title] = {};
+
+      $scope.proposalMeta[title].TopicCount = d[title].TopicCount;
+      $scope.proposalMeta[title].PostCount = d[title].PostCount;
+
     });
   });
 
-  DataService.getCatchedData();
+  DataService.getProposalMetaData().then(function (data) {
+
+      if(!$scope.proposalMeta)
+        $scope.proposalMeta = {};
+
+      data.map(function(item){
+          //Parse date strings to JS date object
+          item.step1_start_date = new Date(item.step1_start_date);
+          item.step1_end_date = new Date(item.step1_end_date);
+
+          //Count hours passed & days left
+          //var now = new Date("February 16, 2015 00:00:00");
+          var now = new Date();
+
+          //Count times left from start date (in percentage)
+          var total_hours = (item.step1_end_date.getTime() - item.step1_start_date.getTime())/ (3600*1000);
+          if(now >= item.step1_start_date){
+            var passed =  (now.getTime() - item.step1_start_date.getTime());
+            item.passed_hour = passed / (3600*1000);
+            var left = (item.step1_end_date.getTime() - now.getTime());
+            item.left_day = Math.round(left / (3600*1000) / 24);
+            item.percentage = Math.round(item.passed_hour / total_hours * 100);
+
+            console.log(item.percentage);
+
+          }else{
+            item.left_day = Math.round(total_hours / 24);
+            item.percentage = 0;
+          }
+
+          if(!$scope.proposalMeta[item.title_eng])
+             $scope.proposalMeta[item.title_eng] = {};
+
+          //// Can be improve
+
+          $scope.proposalMeta[item.title_eng].passsed_hour = item.passsed_hour;
+          $scope.proposalMeta[item.title_eng].left_day = item.left_day;
+          $scope.proposalMeta[item.title_eng].step1_start_date = item.step1_start_date;
+          $scope.proposalMeta[item.title_eng].step1_end_date = item.step1_end_date;
+          $scope.proposalMeta[item.title_eng].percentage = item.percentage;
+
+      });
+  });
 
   $scope.go = function(path){
       $("body").scrollTop(0);
@@ -348,6 +438,19 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
 
   $scope.toTrusted = function(html_code) {
     return $sce.trustAsHtml(html_code);
+  };
+
+  //default choice
+  $scope.focusTab = {};
+  $scope.focusTab['crowdfunding'] = 'step1';
+  $scope.focusTab['closelyheld'] = 'step1';
+  $scope.focusTab['etax'] = 'step1';
+
+  $scope.setFocusTab = function (title, value){
+    $scope.focusTab[title] = value;
+  };
+  $scope.isFocusTab = function (title, value){
+    return $scope.focusTab[title] === value;
   };
 
 }]);
@@ -421,7 +524,7 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
 
   $scope.go = function(path, replace){
       //$("body").scrollTop(0);
-
+      //console.log(path);
       $location.path(path);
       if (replace) $location.replace();
   };

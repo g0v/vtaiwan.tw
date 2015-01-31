@@ -12,12 +12,12 @@
 
   <div ng-include="'partials/discussion.html'"></div>
 
-  <div class="wrapper">
+  <div class="wrapper" ng-show="!focusDiscussion">
   <!-- Category -->  
   <div class="q_content" id="q_content">
 
-  <div class="q_breadcrumbs">主題 &gt; {{currentProposal.title_cht}}</div>
-    <div class="q_title" >{{currentCategory.title}}</div>
+  <div class="q_breadcrumbs" ><sapn class="q_breadcrumbs_link" ng-click="go('proposals', true)">主題</sapn> &gt; <sapn class="q_breadcrumbs_link" ng-click="go(currentProposal.title_eng, true)">{{currentProposal.title_cht}}</sapn></div>
+    <div class="q_title">{{currentCategory.title}}</div>
     <div ng-bind-html="toTrusted(currentCategory.content)"></div>
   
     <div class="issue_item md-whiteframe-z1" ng-repeat="i in currentCategory.children" ng-click="toggleDiscussion(i.index)" id="issue_item_{{i.index}}">

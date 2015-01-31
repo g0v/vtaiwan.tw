@@ -5,7 +5,9 @@
     "category_num": 6,
     "prefix_cht": "數位商務模式：",
     "gitbook_url": "https://crowdfunding.vtaiwan.tw/",
-    "discourse_url": "https://talk.vtaiwan.tw/"
+    "discourse_url": "https://talk.vtaiwan.tw/",
+    "step1_start_date" : "February 1, 2015 00:00:00",
+    "step1_end_date" : "February 28, 2015 23:59:59"
   },
   {
     "title_cht": "閉鎖型公司",
@@ -13,6 +15,18 @@
     "category_num": 5,
     "prefix_cht": "數位商務模式：",
     "gitbook_url": "https://closelyheld.vtaiwan.tw/",
-    "discourse_url": "https://talk.vtaiwan.tw/"
+    "discourse_url": "https://talk.vtaiwan.tw/",
+    "step1_start_date" : "February 1, 2015 00:00:00",
+    "step1_end_date" : "February 28, 2015 23:59:59"
+  },
+  {
+    "title_cht": "網路交易課稅",
+    "title_eng": "etax",
+    "category_num": 14,
+    "prefix_cht": "數位商務模式：",
+    "gitbook_url": "https://closelyheld.vtaiwan.tw/",
+    "discourse_url": "https://talk.vtaiwan.tw/",
+    "step1_start_date" : "February 1, 2015 00:00:00",
+    "step1_end_date" : "February 28, 2015 23:59:59"
   }
 ]
