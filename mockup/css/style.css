@@ -132,6 +132,12 @@ header {
   margin-top: 10px;
   margin-bottom: 5px;
 }
+.q_breadcrumbs_link {
+  cursor: pointer;
+}
+.q_breadcrumbs_link:hover {
+  color: rgb(63,159,155);
+}
 .q_title{
   display: inline-block;
   width: 100%;

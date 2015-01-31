@@ -526,7 +526,7 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
 
   $scope.go = function(path, replace){
       //$("body").scrollTop(0);
-
+      //console.log(path);
       $location.path(path);
       if (replace) $location.replace();
   };
