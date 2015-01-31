@@ -797,6 +797,32 @@ a.nav_item_sidebar--sub {
       width: 150px;
   }
 }
+.Stage {
+  margin: 20px 0px;
+}
+.Stage-index {
+  font-size: 20px;
+  color: rgb(63,159,155);
+  font-weight: 900;
+}
+.Stage-content {
+  overflow: hidden;
+  _overflow:visible;
+  zoom:1; 
+  padding-left: 5px;
+}
+.Stage-index-number {
+  font-size: 20px;
+  font-weight: 800;
+  display: inline-block;
+  background: rgb(63,159,155);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  padding-top: 6px;
+}
 
 /* ------------------------------------------------------------ */
 /* topic 主題
