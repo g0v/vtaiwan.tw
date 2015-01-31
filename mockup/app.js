@@ -36,6 +36,18 @@ app.config(['$routeProvider','$locationProvider','$sceDelegateProvider','MetaPro
       templateUrl: 'partials/proposal.html',
       controller: 'ProposalCtrl'
     }).
+      when('/etax',{
+      templateUrl: 'partials/proposal.html',
+      controller: 'ProposalCtrl'
+    }).
+      when('/etax/:id',{
+      templateUrl: 'partials/proposal.html',
+      controller: 'ProposalCtrl'
+    }).
+      when('/etax/:id/:topic_id',{
+      templateUrl: 'partials/proposal.html',
+      controller: 'ProposalCtrl'
+    }).
       when('/proposals',{
       templateUrl: 'partials/proposals.html',
       controller: 'IndexCtrl'
@@ -85,7 +97,8 @@ app.factory('DataService', function ($http, $q){
 
   var proposals = [
       { "title_cht" : "群眾募資", "title_eng" : "crowdfunding", "category_num" : 6},
-      { "title_cht" : "閉鎖型公司", "title_eng" : "closelyheld", "category_num" : 5}
+      { "title_cht" : "閉鎖型公司", "title_eng" : "closelyheld", "category_num" : 5},
+      { "title_cht" : "網路交易課稅", "title_eng" : "etax", "category_num" : 14}
   ];
 
   function removeLexicon (text) {
@@ -307,7 +320,7 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scop
   $scope.setProposal = function (value) {
     console.log(value);
     console.log("***");
-    $scope.proposal = value;//crowdfunding, closelyheld
+    $scope.proposal = value;//crowdfunding, closelyheld, etax
     DataService.getCatchedData().then(function (data) {
       $scope.currentProposal = data[value];
 
@@ -432,6 +445,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
   $scope.focusTab = {};
   $scope.focusTab['crowdfunding'] = 'step1';
   $scope.focusTab['closelyheld'] = 'step1';
+  $scope.focusTab['etax'] = 'step1';
 
   $scope.setFocusTab = function (title, value){
     $scope.focusTab[title] = value;
