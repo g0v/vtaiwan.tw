@@ -1295,7 +1295,7 @@ a.more {
 .prompt {
     font-weight: 500;
 }
-.tutorial img {
+.tutorial img, .about_item_content img {
     max-width: 95%;
     margin-left: 10px;
     margin-right: 10px;
