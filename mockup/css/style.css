@@ -1322,11 +1322,16 @@ a.more {
 .Proposal-mainText {
   padding: 10px 10px 5px 10px;
 }
+.Proposal-header {
+  border-bottom: 1px solid rgb(220,220,220);
+}
 .Proposal-title {
   font-size: 22px;
   font-weight: 900;
-  border-bottom: 1px solid rgb(220,220,220);
   padding-bottom: 5px;
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 10px;
   
 }
 .Proposal-content a:hover{
@@ -1334,22 +1339,26 @@ a.more {
   background: #eee;
 }
 .Proposal-content li {
-    line-height: 175%;
+  line-height: 175%;
 }
 .Proposal-proposer {
-  margin-top: 15px;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 10px;
 }
 .Proposal-proposerImg {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   display: inline-block;
 }
 .Proposal-proposerName {
-  display: inline-block;
-  vertical-align: top;
-  font-weight: 800;
+  font-size: 12px;
+  text-align: center;
+  position: absolute;
+  bottom: 0px;
+  width: 40px;
+  color: rgb(100,100,100);
 }
-
 .ProgressBar {
   width: 100%;
   padding: 10px;

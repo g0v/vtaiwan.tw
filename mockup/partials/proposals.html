@@ -3,13 +3,15 @@
     <div class="wrapper">
         <div class="Proposal md-whiteframe-z1" ng-click="go('crowdfunding')">
             <div class="Proposal-mainText">
-              <div class="Proposal-title">群眾募資</div>
-              <div class="Proposal-content">
-                <div class="Proposal-proposer">
-                    <!-- <img class="Proposal-proposerImg" src="images/proposer/{{proposalMeta['crowdfunding'].proposer_abbr_eng}}.png">  -->
-                    <div class="Proposal-proposerName">提案方：{{proposalMeta['crowdfunding'].proposer_abbr_cht}} @{{proposalMeta['crowdfunding'].proposer_abbr_eng}}</div>
+                <div class="Proposal-header">
+                    <div class="Proposal-proposer">
+                    <img class="Proposal-proposerImg" src="images/proposer/{{proposalMeta['crowdfunding'].proposer_abbr_eng}}.png">
+                    <div class="Proposal-proposerName">{{proposalMeta['crowdfunding'].proposer_abbr_eng}}</div>
+                    </div>
+                    <div class="Proposal-title">{{proposalMeta['crowdfunding'].proposer_abbr_cht}}：群眾募資</div>
                 </div>
-                <span ng-bind-html="toTrusted(proposal['crowdfunding'])"></span>
+                <div class="Proposal-content">
+                   <span ng-bind-html="toTrusted(proposal['crowdfunding'])"></span>
               </div>
             </div>
             <div class="ProgressBar">
@@ -75,12 +77,14 @@
         </div>
         <div class="Proposal md-whiteframe-z1" ng-click="go('closelyheld')">
             <div class="Proposal-mainText">
-              <div class="Proposal-title">閉鎖型公司</div>
-              <div class="Proposal-content">
-                <div class="Proposal-proposer">
-                    <!-- <img class="Proposal-proposerImg" src="images/proposer/{{proposalMeta['crowdfunding'].proposer_abbr_eng}}.png">  -->
-                    <div class="Proposal-proposerName">提案方：{{proposalMeta['closelyheld'].proposer_abbr_cht}} @{{proposalMeta['closelyheld'].proposer_abbr_eng}}</div>
+                <div class="Proposal-header">
+                    <div class="Proposal-proposer">
+                    <img class="Proposal-proposerImg" src="images/proposer/{{proposalMeta['closelyheld'].proposer_abbr_eng}}.png">
+                    <div class="Proposal-proposerName">{{proposalMeta['closelyheld'].proposer_abbr_eng}}</div>
+                    </div>
+                    <div class="Proposal-title">{{proposalMeta['closelyheld'].proposer_abbr_cht}}：閉鎖型公司</div>
                 </div>
+              <div class="Proposal-content">
                 <span ng-bind-html="toTrusted(proposal['closelyheld'])"></span>
               </div>
             </div>
@@ -147,12 +151,14 @@
         </div><!-- end of Proposal -->
         <div class="Proposal md-whiteframe-z1" ng-click="go('etax')">
             <div class="Proposal-mainText">
-              <div class="Proposal-title">網路交易課稅</div>
-              <div class="Proposal-content">
-                <div class="Proposal-proposer">
-                    <!-- <img class="Proposal-proposerImg" src="images/proposer/{{proposalMeta['crowdfunding'].proposer_abbr_eng}}.png">  -->
-                    <div class="Proposal-proposerName">提案方：{{proposalMeta['closelyheld'].proposer_abbr_cht}} @{{proposalMeta['closelyheld'].proposer_abbr_eng}}</div>
+              <div class="Proposal-header">
+                    <div class="Proposal-proposer">
+                    <img class="Proposal-proposerImg" src="images/proposer/{{proposalMeta['etax'].proposer_abbr_eng}}.png">
+                    <div class="Proposal-proposerName">{{proposalMeta['etax'].proposer_abbr_eng}}</div>
+                    </div>
+                    <div class="Proposal-title">{{proposalMeta['etax'].proposer_abbr_cht}}：網路交易課稅</div>
                 </div>
+              <div class="Proposal-content">
                 <span ng-bind-html="toTrusted(proposal['etax'])"></span>
               </div>
             </div>
