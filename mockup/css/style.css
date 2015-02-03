@@ -1307,6 +1307,7 @@ a.more {
   background: white;
   margin: 5px;
   cursor: pointer;
+  color: rgb(53,55,54);
 }
 .Proposal:hover .Proposal-title {
   color: rgb(63,159,155);
@@ -1324,16 +1325,22 @@ a.more {
 }
 .Proposal-header {
   border-bottom: 1px solid rgb(220,220,220);
+  position: relative;
 }
 .Proposal-title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 900;
   padding-bottom: 5px;
   display: inline-block;
   vertical-align: top;
-  padding-top: 10px;
   
 }
+@media screen and (min-width: 400px){
+  .Proposal-title {
+    font-size: 22px;
+  }
+}
+
 .Proposal-content a:hover{
   cursor: pointer;
   background: #eee;
@@ -1347,17 +1354,20 @@ a.more {
   padding-bottom: 10px;
 }
 .Proposal-proposerImg {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
+  padding-top: 3px;
   display: inline-block;
 }
 .Proposal-proposerName {
   font-size: 12px;
-  text-align: center;
-  position: absolute;
-  bottom: 0px;
-  width: 40px;
   color: rgb(100,100,100);
+}
+.Proposal-proposerName a, .Proposal-proposerName a:visited{
+  color: rgb(80,80,80);
+}
+.Proposal-proposerName a:hover{
+  text-decoration: underline;
 }
 .ProgressBar {
   width: 100%;
