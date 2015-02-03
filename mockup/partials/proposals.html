@@ -3,8 +3,12 @@
     <div class="wrapper">
         <div class="Proposal md-whiteframe-z1" ng-click="go('crowdfunding')">
             <div class="Proposal-mainText">
-              <div class="Proposal-title">主題：群眾募資</div>
+              <div class="Proposal-title">群眾募資</div>
               <div class="Proposal-content">
+                <div class="Proposal-proposer">
+                    <!-- <img class="Proposal-proposerImg" src="images/proposer/{{proposalMeta['crowdfunding'].proposer_abbr_eng}}.png">  -->
+                    <div class="Proposal-proposerName">提案方：{{proposalMeta['crowdfunding'].proposer_abbr_cht}} @{{proposalMeta['crowdfunding'].proposer_abbr_eng}}</div>
+                </div>
                 <span ng-bind-html="toTrusted(proposal['crowdfunding'])"></span>
               </div>
             </div>
@@ -30,7 +34,7 @@
                     </div>
                     <div class="ProgressBAr-infoContent">
                         <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].left_day}} 天</div></div>
-                        <div class="ProgressBar-stat">主題數<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].TopicCount}}</div></div>
+                        <div class="ProgressBar-stat">討論話題<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].TopicCount}}</div></div>
                         <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].PostCount}}</div></div>
                     </div>
                 </div>
@@ -71,8 +75,12 @@
         </div>
         <div class="Proposal md-whiteframe-z1" ng-click="go('closelyheld')">
             <div class="Proposal-mainText">
-              <div class="Proposal-title">主題：閉鎖型公司</div>
+              <div class="Proposal-title">閉鎖型公司</div>
               <div class="Proposal-content">
+                <div class="Proposal-proposer">
+                    <!-- <img class="Proposal-proposerImg" src="images/proposer/{{proposalMeta['crowdfunding'].proposer_abbr_eng}}.png">  -->
+                    <div class="Proposal-proposerName">提案方：{{proposalMeta['closelyheld'].proposer_abbr_cht}} @{{proposalMeta['closelyheld'].proposer_abbr_eng}}</div>
+                </div>
                 <span ng-bind-html="toTrusted(proposal['closelyheld'])"></span>
               </div>
             </div>
@@ -98,7 +106,7 @@
                     </div>
                     <div class="ProgressBAr-infoContent">
                         <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].left_day}} 天</div></div>
-                        <div class="ProgressBar-stat">主題數<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].TopicCount}}</div></div>
+                        <div class="ProgressBar-stat">討論話題<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].TopicCount}}</div></div>
                         <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].PostCount}}</div></div>
                     </div>
                 </div>
@@ -139,8 +147,12 @@
         </div><!-- end of Proposal -->
         <div class="Proposal md-whiteframe-z1" ng-click="go('etax')">
             <div class="Proposal-mainText">
-              <div class="Proposal-title">主題：網路交易課稅</div>
+              <div class="Proposal-title">網路交易課稅</div>
               <div class="Proposal-content">
+                <div class="Proposal-proposer">
+                    <!-- <img class="Proposal-proposerImg" src="images/proposer/{{proposalMeta['crowdfunding'].proposer_abbr_eng}}.png">  -->
+                    <div class="Proposal-proposerName">提案方：{{proposalMeta['closelyheld'].proposer_abbr_cht}} @{{proposalMeta['closelyheld'].proposer_abbr_eng}}</div>
+                </div>
                 <span ng-bind-html="toTrusted(proposal['etax'])"></span>
               </div>
             </div>
@@ -166,7 +178,7 @@
                     </div>
                     <div class="ProgressBAr-infoContent">
                         <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].left_day}} 天</div></div>
-                        <div class="ProgressBar-stat">主題數<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].TopicCount}}</div></div>
+                        <div class="ProgressBar-stat">討論話題<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].TopicCount}}</div></div>
                         <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].PostCount}}</div></div>
                     </div>
                 </div>
