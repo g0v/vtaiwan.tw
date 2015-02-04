@@ -9,7 +9,7 @@
                     </div>
                     <div class="Proposal-title">
                     {{proposalMeta['crowdfunding'].proposer_abbr_cht}}：群眾募資
-                    <div class="Proposal-proposerName">@ {{proposalMeta['crowdfunding'].proposer_abbr_eng}}</div>
+                    <div class="Proposal-proposerName"><tt>@</tt>{{proposalMeta['crowdfunding'].proposer_abbr_eng}}</div>
                     </div>
                 </div>
                 <div class="Proposal-content">
@@ -85,7 +85,7 @@
                     </div>
                     <div class="Proposal-title">
                     {{proposalMeta['closelyheld'].proposer_abbr_cht}}：群眾募資
-                    <div class="Proposal-proposerName">@ {{proposalMeta['closelyheld'].proposer_abbr_eng}}</div>
+                    <div class="Proposal-proposerName"><tt>@</tt>{{proposalMeta['closelyheld'].proposer_abbr_eng}}</div>
                     </div>
                 </div>
                 <div class="Proposal-content">
@@ -160,8 +160,8 @@
                       <img class="Proposal-proposerImg" src="images/proposer/{{proposalMeta['etax'].proposer_abbr_eng}}.png">
                     </div>
                     <div class="Proposal-title">
-                    {{proposalMeta['etax'].proposer_abbr_cht}}：群眾募資
-                    <div class="Proposal-proposerName"><a href="https://talk.vtaiwan.tw/users/mofta/activity" ng-click="$event.stopPropagation();">@ {{proposalMeta['etax'].proposer_abbr_eng}}</a></div>
+                    {{proposalMeta['etax'].proposer_abbr_cht}}：網路交易課稅
+                    <div class="Proposal-proposerName"><tt>@</tt><a href="https://talk.vtaiwan.tw/users/mofta/activity" ng-click="$event.stopPropagation();">{{proposalMeta['etax'].proposer_abbr_eng}}</a></div>
                     </div>
                 </div>
                 <div class="Proposal-content">

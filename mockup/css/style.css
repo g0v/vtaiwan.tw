@@ -38,6 +38,12 @@ a {
   .nav{
      width: 100%;
   }
+  .mobile-only {
+      display: block !important;
+  }
+}
+.mobile-only {
+    display: none;
 }
 .page_wrapper {
   height: 100%;
@@ -1359,9 +1365,14 @@ a.more {
   padding-top: 3px;
   display: inline-block;
 }
+.Proposal-proposerName::first-letter {
+  font-weight: 100;
+}
 .Proposal-proposerName {
   font-size: 12px;
   color: rgb(100,100,100);
+  font-weight: bold;
+  text-transform: uppercase;
 }
 .Proposal-proposerName a, .Proposal-proposerName a:visited{
   color: rgb(80,80,80);
