@@ -1364,6 +1364,7 @@ a.more {
   height: 45px;
   padding-top: 3px;
   display: inline-block;
+  padding-right: 3px;
 }
 .Proposal-proposerName::first-letter {
   font-weight: 100;
