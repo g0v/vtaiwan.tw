@@ -368,6 +368,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
       $scope.proposalMeta[title].TopicCount = d[title].TopicCount;
       $scope.proposalMeta[title].PostCount = d[title].PostCount;
 
+      
     });
   });
 
@@ -411,6 +412,9 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
           $scope.proposalMeta[item.title_eng].step1_start_date = item.step1_start_date;
           $scope.proposalMeta[item.title_eng].step1_end_date = item.step1_end_date;
           $scope.proposalMeta[item.title_eng].percentage = item.percentage;
+          $scope.proposalMeta[item.title_eng].proposer_abbr_eng = item.proposer_abbr_eng;
+          $scope.proposalMeta[item.title_eng].proposer_abbr_cht = item.proposer_abbr_cht;
+          
 
       });
   });

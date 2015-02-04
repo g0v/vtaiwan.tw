@@ -3,10 +3,18 @@
     <div class="wrapper">
         <div class="Proposal md-whiteframe-z1" ng-click="go('crowdfunding')">
             <div class="Proposal-mainText">
-              <div class="Proposal-title">主題：群眾募資</div>
-              <div class="Proposal-content">
-                <span ng-bind-html="toTrusted(proposal['crowdfunding'])"></span>
-              </div>
+                <div class="Proposal-header">
+                    <div class="Proposal-proposer">
+                      <img class="Proposal-proposerImg" src="images/proposer/{{proposalMeta['crowdfunding'].proposer_abbr_eng}}.png">
+                    </div>
+                    <div class="Proposal-title">
+                    {{proposalMeta['crowdfunding'].proposer_abbr_cht}}：群眾募資
+                    <div class="Proposal-proposerName"><tt>@</tt>{{proposalMeta['crowdfunding'].proposer_abbr_eng}}</div>
+                    </div>
+                </div>
+                <div class="Proposal-content">
+                   <span ng-bind-html="toTrusted(proposal['crowdfunding'])"></span>
+                </div>
             </div>
             <div class="ProgressBar">
                 <div class="ProgressBar-stepTitle" ng-click="">
@@ -30,7 +38,7 @@
                     </div>
                     <div class="ProgressBAr-infoContent">
                         <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].left_day}} 天</div></div>
-                        <div class="ProgressBar-stat">主題數<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].TopicCount}}</div></div>
+                        <div class="ProgressBar-stat">討論話題<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].TopicCount}}</div></div>
                         <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].PostCount}}</div></div>
                     </div>
                 </div>
@@ -71,10 +79,18 @@
         </div>
         <div class="Proposal md-whiteframe-z1" ng-click="go('closelyheld')">
             <div class="Proposal-mainText">
-              <div class="Proposal-title">主題：閉鎖型公司</div>
-              <div class="Proposal-content">
-                <span ng-bind-html="toTrusted(proposal['closelyheld'])"></span>
-              </div>
+                <div class="Proposal-header">
+                    <div class="Proposal-proposer">
+                      <img class="Proposal-proposerImg" src="images/proposer/{{proposalMeta['closelyheld'].proposer_abbr_eng}}.png">
+                    </div>
+                    <div class="Proposal-title">
+                    {{proposalMeta['closelyheld'].proposer_abbr_cht}}：閉鎖型公司
+                    <div class="Proposal-proposerName"><tt>@</tt>{{proposalMeta['closelyheld'].proposer_abbr_eng}}</div>
+                    </div>
+                </div>
+                <div class="Proposal-content">
+                    <span ng-bind-html="toTrusted(proposal['closelyheld'])"></span>
+                </div>
             </div>
             <div class="ProgressBar">
                 <div class="ProgressBar-stepTitle" ng-click="">
@@ -98,7 +114,7 @@
                     </div>
                     <div class="ProgressBAr-infoContent">
                         <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].left_day}} 天</div></div>
-                        <div class="ProgressBar-stat">主題數<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].TopicCount}}</div></div>
+                        <div class="ProgressBar-stat">討論話題<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].TopicCount}}</div></div>
                         <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].PostCount}}</div></div>
                     </div>
                 </div>
@@ -139,10 +155,18 @@
         </div><!-- end of Proposal -->
         <div class="Proposal md-whiteframe-z1" ng-click="go('etax')">
             <div class="Proposal-mainText">
-              <div class="Proposal-title">主題：網路交易課稅</div>
-              <div class="Proposal-content">
-                <span ng-bind-html="toTrusted(proposal['etax'])"></span>
-              </div>
+                <div class="Proposal-header">
+                    <div class="Proposal-proposer">
+                      <img class="Proposal-proposerImg" src="images/proposer/{{proposalMeta['etax'].proposer_abbr_eng}}.png">
+                    </div>
+                    <div class="Proposal-title">
+                    {{proposalMeta['etax'].proposer_abbr_cht}}：網路交易課稅
+                    <div class="Proposal-proposerName"><tt>@</tt><a href="https://talk.vtaiwan.tw/users/mofta/activity" ng-click="$event.stopPropagation();">{{proposalMeta['etax'].proposer_abbr_eng}}</a></div>
+                    </div>
+                </div>
+                <div class="Proposal-content">
+                    <span ng-bind-html="toTrusted(proposal['etax'])"></span>
+                </div>
             </div>
             <div class="ProgressBar">
                 <div class="ProgressBar-stepTitle" ng-click="">
@@ -166,7 +190,7 @@
                     </div>
                     <div class="ProgressBAr-infoContent">
                         <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].left_day}} 天</div></div>
-                        <div class="ProgressBar-stat">主題數<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].TopicCount}}</div></div>
+                        <div class="ProgressBar-stat">討論話題<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].TopicCount}}</div></div>
                         <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].PostCount}}</div></div>
                     </div>
                 </div>

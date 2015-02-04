@@ -82,7 +82,13 @@
 
     </div>
 
-    <a href="https://talk.vtaiwan.tw/t/topic/{{currentDiscussion.id}}" target="_blank"><div class="toggle_reply_button" ng-show="focusDiscussion"><i class="fa fa-reply"></i></div></a>
+    <a class="mobile-only" href="https://talk.vtaiwan.tw/t/topic/{{currentDiscussion.id}}" target="_blank"><div class="toggle_reply_button" ng-show="focusDiscussion"><i class="fa fa-reply"></i></div></a>
+
+        <div class="l_center">
+            <a style="background: #3F9F9B" href="https://talk.vtaiwan.tw/t/topic/{{currentDiscussion.id}}"
+                target="_blank" ng-show="focusDiscussion"
+                class="about_item_button md-whiteframe-z1">我要留言</a>
+      </div>
 
 
 

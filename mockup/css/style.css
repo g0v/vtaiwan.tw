@@ -38,6 +38,12 @@ a {
   .nav{
      width: 100%;
   }
+  .mobile-only {
+      display: block !important;
+  }
+}
+.mobile-only {
+    display: none;
 }
 .page_wrapper {
   height: 100%;
@@ -1307,6 +1313,7 @@ a.more {
   background: white;
   margin: 5px;
   cursor: pointer;
+  color: rgb(53,55,54);
 }
 .Proposal:hover .Proposal-title {
   color: rgb(63,159,155);
@@ -1322,19 +1329,56 @@ a.more {
 .Proposal-mainText {
   padding: 10px 10px 5px 10px;
 }
-.Proposal-title {
-  font-size: 22px;
-  font-weight: 900;
+.Proposal-header {
   border-bottom: 1px solid rgb(220,220,220);
+  position: relative;
+}
+.Proposal-title {
+  font-size: 20px;
+  font-weight: 900;
   padding-bottom: 5px;
+  display: inline-block;
+  vertical-align: top;
   
 }
+@media screen and (min-width: 400px){
+  .Proposal-title {
+    font-size: 22px;
+  }
+}
+
 .Proposal-content a:hover{
   cursor: pointer;
   background: #eee;
 }
 .Proposal-content li {
-    line-height: 175%;
+  line-height: 175%;
+}
+.Proposal-proposer {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 10px;
+}
+.Proposal-proposerImg {
+  width: 45px;
+  height: 45px;
+  padding-top: 3px;
+  display: inline-block;
+}
+.Proposal-proposerName::first-letter {
+  font-weight: 100;
+}
+.Proposal-proposerName {
+  font-size: 12px;
+  color: rgb(100,100,100);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.Proposal-proposerName a, .Proposal-proposerName a:visited{
+  color: rgb(80,80,80);
+}
+.Proposal-proposerName a:hover{
+  text-decoration: underline;
 }
 .ProgressBar {
   width: 100%;
