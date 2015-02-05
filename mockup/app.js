@@ -108,6 +108,14 @@ app.factory('DataService', function ($http, $q){
     });
   }
 
+  function replaceLink (post) {
+    return post.replace(/href=\"\/(users\/[^\"]+)\"/, function (matched, it) {
+      return "href=\"https://talk.vtaiwan.tw/" + it + "\"";
+    }).replace(/src=\"\/(images\/[^\"]+)\"/, function (matched, it) {
+      return "src=\"https://talk.vtaiwan.tw/" + it + "\"";
+    });
+  }
+
   DataService.getCatchedData = function(){
     var deferred = $q.defer();
 
@@ -212,6 +220,10 @@ app.factory('DataService', function ($http, $q){
                                     children_item.posts[key].avatar_url = 'https://talk.vtaiwan.tw/' + children_item.posts[key].avatar_template.replace('{size}', '90');
                                 }
 
+                                // Fixed issue #29
+                                children_item.posts.map(function (post) {
+                                  post.cooked = replaceLink(post.cooked);
+                                });
                                 //console.log(CachedData);//debug check
 
                                 //Detect if all data is collected
@@ -362,21 +374,21 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
       // console.log(d[title].TopicCount);
       // console.log(d[title].PostCount);
       // console.log(title);
-      
+
       if(!$scope.proposalMeta)
           $scope.proposalMeta = {};
       if(!$scope.proposalMeta[title])
           $scope.proposalMeta[title] = {};
-      
+
       $scope.proposalMeta[title].TopicCount = d[title].TopicCount;
       $scope.proposalMeta[title].PostCount = d[title].PostCount;
 
-      
+
     });
   });
 
   DataService.getProposalMetaData().then(function (data) {
-      
+
       if(!$scope.proposalMeta)
         $scope.proposalMeta = {};
 
@@ -384,7 +396,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
           //Parse date strings to JS date object
           item.step1_start_date = new Date(item.step1_start_date);
           item.step1_end_date = new Date(item.step1_end_date);
-          
+
           //Count hours passed & days left
           //var now = new Date("February 16, 2015 00:00:00");
           var now = new Date();
@@ -407,7 +419,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
 
           if(!$scope.proposalMeta[item.title_eng])
              $scope.proposalMeta[item.title_eng] = {};
-         
+
           //// Can be improve
 
           $scope.proposalMeta[item.title_eng].passsed_hour = item.passsed_hour;
@@ -417,7 +429,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
           $scope.proposalMeta[item.title_eng].percentage = item.percentage;
           $scope.proposalMeta[item.title_eng].proposer_abbr_eng = item.proposer_abbr_eng;
           $scope.proposalMeta[item.title_eng].proposer_abbr_cht = item.proposer_abbr_cht;
-          
+
 
       });
   });
@@ -445,7 +457,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
   $scope.toTrusted = function(html_code) {
     return $sce.trustAsHtml(html_code);
   };
-  
+
   //default choice
   $scope.focusTab = {};
   $scope.focusTab['crowdfunding'] = 'step1';
