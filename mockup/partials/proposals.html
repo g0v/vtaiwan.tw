@@ -85,7 +85,7 @@
                     </div>
                     <div class="Proposal-title">
                     {{proposalMeta['closelyheld'].proposer_abbr_cht}}：閉鎖型公司
-                    <div class="Proposal-proposerName"><tt>@</tt>{{proposalMeta['closelyheld'].proposer_abbr_eng}}</div>
+                    <div class="Proposal-proposerName"><tt>@</tt><a target="_blank" ng-href="https://talk.vtaiwan.tw/users/{{proposalMeta['closelyheld'].proposer_abbr_eng}}/activity" ng-click="$event.stopPropagation();">{{proposalMeta['closelyheld'].proposer_abbr_eng}}</a></div>
                     </div>
                 </div>
                 <div class="Proposal-content">
