@@ -105,6 +105,14 @@ app.factory('DataService', function ($http, $q){
     });
   }
 
+  function replaceLink (post) {
+    return post.replace(/href=\"\/(users\/[^\"]+)\"/, function (matched, it) {
+      return "target=\"_blank\" href=\"https://talk.vtaiwan.tw/" + it + "\"";
+    }).replace(/src=\"\/(images\/[^\"]+)\"/, function (matched, it) {
+      return "src=\"https://talk.vtaiwan.tw/" + it + "\"";
+    });
+  }
+
   DataService.getCatchedData = function(){
     var deferred = $q.defer();
 
@@ -209,6 +217,10 @@ app.factory('DataService', function ($http, $q){
                                     children_item.posts[key].avatar_url = 'https://talk.vtaiwan.tw/' + children_item.posts[key].avatar_template.replace('{size}', '90');
                                 }
 
+                                // Fixed issue #29
+                                children_item.posts.map(function (post) {
+                                  post.cooked = replaceLink(post.cooked);
+                                });
                                 //console.log(CachedData);//debug check
 
                                 //Detect if all data is collected
@@ -368,7 +380,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
       $scope.proposalMeta[title].TopicCount = d[title].TopicCount;
       $scope.proposalMeta[title].PostCount = d[title].PostCount;
 
-      
+
     });
   });
 
@@ -414,7 +426,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
           $scope.proposalMeta[item.title_eng].percentage = item.percentage;
           $scope.proposalMeta[item.title_eng].proposer_abbr_eng = item.proposer_abbr_eng;
           $scope.proposalMeta[item.title_eng].proposer_abbr_cht = item.proposer_abbr_cht;
-          
+
 
       });
   });
