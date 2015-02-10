@@ -106,9 +106,9 @@ app.factory('DataService', function ($http, $q){
   }
 
   function replaceLink (post) {
-    return post.replace(/href=\"\/(users\/[^\"]+)\"/, function (matched, it) {
+    return post.replace(/href=\"\/(users\/[^\"]+)\"/g, function (matched, it) {
       return "target=\"_blank\" href=\"https://talk.vtaiwan.tw/" + it + "\"";
-    }).replace(/src=\"\/(images\/[^\"]+)\"/, function (matched, it) {
+    }).replace(/src=\"\/(images\/[^\"]+)\"/g, function (matched, it) {
       return "src=\"https://talk.vtaiwan.tw/" + it + "\"";
     });
   }
