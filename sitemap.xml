@@ -25,6 +25,11 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://vtaiwan.tw/#!/tutorial</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://vtaiwan.tw/#!/crowdfunding/1</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
