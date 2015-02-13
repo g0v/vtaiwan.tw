@@ -287,7 +287,7 @@ app.factory('DataService', function ($http, $q){
 
   DataService.getPostIdData = function(category_num){
     var deferred = $q.defer();
-    $http.get('https://cors.vtaiwan.tw/c/'+category_num+'-category.json').
+    $http.get('https://talk.vtaiwan.tw/c/'+category_num+'-category.json').
     success(function(data, status, headers, config) {
           deferred.resolve(data);
         }).
@@ -299,7 +299,7 @@ app.factory('DataService', function ($http, $q){
 
   DataService.getPostData = function(topicID){
     var deferred = $q.defer();
-    $http.get('https://cors.vtaiwan.tw/t/topic/'+topicID+'.json').
+    $http.get('https://talk.vtaiwan.tw/t/topic/'+topicID+'.json').
     success(function(data, status, headers, config) {
           deferred.resolve(data);
         }).
@@ -591,8 +591,8 @@ app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$
 
   $scope.toTrusted = function(html_code) {
     if(!html_code) return;
-    html_code = html_code.replace(/(\/user_avatar.+\.png)/, function (matched) {
-      return "https://talk.vtaiwan.tw" + matched;
+    html_code = html_code.replace(/(?:\/\/talk.vtaiwan.tw)?(\/user_avatar.+\.png)/g, function (_0, _1) {
+      return "https://talk.vtaiwan.tw" + _1;
     });
     return $sce.trustAsHtml(html_code);
   };
