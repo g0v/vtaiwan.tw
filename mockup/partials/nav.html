@@ -9,18 +9,9 @@
     <div ng-show="!isProposalSet()">
       <a class="nav_item_sidebar--left" ng-click="go('')" >首頁</a>
       <a class="nav_item_sidebar--left" ng-click="go('proposals')" >主題</a>
-      <a class="nav_item_sidebar--sub"
-          ng-click="go('crowdfunding')">群眾募資<span
-              class="nav_item_sidebar--switchmenu" ng-click="setProposal('crowdfunding');$event.stopPropagation();"><i class="fa fa-chevron-right"></i></span></a>
-
-      <a class="nav_item_sidebar--sub"
-          ng-click="go('closelyheld')">閉鎖型公司<span
-              class="nav_item_sidebar--switchmenu" ng-click="setProposal('closelyheld');$event.stopPropagation();"><i class="fa fa-chevron-right"></i></span></a>
-
-      <a class="nav_item_sidebar--sub"
-          ng-click="go('etax')">網路交易課稅<span
-              class="nav_item_sidebar--switchmenu" ng-click="setProposal('etax');$event.stopPropagation();"><i class="fa fa-chevron-right"></i></span></a>
-
+      <a ng-repeat="t in TOPICS" class="nav_item_sidebar--sub"
+          ng-click="go(t)"><img class="Proposal-proposerImg" ng-src="images/proposer/{{meta[t].proposer_abbr_eng}}.png"><span ng-bind="meta[t].title_cht"><span
+              class="nav_item_sidebar--switchmenu" ng-click="setProposal(t);$event.stopPropagation();"><i class="fa fa-chevron-right"></i></span></a>
       <a class="nav_item_sidebar--left" ng-click="go('how')" >如何發言</a>
       <a class="nav_item_sidebar--left" ng-click="go('tutorial')" >使用手冊</a>
       <a class="nav_item_sidebar--left" ng-click="go('about')" >關於</a>

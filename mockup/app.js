@@ -1,3 +1,8 @@
+var TOPICS =
+    [ 'crowdfunding', 'closelyheld', 'etax'
+    , 'distant-education', 'telework', 'telemedicine'
+    , 'data-levy', 'consumer-protection', 'personal-data-protection'
+    ];
 var app = angular.module("app", [
   "ngRoute",
   "meta"
@@ -11,43 +16,22 @@ app.config(['$routeProvider','$locationProvider','$sceDelegateProvider','MetaPro
       'https://*.vtaiwan.tw/**'
     ]);
 
+    TOPICS.forEach(function(x) {
+        $routeProvider.
+          when('/'+x,{
+          templateUrl: 'partials/proposal.html',
+          controller: 'ProposalCtrl'
+        }).
+          when('/'+x+'/:id',{
+          templateUrl: 'partials/proposal.html',
+          controller: 'ProposalCtrl'
+        }).
+          when('/'+x+'/:id/:topic_id',{
+          templateUrl: 'partials/proposal.html',
+          controller: 'ProposalCtrl'
+        });
+    });
     $routeProvider.
-      when('/crowdfunding',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
-      when('/crowdfunding/:id',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
-      when('/crowdfunding/:id/:topic_id',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
-      when('/closelyheld',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
-      when('/closelyheld/:id',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
-      when('/closelyheld/:id/:topic_id',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
-      when('/etax',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
-      when('/etax/:id',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
-      when('/etax/:id/:topic_id',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
       when('/proposals',{
       templateUrl: 'partials/proposals.html',
       controller: 'IndexCtrl'
@@ -95,12 +79,6 @@ app.factory('DataService', function ($http, $q){
   var CachedData;  // get json data, properly merged, and save locally.
   var CachedFetched = false;
 
-  var proposals = [
-      { "title_cht" : "群眾募資", "title_eng" : "crowdfunding", "category_num" : 6},
-      { "title_cht" : "閉鎖型公司", "title_eng" : "closelyheld", "category_num" : 5},
-      { "title_cht" : "網路交易課稅", "title_eng" : "etax", "category_num" : 14}
-  ];
-
   function removeLexicon (text) {
     var hint = /<span\ class=\"hint\"\ data-hint=\"(?:.+\n?)+\">(.+)<\/span>/;
     return text.replace(hint, function (matched, raw) {
@@ -141,6 +119,7 @@ app.factory('DataService', function ($http, $q){
     var deferred = $q.defer();
 
     //[1] Get gitbook content
+    DataService.getProposalMetaData().then(function(proposals) {
     proposals.map(function (proposal_item) {
         DataService.getBookData(proposal_item.title_eng).then(function (book_data){
             CachedData[proposal_item.title_eng] = {};
@@ -270,7 +249,7 @@ app.factory('DataService', function ($http, $q){
 
         });
 
-    });
+    }); });
 
 
     return deferred.promise;
@@ -278,9 +257,9 @@ app.factory('DataService', function ($http, $q){
 
   DataService.getBookData = function(path){
     var deferred = $q.defer();
-    $http.get('https://' + path + '.vtaiwan.tw/content.json').
+    $http.get('https://api.github.com/repos/g0v/'+ path + '-gitbook/contents/content.json?ref=gh-pages').
         success(function(data, status, headers, config) {
-          deferred.resolve(data);
+          deferred.resolve(JSON.parse((window.atob(data.content))));
         }).
         error(function(data, status, headers, config) {
           deferred.resolve(data);
@@ -328,11 +307,28 @@ app.factory('DataService', function ($http, $q){
 })
 
 app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scope, DataService, $location){
-
+  $scope.TOPICS = TOPICS;
+  $scope.safeApply = function(fn){
+    var phase;
+    phase = $scope.$root.$$phase;
+    if (phase === '$apply' || phase === '$digest') {
+      return typeof fn == 'function' ? fn() : void 8;
+    } else {
+      return $scope.$apply(fn);
+    }
+  };
+  DataService.getProposalMetaData().then(function (data) {
+    $scope.meta = {}
+    $scope.safeApply(function(){
+      data.forEach(function(item) {
+        $scope.meta[item.title_eng] = item;
+      });
+    });
+  });
   $scope.setProposal = function (value) {
     console.log(value);
     console.log("***");
-    $scope.proposal = value;//crowdfunding, closelyheld, etax
+    $scope.proposal = value;
     DataService.getCatchedData().then(function (data) {
       $scope.currentProposal = data[value];
 
@@ -397,6 +393,8 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
           item.step1_start_date = new Date(item.step1_start_date);
           item.step1_end_date = new Date(item.step1_end_date);
 
+          $scope.focusTab[item.title_eng] = 'step' + item.current_step;
+
           //Count hours passed & days left
           //var now = new Date("February 16, 2015 00:00:00");
           var now = new Date();
@@ -429,6 +427,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
           $scope.proposalMeta[item.title_eng].percentage = item.percentage;
           $scope.proposalMeta[item.title_eng].proposer_abbr_eng = item.proposer_abbr_eng;
           $scope.proposalMeta[item.title_eng].proposer_abbr_cht = item.proposer_abbr_cht;
+          $scope.proposalMeta[item.title_eng].title_cht = item.title_cht;
 
 
       });
@@ -460,9 +459,6 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
 
   //default choice
   $scope.focusTab = {};
-  $scope.focusTab['crowdfunding'] = 'step1';
-  $scope.focusTab['closelyheld'] = 'step1';
-  $scope.focusTab['etax'] = 'step1';
 
   $scope.setFocusTab = function (title, value){
     $scope.focusTab[title] = value;

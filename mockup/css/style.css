@@ -539,6 +539,9 @@ a.nav_item_sidebar--sub {
   padding-left: 20px;
   position: relative;
 }
+a.nav_item_sidebar--sub:hover {
+  background: #666;
+}
 .nav_item_sidebar--switchmenu {
   width: 50px;
   padding: 14px;
@@ -1497,4 +1500,17 @@ a.more {
 }
 .ProgressBAr-infoContent {
   min-height: 90px;
+}
+.nav_item_sidebar--sub .Proposal-proposerImg {
+  background: white;
+  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  margin-right: 10px;
+  vertical-align: middle;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  margin-left: -10px;
+  border: 3px solid white;
+  padding: 0;
 }

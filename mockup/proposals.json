@@ -9,7 +9,8 @@
     "gitbook_url": "https://g0v.github.io/crowdfunding-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw/",
     "step1_start_date" : "February 1, 2015 00:00:00",
-    "step1_end_date" : "February 28, 2015 23:59:59"
+    "step1_end_date" : "February 28, 2015 23:59:59",
+    "current_step": 1
   },
   {
     "title_cht": "閉鎖型公司",
@@ -21,7 +22,8 @@
     "gitbook_url": "https://g0v.github.io/closelyheld-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw/",
     "step1_start_date" : "February 1, 2015 00:00:00",
-    "step1_end_date" : "February 28, 2015 23:59:59"
+    "step1_end_date" : "February 28, 2015 23:59:59",
+    "current_step": 1
   },
   {
     "title_cht": "網路交易課稅",
@@ -33,7 +35,8 @@
     "gitbook_url": "https://g0v.github.io/etax-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw/",
     "step1_start_date" : "February 1, 2015 00:00:00",
-    "step1_end_date" : "February 28, 2015 23:59:59"
+    "step1_end_date" : "February 28, 2015 23:59:59",
+    "current_step": 1
   },
   {
     "title_cht": "遠距教育",
@@ -45,7 +48,8 @@
     "gitbook_url": "https://g0v.github.io/distant-education-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw/",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "March 31, 2015 23:59:59"
+    "step1_end_date" : "March 31, 2015 23:59:59",
+    "current_step": 1
   },
   {
     "title_cht": "電傳勞動",
@@ -57,7 +61,8 @@
     "gitbook_url": "https://g0v.github.io/telework-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw/",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "March 31, 2015 23:59:59"
+    "step1_end_date" : "March 31, 2015 23:59:59",
+    "current_step": 1
   },
   {
     "title_cht": "遠距健康照護",
@@ -69,7 +74,8 @@
     "gitbook_url": "https://g0v.github.io/telemedicine-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw/",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "March 31, 2015 23:59:59"
+    "step1_end_date" : "March 31, 2015 23:59:59",
+    "current_step": 1
   },
   {
     "title_cht": "開放資料例外收費原則",
@@ -81,7 +87,8 @@
     "gitbook_url": "https://g0v.github.io/data-levy-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw/",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "March 31, 2015 23:59:59"
+    "step1_end_date" : "March 31, 2015 23:59:59",
+    "current_step": 1
   },
   {
     "title_cht": "零售業網路定型化契約",
@@ -93,7 +100,8 @@
     "gitbook_url": "https://g0v.github.io/consumer-protection-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw/",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "March 31, 2015 23:59:59"
+    "step1_end_date" : "March 31, 2015 23:59:59",
+    "current_step": 1
   },
   {
     "title_cht": "個人資料利用與去識別化",
@@ -105,6 +113,7 @@
     "gitbook_url": "https://g0v.github.io/personal-data-protection-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw/",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "March 31, 2015 23:59:59"
+    "step1_end_date" : "March 31, 2015 23:59:59",
+    "current_step": 1
   }
 ]
