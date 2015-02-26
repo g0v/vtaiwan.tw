@@ -1,52 +1,52 @@
 <div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
 <div id="content">
     <div class="wrapper">
-        <div class="Proposal md-whiteframe-z1" ng-click="go('crowdfunding')">
+        <div ng-repeat="t in TOPICS" class="Proposal md-whiteframe-z1" ng-click="go(t)">
             <div class="Proposal-mainText">
                 <div class="Proposal-header">
                     <div class="Proposal-proposer">
-                      <img class="Proposal-proposerImg" ng-src="images/proposer/{{proposalMeta['crowdfunding'].proposer_abbr_eng}}.png">
+                      <img class="Proposal-proposerImg" ng-src="images/proposer/{{proposalMeta[t].proposer_abbr_eng}}.png">
                     </div>
                     <div class="Proposal-title">
-                    {{proposalMeta['crowdfunding'].proposer_abbr_cht}}：群眾募資
-                    <div class="Proposal-proposerName"><tt>@</tt><a target="_blank" ng-href="https://talk.vtaiwan.tw/users/{{proposalMeta['crowdfunding'].proposer_abbr_eng}}/activity" ng-click="$event.stopPropagation();">{{proposalMeta['crowdfunding'].proposer_abbr_eng}}</a></div>
+                    {{proposalMeta[t].proposer_abbr_cht}}：{{proposalMeta[t].title_cht}}
+                    <div class="Proposal-proposerName"><tt>@</tt><a target="_blank" ng-href="{{proposalMeta[t].discourse_url}}/users/{{proposalMeta[t].proposer_abbr_eng}}/activity" ng-click="$event.stopPropagation();">{{proposalMeta[t].proposer_abbr_eng}}</a></div>
                     </div>
                 </div>
                 <div class="Proposal-content">
-                   <span ng-bind-html="toTrusted(proposal['crowdfunding'])"></span>
+                   <span ng-bind-html="toTrusted(proposal[t])"></span>
                 </div>
             </div>
             <div class="ProgressBar">
                 <div class="ProgressBar-stepTitle" ng-click="">
-                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab('crowdfunding','step1');$event.stopPropagation();" ng-class="{'is-active':isFocusTab('crowdfunding','step1'),'is-inactive':!isFocusTab('crowdfunding','step1')}">討論
-                        <div ng-class="{'ProgressBar-triangleRight':isFocusTab('crowdfunding','step1'),'ProgressBar-triangleRight-inactive':!isFocusTab('crowdfunding','step1')}"></div>
+                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab(t,'step1');$event.stopPropagation();" ng-class="{'is-active':isFocusTab(t,'step1'),'is-inactive':!isFocusTab(t,'step1')}">討論
+                        <div ng-class="{'ProgressBar-triangleRight':isFocusTab(t,'step1'),'ProgressBar-triangleRight-inactive':!isFocusTab(t,'step1')}"></div>
                     </div>
-                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab('crowdfunding','step2');$event.stopPropagation();" ng-class="{'is-active':isFocusTab('crowdfunding','step2'),'is-inactive':!isFocusTab('crowdfunding','step2')}">草案
-                        <div ng-class="{'ProgressBar-triangleRight':isFocusTab('crowdfunding','step2'),'ProgressBar-triangleRight-inactive':!isFocusTab('crowdfunding','step2')}"></div>
+                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab(t,'step2');$event.stopPropagation();" ng-class="{'is-active':isFocusTab(t,'step2'),'is-inactive':!isFocusTab(t,'step2')}">草案
+                        <div ng-class="{'ProgressBar-triangleRight':isFocusTab(t,'step2'),'ProgressBar-triangleRight-inactive':!isFocusTab(t,'step2')}"></div>
                     </div>
-                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab('crowdfunding','step3');$event.stopPropagation();" ng-class="{'is-active':isFocusTab('crowdfunding','step3'),'is-inactive':!isFocusTab('crowdfunding','step3')}">定案
-                        <div ng-class="{'ProgressBar-triangleRight':isFocusTab('crowdfunding','step3'),'ProgressBar-triangleRight-inactive':!isFocusTab('crowdfunding','step3')}"></div>
+                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab(t,'step3');$event.stopPropagation();" ng-class="{'is-active':isFocusTab(t,'step3'),'is-inactive':!isFocusTab(t,'step3')}">定案
+                        <div ng-class="{'ProgressBar-triangleRight':isFocusTab(t,'step3'),'ProgressBar-triangleRight-inactive':!isFocusTab(t,'step3')}"></div>
                     </div>
                 </div>
                 <!-- step 1 info -->
-                <div ng-show="isFocusTab('crowdfunding','step1')">
+                <div ng-show="isFocusTab(t,'step1')">
                 <!-- ProgressBar -->
                     <div class="ProgressBar-barBackground">
-                        <div class="ProgressBar-startDate">{{ proposalMeta['crowdfunding'].step1_start_date | date:'M/d' }}</div>
-                        <div class="ProgressBar-endDate">{{ proposalMeta['crowdfunding'].step1_end_date | date:'M/d' }}</div>
-                    <div class="ProgressBar-barProgress" style="width:{{proposalMeta['crowdfunding'].percentage}}%;"></div>
+                        <div class="ProgressBar-startDate">{{ proposalMeta[t].step1_start_date | date:'M/d' }}</div>
+                        <div class="ProgressBar-endDate">{{ proposalMeta[t].step1_end_date | date:'M/d' }}</div>
+                    <div class="ProgressBar-barProgress" style="width:{{proposalMeta[t].percentage}}%;"></div>
                     </div>
                     <div class="ProgressBAr-infoContent">
-                        <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].left_day}} 天</div></div>
-                        <div class="ProgressBar-stat">討論話題<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].TopicCount}}</div></div>
-                        <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta['crowdfunding'].PostCount}}</div></div>
+                        <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta[t].left_day}} 天</div></div>
+                        <div class="ProgressBar-stat">討論話題<div class="ProgressBar-statHighlight">{{proposalMeta[t].TopicCount}}</div></div>
+                        <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta[t].PostCount}}</div></div>
                     </div>
                 </div>
                 <!-- step 2 info -->
-                <div ng-show="isFocusTab('crowdfunding','step2')">
+                <div ng-show="isFocusTab(t,'step2')">
                 <!-- ProgressBar -->
                     <div class="ProgressBar-barBackground">
-                        <div class="ProgressBar-startDate">2/28</div>
+                        <div class="ProgressBar-startDate">最快 3/1</div>
                         <div class="ProgressBar-endDate">最快 4/1</div>
                         <div class="ProgressBar-barProgress" style="width:0%;"></div>
                     </div>
@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <!-- step 3 info -->
-                <div ng-show="isFocusTab('crowdfunding','step3')">
+                <div ng-show="isFocusTab(t,'step3')">
                     <!-- ProgressBar -->
                     <div class="ProgressBar-barBackground">
                         <div class="ProgressBar-startDate">最快 4/1</div>
@@ -77,160 +77,6 @@
                 </div>
             </div><!-- end of ProgressBar -->
         </div>
-        <div class="Proposal md-whiteframe-z1" ng-click="go('closelyheld')">
-            <div class="Proposal-mainText">
-                <div class="Proposal-header">
-                    <div class="Proposal-proposer">
-                      <img class="Proposal-proposerImg" ng-src="images/proposer/{{proposalMeta['closelyheld'].proposer_abbr_eng}}.png">
-                    </div>
-                    <div class="Proposal-title">
-                    {{proposalMeta['closelyheld'].proposer_abbr_cht}}：閉鎖型公司
-                    <div class="Proposal-proposerName"><tt>@</tt><a target="_blank" ng-href="https://talk.vtaiwan.tw/users/{{proposalMeta['closelyheld'].proposer_abbr_eng}}/activity" ng-click="$event.stopPropagation();">{{proposalMeta['closelyheld'].proposer_abbr_eng}}</a></div>
-                    </div>
-                </div>
-                <div class="Proposal-content">
-                    <span ng-bind-html="toTrusted(proposal['closelyheld'])"></span>
-                </div>
-            </div>
-            <div class="ProgressBar">
-                <div class="ProgressBar-stepTitle" ng-click="">
-                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab('closelyheld','step1');$event.stopPropagation();" ng-class="{'is-active':isFocusTab('closelyheld','step1'),'is-inactive':!isFocusTab('closelyheld','step1')}">討論
-                        <div ng-class="{'ProgressBar-triangleRight':isFocusTab('closelyheld','step1'),'ProgressBar-triangleRight-inactive':!isFocusTab('closelyheld','step1')}"></div>
-                    </div>
-                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab('closelyheld','step2');$event.stopPropagation();" ng-class="{'is-active':isFocusTab('closelyheld','step2'),'is-inactive':!isFocusTab('closelyheld','step2')}">草案
-                        <div ng-class="{'ProgressBar-triangleRight':isFocusTab('closelyheld','step2'),'ProgressBar-triangleRight-inactive':!isFocusTab('closelyheld','step2')}"></div>
-                    </div>
-                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab('closelyheld','step3');$event.stopPropagation();" ng-class="{'is-active':isFocusTab('closelyheld','step3'),'is-inactive':!isFocusTab('closelyheld','step3')}">定案
-                        <div ng-class="{'ProgressBar-triangleRight':isFocusTab('closelyheld','step3'),'ProgressBar-triangleRight-inactive':!isFocusTab('closelyheld','step3')}"></div>
-                    </div>
-                </div>
-                <!-- step 1 info -->
-                <div ng-show="isFocusTab('closelyheld','step1')">
-                <!-- ProgressBar -->
-                    <div class="ProgressBar-barBackground">
-                        <div class="ProgressBar-startDate">{{ proposalMeta['closelyheld'].step1_start_date | date:'M/d' }}</div>
-                        <div class="ProgressBar-endDate">{{ proposalMeta['closelyheld'].step1_end_date | date:'M/d' }}</div>
-                    <div class="ProgressBar-barProgress" style="width:{{proposalMeta['closelyheld'].percentage}}%;"></div>
-                    </div>
-                    <div class="ProgressBAr-infoContent">
-                        <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].left_day}} 天</div></div>
-                        <div class="ProgressBar-stat">討論話題<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].TopicCount}}</div></div>
-                        <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta['closelyheld'].PostCount}}</div></div>
-                    </div>
-                </div>
-                <!-- step 2 info -->
-                <div ng-show="isFocusTab('closelyheld','step2')">
-                <!-- ProgressBar -->
-                    <div class="ProgressBar-barBackground">
-                        <div class="ProgressBar-startDate">2/28</div>
-                        <div class="ProgressBar-endDate">最快 4/1</div>
-                        <div class="ProgressBar-barProgress" style="width:0%;"></div>
-                    </div>
-                    <div class="ProgressBar-infoTitle">本階段尚未開始，目前規劃時程如下</div>
-                    <div class="ProgressBAr-infoContent">
-                    <ul>
-                        <li>2/28 版主群將寄出工作組邀請，聚會採全程逐字稿及錄影直播方式進行</li>
-                        <li>3/1-3/15 工作組第一次聚會</li>
-                        <li>3/15-3/31 工作組第二次聚會</li>
-                        <li>4/1 提案方決定是否繼續提出多次修正版草案，若是，則繼續工作組聚會</li>
-                    </ul>
-                    </div>
-                </div>
-                <!-- step 3 info -->
-                <div ng-show="isFocusTab('closelyheld','step3')">
-                    <!-- ProgressBar -->
-                    <div class="ProgressBar-barBackground">
-                        <div class="ProgressBar-startDate">最快 4/1</div>
-                        <div class="ProgressBar-endDate">未定</div>
-                        <div class="ProgressBar-barProgress" style="width:0%;"></div>
-                    </div>
-                    <div class="ProgressBar-infoTitle">本階段尚未開始，目前規劃時程如下</div>
-                    <div class="ProgressBAr-infoContent">
-                    <ul>
-                        <li>4/1 提案方決定是否繼續提出多次修正版草案，若否，則收斂成定案，進入本階段</li>
-                    </ul>
-                    </div>
-                </div>
-            </div><!-- end of ProgressBar -->
-        </div><!-- end of Proposal -->
-        <div class="Proposal md-whiteframe-z1" ng-click="go('etax')">
-            <div class="Proposal-mainText">
-                <div class="Proposal-header">
-                    <div class="Proposal-proposer">
-                      <img class="Proposal-proposerImg" ng-src="images/proposer/{{proposalMeta['etax'].proposer_abbr_eng}}.png">
-                    </div>
-                    <div class="Proposal-title">
-                    {{proposalMeta['etax'].proposer_abbr_cht}}：網路交易課稅
-                    <div class="Proposal-proposerName"><tt>@</tt><a target="_blank" ng-href="https://talk.vtaiwan.tw/users/{{proposalMeta['etax'].proposer_abbr_eng}}/activity" ng-click="$event.stopPropagation();">{{proposalMeta['etax'].proposer_abbr_eng}}</a></div>
-                    </div>
-                </div>
-                <div class="Proposal-content">
-                    <span ng-bind-html="toTrusted(proposal['etax'])"></span>
-                </div>
-            </div>
-            <div class="ProgressBar">
-                <div class="ProgressBar-stepTitle" ng-click="">
-                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab('etax','step1');$event.stopPropagation();" ng-class="{'is-active':isFocusTab('etax','step1'),'is-inactive':!isFocusTab('etax','step1')}">討論
-                        <div ng-class="{'ProgressBar-triangleRight':isFocusTab('etax','step1'),'ProgressBar-triangleRight-inactive':!isFocusTab('etax','step1')}"></div>
-                    </div>
-                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab('etax','step2');$event.stopPropagation();" ng-class="{'is-active':isFocusTab('etax','step2'),'is-inactive':!isFocusTab('etax','step2')}">草案
-                        <div ng-class="{'ProgressBar-triangleRight':isFocusTab('etax','step2'),'ProgressBar-triangleRight-inactive':!isFocusTab('etax','step2')}"></div>
-                    </div>
-                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab('etax','step3');$event.stopPropagation();" ng-class="{'is-active':isFocusTab('etax','step3'),'is-inactive':!isFocusTab('etax','step3')}">定案
-                        <div ng-class="{'ProgressBar-triangleRight':isFocusTab('etax','step3'),'ProgressBar-triangleRight-inactive':!isFocusTab('etax','step3')}"></div>
-                    </div>
-                </div>
-                <!-- step 1 info -->
-                <div ng-show="isFocusTab('etax','step1')">
-                <!-- ProgressBar -->
-                    <div class="ProgressBar-barBackground">
-                        <div class="ProgressBar-startDate">{{ proposalMeta['etax'].step1_start_date | date:'M/d' }}</div>
-                        <div class="ProgressBar-endDate">{{ proposalMeta['etax'].step1_end_date | date:'M/d' }}</div>
-                    <div class="ProgressBar-barProgress" style="width:{{proposalMeta['etax'].percentage}}%;"></div>
-                    </div>
-                    <div class="ProgressBAr-infoContent">
-                        <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].left_day}} 天</div></div>
-                        <div class="ProgressBar-stat">討論話題<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].TopicCount}}</div></div>
-                        <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta['etax'].PostCount}}</div></div>
-                    </div>
-                </div>
-                <!-- step 2 info -->
-                <div ng-show="isFocusTab('etax','step2')">
-                <!-- ProgressBar -->
-                    <div class="ProgressBar-barBackground">
-                        <div class="ProgressBar-startDate">2/28</div>
-                        <div class="ProgressBar-endDate">最快 4/1</div>
-                        <div class="ProgressBar-barProgress" style="width:0%;"></div>
-                    </div>
-                    <div class="ProgressBar-infoTitle">本階段尚未開始，目前規劃時程如下</div>
-                    <div class="ProgressBAr-infoContent">
-                    <ul>
-                        <li>2/28 版主群將寄出工作組邀請，聚會採全程逐字稿及錄影直播方式進行</li>
-                        <li>3/1-3/15 工作組第一次聚會</li>
-                        <li>3/15-3/31 工作組第二次聚會</li>
-                        <li>4/1 提案方決定是否繼續提出多次修正版草案，若是，則繼續工作組聚會</li>
-                    </ul>
-                    </div>
-                </div>
-                <!-- step 3 info -->
-                <div ng-show="isFocusTab('etax','step3')">
-                    <!-- ProgressBar -->
-                    <div class="ProgressBar-barBackground">
-                        <div class="ProgressBar-startDate">最快 4/1</div>
-                        <div class="ProgressBar-endDate">未定</div>
-                        <div class="ProgressBar-barProgress" style="width:0%;"></div>
-                    </div>
-                    <div class="ProgressBar-infoTitle">本階段尚未開始，目前規劃時程如下</div>
-                    <div class="ProgressBAr-infoContent">
-                    <ul>
-                        <li>4/1 提案方決定是否繼續提出多次修正版草案，若否，則收斂成定案，進入本階段</li>
-                    </ul>
-                    </div>
-                </div>
-            </div><!-- end of ProgressBar -->
-        </div><!-- end of Proposal -->
-
-        
         <div class="l_center">
             <a class="about_item_button" ng-click="go('tutorial')">使用手冊</a>
         </div>

@@ -7,7 +7,7 @@
     "category_num": 6,
     "prefix_cht": "數位商務模式：",
     "gitbook_url": "https://g0v.github.io/crowdfunding-gitbook",
-    "discourse_url": "https://talk.vtaiwan.tw/",
+    "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "February 1, 2015 00:00:00",
     "step1_end_date" : "February 28, 2015 23:59:59",
     "current_step": 1
@@ -20,7 +20,7 @@
     "category_num": 5,
     "prefix_cht": "數位商務模式：",
     "gitbook_url": "https://g0v.github.io/closelyheld-gitbook",
-    "discourse_url": "https://talk.vtaiwan.tw/",
+    "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "February 1, 2015 00:00:00",
     "step1_end_date" : "February 28, 2015 23:59:59",
     "current_step": 1
@@ -33,7 +33,7 @@
     "category_num": 14,
     "prefix_cht": "數位商務模式：",
     "gitbook_url": "https://g0v.github.io/etax-gitbook",
-    "discourse_url": "https://talk.vtaiwan.tw/",
+    "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "February 1, 2015 00:00:00",
     "step1_end_date" : "February 28, 2015 23:59:59",
     "current_step": 1
@@ -46,7 +46,7 @@
     "category_num": 17,
     "prefix_cht": "數位生活：",
     "gitbook_url": "https://g0v.github.io/distant-education-gitbook",
-    "discourse_url": "https://talk.vtaiwan.tw/",
+    "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
     "step1_end_date" : "March 31, 2015 23:59:59",
     "current_step": 1
@@ -59,7 +59,7 @@
     "category_num": 18,
     "prefix_cht": "數位生活：",
     "gitbook_url": "https://g0v.github.io/telework-gitbook",
-    "discourse_url": "https://talk.vtaiwan.tw/",
+    "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
     "step1_end_date" : "March 31, 2015 23:59:59",
     "current_step": 1
@@ -72,7 +72,7 @@
     "category_num": 19,
     "prefix_cht": "數位生活：",
     "gitbook_url": "https://g0v.github.io/telemedicine-gitbook",
-    "discourse_url": "https://talk.vtaiwan.tw/",
+    "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
     "step1_end_date" : "March 31, 2015 23:59:59",
     "current_step": 1
@@ -85,7 +85,7 @@
     "category_num": 20,
     "prefix_cht": "數位公民環境：",
     "gitbook_url": "https://g0v.github.io/data-levy-gitbook",
-    "discourse_url": "https://talk.vtaiwan.tw/",
+    "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
     "step1_end_date" : "March 31, 2015 23:59:59",
     "current_step": 1
@@ -98,7 +98,7 @@
     "category_num": 21,
     "prefix_cht": "數位公民環境：",
     "gitbook_url": "https://g0v.github.io/consumer-protection-gitbook",
-    "discourse_url": "https://talk.vtaiwan.tw/",
+    "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
     "step1_end_date" : "March 31, 2015 23:59:59",
     "current_step": 1
@@ -111,7 +111,7 @@
     "category_num": 22,
     "prefix_cht": "數位公民環境：",
     "gitbook_url": "https://g0v.github.io/personal-data-protection-gitbook",
-    "discourse_url": "https://talk.vtaiwan.tw/",
+    "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
     "step1_end_date" : "March 31, 2015 23:59:59",
     "current_step": 1

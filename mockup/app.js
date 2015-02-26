@@ -361,6 +361,7 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scop
 
 app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
   $scope.proposal = {};
+  $scope.TOPICS = TOPICS;
 
   DataService.getCatchedData().then(function (d) {
     Object.keys(d).map(function (title){
