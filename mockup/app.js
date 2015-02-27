@@ -432,6 +432,8 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
         $scope.proposalMeta = {};
 
       data.map(function(item){
+          $scope.proposalMeta[item.title_eng] = item;
+
           //Parse date strings to JS date object
           item.step1_start_date = new Date(item.step1_start_date);
           item.step1_end_date = new Date(item.step1_end_date);
@@ -457,23 +459,6 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
             item.left_day = Math.round(total_hours / 24);
             item.percentage = 0;
           }
-
-          if(!$scope.proposalMeta[item.title_eng])
-             $scope.proposalMeta[item.title_eng] = {};
-
-          //// Can be improve
-
-          $scope.proposalMeta[item.title_eng].passsed_hour = item.passsed_hour;
-          $scope.proposalMeta[item.title_eng].left_day = item.left_day;
-          $scope.proposalMeta[item.title_eng].step1_start_date = item.step1_start_date;
-          $scope.proposalMeta[item.title_eng].step1_end_date = item.step1_end_date;
-          $scope.proposalMeta[item.title_eng].percentage = item.percentage;
-          $scope.proposalMeta[item.title_eng].proposer_abbr_eng = item.proposer_abbr_eng;
-          $scope.proposalMeta[item.title_eng].proposer_abbr_cht = item.proposer_abbr_cht;
-          $scope.proposalMeta[item.title_eng].title_cht = item.title_cht;
-          $scope.proposalMeta[item.title_eng].prefix_eng = item.prefix_eng;
-
-
       });
   });
 
