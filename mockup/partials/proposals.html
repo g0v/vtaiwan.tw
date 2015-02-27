@@ -1,7 +1,7 @@
 <div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
 <div id="content">
     <div class="wrapper">
-        <div ng-repeat="t in TOPICS" class="Proposal md-whiteframe-z1" ng-click="go(t)">
+        <div ng-repeat="t in getTopics()" class="Proposal md-whiteframe-z1" ng-click="go(t)">
             <div class="Proposal-mainText">
                 <div class="Proposal-header">
                     <div class="Proposal-proposer">

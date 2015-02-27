@@ -3,7 +3,25 @@ var TOPICS =
     , 'distant-education', 'telework', 'telemedicine'
     , 'data-levy', 'consumer-protection', 'personal-data-protection'
     ];
+var PREFIXES =
+    [ { key: "commerce"
+      , title: "可以不去開曼設公司嗎？"
+      , description: "台灣許多新創公司都會跑去開曼群島之類的地方設立，為什麼不願意留在台灣呢？"
+      , issue: "群眾募資、閉鎖型公司、網路交易課稅"
+      }
+    , { key: "lifestyle"
+      , title: "踏進充滿想像的任意門。"
+      , description: "在數位化生活的時代，要怎樣利用網路無遠弗屆的特性，創造更多的想像空間？"
+      , issue: "遠距教育、勞動、健康照護"
+      }
+    , { key: "civic"
+      , title: "黑盒子打開之後..."
+      , description: "透過網路發展的公民社會，應該如何同時營造自由且安全的數位環境？"
+      , issue: "開放資料、消費者保護、個人資料去識別化"
+      }
+    ];
 var app = angular.module("app", [
+  "angular-carousel",
   "ngRoute",
   "meta"
 ]);
@@ -31,6 +49,14 @@ app.config(['$routeProvider','$locationProvider','$sceDelegateProvider','MetaPro
           controller: 'ProposalCtrl'
         });
     });
+    PREFIXES.forEach(function(x) {
+      $routeProvider.
+        when('/' + x.key,{
+        templateUrl: 'partials/proposals.html',
+        controller: 'IndexCtrl'
+      });
+    });
+
     $routeProvider.
       when('/proposals',{
       templateUrl: 'partials/proposals.html',
@@ -257,9 +283,15 @@ app.factory('DataService', function ($http, $q){
 
   DataService.getBookData = function(path){
     var deferred = $q.defer();
+    var b64 = localStorage.getItem(path);
+    if (b64) {
+        deferred.resolve(JSON.parse(window.atob(b64)));
+        return deferred.promise;
+    }
     $http.get('https://api.github.com/repos/g0v/'+ path + '-gitbook/contents/content.json?ref=gh-pages').
         success(function(data, status, headers, config) {
-          deferred.resolve(JSON.parse((window.atob(data.content))));
+            localStorage.setItem(path, data.content);
+            deferred.resolve(JSON.parse(window.atob(data.content)));
         }).
         error(function(data, status, headers, config) {
           deferred.resolve(data);
@@ -362,8 +394,18 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scop
 app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
   $scope.proposal = {};
   $scope.TOPICS = TOPICS;
-
-  DataService.getCatchedData().then(function (d) {
+  $scope.PREFIXES = PREFIXES;
+  $scope.safeApply = function(fn){
+    var phase;
+    phase = $scope.$$phase;
+    if (phase === '$apply' || phase === '$digest') {
+      return fn();
+    } else {
+      return $scope.$apply(fn);
+    }
+  };
+  DataService.getCatchedData().then(function (d) { $scope.safeApply(function(){
+    $scope.idx = 1;
     Object.keys(d).map(function (title){
       var blockquote = d[title].categories[0].content.match(/<blockquote>\n((?:.+\n)+)<\/blockquote>\n/);
       $scope.proposal[title] = (blockquote)? blockquote[1] : "";
@@ -382,7 +424,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
 
 
     });
-  });
+  }) });
 
   DataService.getProposalMetaData().then(function (data) {
 
@@ -429,6 +471,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
           $scope.proposalMeta[item.title_eng].proposer_abbr_eng = item.proposer_abbr_eng;
           $scope.proposalMeta[item.title_eng].proposer_abbr_cht = item.proposer_abbr_cht;
           $scope.proposalMeta[item.title_eng].title_cht = item.title_cht;
+          $scope.proposalMeta[item.title_eng].prefix_eng = item.prefix_eng;
 
 
       });
@@ -439,17 +482,17 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
       $location.path(path);
   };
 
-  $scope.cover = "cover_small";
+  $scope.cover = "small";
   if($( window ).width() > 400){
-    $scope.cover = "cover_large";
+    $scope.cover = "large";
   }
 
   $( window ).resize(function() {
     //console.log($( window ).width());
     if($( window ).width() > 400){
-      $scope.cover = "cover_large";
+      $scope.cover = "large";
     }else{
-      $scope.cover = "cover_small";
+      $scope.cover = "small";
     }
     $scope.$apply();
   });
@@ -467,7 +510,14 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
   $scope.isFocusTab = function (title, value){
     return $scope.focusTab[title] === value;
   };
-
+  $scope.getTopics = function () {
+    var key = $location.url().replace(/\/+/g, '');
+    if (key === 'proposals' || !$scope.proposalMeta) { return TOPICS; }
+    return TOPICS.filter(function(t){
+        console.log($scope.proposalMeta[t]);
+        return($scope.proposalMeta[t].prefix_eng === key);
+    });
+  };
 }]);
 
 app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){
