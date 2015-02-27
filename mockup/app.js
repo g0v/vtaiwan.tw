@@ -310,9 +310,9 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scop
   $scope.TOPICS = TOPICS;
   $scope.safeApply = function(fn){
     var phase;
-    phase = $scope.$root.$$phase;
+    phase = $scope.$$phase;
     if (phase === '$apply' || phase === '$digest') {
-      return typeof fn == 'function' ? fn() : void 8;
+      return fn();
     } else {
       return $scope.$apply(fn);
     }
