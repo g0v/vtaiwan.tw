@@ -1,5 +1,29 @@
 "use strict";
+var PROPOSALS = {{proposals}};
+var TOPICS =
+    [ 'crowdfunding', 'closelyheld', 'etax'
+    , 'distant-education', 'telework', 'telemedicine'
+    , 'data-levy', 'consumer-protection', 'personal-data-protection'
+    ];
+var PREFIXES =
+    [ { key: "commerce"
+      , title: "可以不去開曼設公司嗎？"
+      , description: "台灣許多新創公司都會跑去開曼群島之類的地方設立，為什麼不願意留在台灣呢？"
+      , issue: "群眾募資、閉鎖型公司、網路交易課稅"
+      }
+    , { key: "lifestyle"
+      , title: "踏進充滿想像的任意門。"
+      , description: "在數位化生活的時代，要怎樣利用網路無遠弗屆的特性，創造更多的想像空間？"
+      , issue: "遠距教育、勞動、健康照護"
+      }
+    , { key: "civic"
+      , title: "黑盒子打開之後..."
+      , description: "透過網路發展的公民社會，應該如何同時營造自由且安全的數位環境？"
+      , issue: "開放資料、消費者保護、個人資料去識別化"
+      }
+    ];
 var app = angular.module("app", [
+  "angular-carousel",
   "ngRoute",
   "meta"
 ]);
@@ -12,43 +36,30 @@ app.config(['$routeProvider','$locationProvider','$sceDelegateProvider','MetaPro
       'https://*.vtaiwan.tw/**'
     ]);
 
+    TOPICS.forEach(function(x) {
+        $routeProvider.
+          when('/'+x,{
+          templateUrl: 'partials/proposal.html',
+          controller: 'ProposalCtrl'
+        }).
+          when('/'+x+'/:id',{
+          templateUrl: 'partials/proposal.html',
+          controller: 'ProposalCtrl'
+        }).
+          when('/'+x+'/:id/:topic_id',{
+          templateUrl: 'partials/proposal.html',
+          controller: 'ProposalCtrl'
+        });
+    });
+    PREFIXES.forEach(function(x) {
+      $routeProvider.
+        when('/' + x.key,{
+        templateUrl: 'partials/proposals.html',
+        controller: 'IndexCtrl'
+      });
+    });
+
     $routeProvider.
-      when('/crowdfunding',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
-      when('/crowdfunding/:id',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
-      when('/crowdfunding/:id/:topic_id',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
-      when('/closelyheld',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
-      when('/closelyheld/:id',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
-      when('/closelyheld/:id/:topic_id',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
-      when('/etax',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
-      when('/etax/:id',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
-      when('/etax/:id/:topic_id',{
-      templateUrl: 'partials/proposal.html',
-      controller: 'ProposalCtrl'
-    }).
       when('/proposals',{
       templateUrl: 'partials/proposals.html',
       controller: 'IndexCtrl'
@@ -96,8 +107,6 @@ app.factory('DataService', function ($http, $q){
   var CachedData;  // get json data, properly merged, and save locally.
   var CachedFetched = false;
 
-  var proposals = {{proposals}};
-
   function removeLexicon (text) {
     var hint = /<span\ class=\"hint\"\ data-hint=\"(?:.+\n?)+\">(.+)<\/span>/;
     return text.replace(hint, function (matched, raw) {
@@ -138,6 +147,7 @@ app.factory('DataService', function ($http, $q){
     var deferred = $q.defer();
 
     //[1] Get gitbook content
+    DataService.getProposalMetaData().then(function(proposals) {
     proposals.map(function (proposal_item) {
         DataService.getBookData(proposal_item.title_eng).then(function (book_data){
             CachedData[proposal_item.title_eng] = {};
@@ -267,7 +277,7 @@ app.factory('DataService', function ($http, $q){
 
         });
 
-    });
+    }); });
 
 
     return deferred.promise;
@@ -311,6 +321,8 @@ app.factory('DataService', function ($http, $q){
 
   DataService.getProposalMetaData = function(topicID){
     var deferred = $q.defer();
+    deferred.resolve(PROPOSALS);
+    return deferred.promise;
     $http.get('proposals.json').
     success(function(data, status, headers, config) {
           deferred.resolve(data);
@@ -325,11 +337,28 @@ app.factory('DataService', function ($http, $q){
 })
 
 app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scope, DataService, $location){
-
+  $scope.TOPICS = TOPICS;
+  $scope.safeApply = function(fn){
+    var phase;
+    phase = $scope.$$phase;
+    if (phase === '$apply' || phase === '$digest') {
+      return fn();
+    } else {
+      return $scope.$apply(fn);
+    }
+  };
+  DataService.getProposalMetaData().then(function (data) {
+    $scope.meta = {}
+    $scope.safeApply(function(){
+      data.forEach(function(item) {
+        $scope.meta[item.title_eng] = item;
+      });
+    });
+  });
   $scope.setProposal = function (value) {
     console.log(value);
     console.log("***");
-    $scope.proposal = value;//crowdfunding, closelyheld, etax
+    $scope.proposal = value;
     DataService.getCatchedData().then(function (data) {
       $scope.currentProposal = data[value];
 
@@ -362,8 +391,19 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scop
 
 app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
   $scope.proposal = {};
-
-  DataService.getCatchedData().then(function (d) {
+  $scope.TOPICS = TOPICS;
+  $scope.PREFIXES = PREFIXES;
+  $scope.safeApply = function(fn){
+    var phase;
+    phase = $scope.$$phase;
+    if (phase === '$apply' || phase === '$digest') {
+      return fn();
+    } else {
+      return $scope.$apply(fn);
+    }
+  };
+  DataService.getCatchedData().then(function (d) { $scope.safeApply(function(){
+    $scope.idx = 1;
     Object.keys(d).map(function (title){
       var blockquote = d[title].categories[0].content.match(/<blockquote>\n((?:.+\n)+)<\/blockquote>\n/);
       $scope.proposal[title] = (blockquote)? blockquote[1] : "";
@@ -382,7 +422,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
 
 
     });
-  });
+  }) });
 
   DataService.getProposalMetaData().then(function (data) {
 
@@ -390,9 +430,13 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
         $scope.proposalMeta = {};
 
       data.map(function(item){
+          $scope.proposalMeta[item.title_eng] = item;
+
           //Parse date strings to JS date object
           item.step1_start_date = new Date(item.step1_start_date);
           item.step1_end_date = new Date(item.step1_end_date);
+
+          $scope.focusTab[item.title_eng] = 'step' + item.current_step;
 
           //Count hours passed & days left
           //var now = new Date("February 16, 2015 00:00:00");
@@ -413,21 +457,6 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
             item.left_day = Math.round(total_hours / 24);
             item.percentage = 0;
           }
-
-          if(!$scope.proposalMeta[item.title_eng])
-             $scope.proposalMeta[item.title_eng] = {};
-
-          //// Can be improve
-
-          $scope.proposalMeta[item.title_eng].passsed_hour = item.passsed_hour;
-          $scope.proposalMeta[item.title_eng].left_day = item.left_day;
-          $scope.proposalMeta[item.title_eng].step1_start_date = item.step1_start_date;
-          $scope.proposalMeta[item.title_eng].step1_end_date = item.step1_end_date;
-          $scope.proposalMeta[item.title_eng].percentage = item.percentage;
-          $scope.proposalMeta[item.title_eng].proposer_abbr_eng = item.proposer_abbr_eng;
-          $scope.proposalMeta[item.title_eng].proposer_abbr_cht = item.proposer_abbr_cht;
-
-
       });
   });
 
@@ -436,17 +465,17 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
       $location.path(path);
   };
 
-  $scope.cover = "cover_small";
+  $scope.cover = "small";
   if($( window ).width() > 400){
-    $scope.cover = "cover_large";
+    $scope.cover = "large";
   }
 
   $( window ).resize(function() {
     //console.log($( window ).width());
     if($( window ).width() > 400){
-      $scope.cover = "cover_large";
+      $scope.cover = "large";
     }else{
-      $scope.cover = "cover_small";
+      $scope.cover = "small";
     }
     $scope.$apply();
   });
@@ -458,9 +487,6 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
 
   //default choice
   $scope.focusTab = {};
-  $scope.focusTab['crowdfunding'] = 'step1';
-  $scope.focusTab['closelyheld'] = 'step1';
-  $scope.focusTab['etax'] = 'step1';
 
   $scope.setFocusTab = function (title, value){
     $scope.focusTab[title] = value;
@@ -468,7 +494,14 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
   $scope.isFocusTab = function (title, value){
     return $scope.focusTab[title] === value;
   };
-
+  $scope.getTopics = function () {
+    var key = $location.url().replace(/\/+/g, '');
+    if (key === 'proposals' || !$scope.proposalMeta) { return TOPICS; }
+    return TOPICS.filter(function(t){
+        console.log($scope.proposalMeta[t]);
+        return($scope.proposalMeta[t].prefix_eng === key);
+    });
+  };
 }]);
 
 app.controller('ProposalCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', '$route', function ($scope, DataService, $location, $sce, $routeParams, $route){

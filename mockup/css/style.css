@@ -539,6 +539,9 @@ a.nav_item_sidebar--sub {
   padding-left: 20px;
   position: relative;
 }
+a.nav_item_sidebar--sub:hover {
+  background: #666;
+}
 .nav_item_sidebar--switchmenu {
   width: 50px;
   padding: 14px;
@@ -718,6 +721,7 @@ a.nav_item_sidebar--sub {
 .cover {
   color: white;
   position: relative;
+  background: #eee;
 }
 .cover_title_wrap {
   width: 100%;
@@ -730,13 +734,26 @@ a.nav_item_sidebar--sub {
 }
 .cover_title {
   display: inline-block;
-  background: rgba(0,0,0,0.12);
-  box-shadow: 0 0 40px rgba(0,0,0,0.12);
+  background: rgba(0,0,0,0.25);
+  box-shadow: 0 0 40px rgba(0,0,0,0.25);
   padding-left: 20px;
+  color: white;
 
+}
+.cover_img_wrap {
+  display: inline-block;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  outline: 1px solid #888;
+  text-align: center;
 }
 .cover_img {
   width: 100%;
+  min-width: 700px;
+  height: 300px;
+  margin-left: -50%;
+  margin-right: -50%;
 }
 .cover_botton_wrap {
   font-size: 16px;
@@ -748,6 +765,8 @@ a.nav_item_sidebar--sub {
   margin: 2px;
   margin-top: 6px;
   cursor: pointer;
+  color: white;
+  background: rgba(0,0,0,0.5);
 
   transition-property: background;
   transition-duration: .5s;
@@ -755,7 +774,7 @@ a.nav_item_sidebar--sub {
 
 }
 .cover_botton:hover {
-  background: white;
+  background: rgba(255,255,255,1);
   color: rgb(53,55,54);
 
   transition-property: background;
@@ -810,6 +829,7 @@ a.nav_item_sidebar--sub {
   font-size: 20px;
   color: rgb(63,159,155);
   font-weight: 900;
+  text-align: center;
 }
 .Stage-content {
   overflow: hidden;
@@ -1308,6 +1328,9 @@ a.more {
     border: 3px solid #999;
     border-radius: 5px;
 }
+.about_item_content img {
+    max-height: 600px;
+}
 /* Proposal Items */
 .Proposal {
   background: white;
@@ -1497,4 +1520,41 @@ a.more {
 }
 .ProgressBAr-infoContent {
   min-height: 90px;
+}
+.nav_item_sidebar--sub .Proposal-proposerImg {
+  background: white;
+  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  margin-right: 10px;
+  vertical-align: middle;
+  margin-top: -20px;
+  margin-bottom: -10px;
+  margin-left: -10px;
+  border: 3px solid white;
+  padding: 0;
+}
+.nav_item_sidebar--sub .title_cht {
+  overflow: hidden;
+  max-width: 170px;
+  display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#content--cover .rn-carousel-control-prev {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 48px;
+  padding-top: 120px;
+  padding-left: 12px;
+}
+#content--cover .rn-carousel-control-next {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 48px;
+  padding-top: 120px;
+  padding-right: 12px;
+  text-align: right;
 }

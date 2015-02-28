@@ -27,6 +27,7 @@ gulp.task("css", ["clean"], function () {
     }))
     .pipe(addSrc("mockup/css/style.css"))
     .pipe(addSrc("mockup/css/lexicon.css"))
+    .pipe(addSrc("mockup/css/angular-carousel.css"))
     .pipe(stripCssComments())
     .pipe(concat("app.css"))
     .pipe(cssmin())

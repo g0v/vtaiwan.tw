@@ -7,24 +7,32 @@
 </div>
 
 <div id="content--cover">
-    <div class="cover">
+    <div class="cover" style="overflow: hidden">
+    <ul rn-carousel rn-carousel-index="idx"
+        rn-carousel-controls
+        rn-carousel-transition="hexagon"
+        rn-carousel-buffered style="height: 300px; margin-left: 20%; margin-right: 20%">
+    <li ng-repeat="p in PREFIXES">
         <div class="cover_title_wrap">
-          <div class="cover_title">可以不去開曼設公司嗎？{{sidebar}}</div>
+          <div class="cover_title">{{p.title}}{{sidebar}}</div>
           <div class="cover_botton_wrap">
-              <div class="cover_botton" ng-click="go('proposals')">參與討論</div>
+              <div class="cover_botton" ng-click="go(p.key)">參與討論</div>
           </div>
 
         </div>
-        <img class="cover_img" ng-src="images/{{cover}}.jpg">
-       
-    </div>
-    <div class="wrapper">
+        <div class="cover_img_wrap">
+            <img class="cover_img" ng-src="images/cover/{{p.key}}.jpg">
+        </div>
+    </li>
+    </ul>
+        </div>
+
       <div class="about_paper md-whiteframe-z1">
         <div class="about_item">
-            <div class="about_item_title">可以不去開曼設公司嗎？</div>
+            <div class="about_item_title" ng-bind="PREFIXES[idx].issue"></div>
             <div class="about_item_content">
-              <p>台灣許多新創公司都會跑去開曼群島之類的地方設立，為什麼不願意留在台灣呢？</p>
-              <p>我們希望能完整討論<b>數位商業法制缺乏彈性</b>的相關問題，進而為每項提案徵集工作小組，為解決這個問題形成法規草案。</p>
+              <p ng-bind="PREFIXES[idx].description"></p>
+              <p>我們希望能完整討論相關問題，進而為每項提案徵集工作小組，為解決這個問題形成法規草案。</p>
               <p>作為公眾參與政策形成與法令訂定過程透明化的一次實驗，我們會分三個階段進行：</p>
 
               <div class="Stage">
