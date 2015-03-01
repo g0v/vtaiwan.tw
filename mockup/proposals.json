@@ -11,7 +11,7 @@
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "February 1, 2015 00:00:00",
     "step1_end_date" : "February 28, 2015 23:59:59",
-    "current_step": 1
+    "current_step": 2
   },
   {
     "title_cht": "閉鎖型公司",
@@ -25,7 +25,7 @@
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "February 1, 2015 00:00:00",
     "step1_end_date" : "February 28, 2015 23:59:59",
-    "current_step": 1
+    "current_step": 2
   },
   {
     "title_cht": "網路交易課稅",
@@ -39,7 +39,7 @@
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "February 1, 2015 00:00:00",
     "step1_end_date" : "February 28, 2015 23:59:59",
-    "current_step": 1
+    "current_step": 2
   },
   {
     "title_cht": "遠距教育",
