@@ -1,5 +1,5 @@
 var TOPICS =
-    [ 'crowdfunding', 'closelyheld', 'etax'
+    [ 'crowdfunding', 'closelyheld', 'closelyheld-ref1', 'etax'
     , 'distant-education', 'telework', 'telemedicine'
     , 'data-levy', 'consumer-protection', 'personal-data-protection'
     ];
