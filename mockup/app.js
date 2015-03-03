@@ -324,7 +324,6 @@ app.factory('DataService', function ($http, $q){
           $http.get('https://talk.vtaiwan.tw/t/topic/'+topicID+'.json?page=' + i).
             success(function (pageData) {
               data.post_stream.posts = data.post_stream.posts.concat(pageData.post_stream.posts);
-              console.log(data);
               if (data.post_stream.posts.length === data.posts_count) {
                 data.post_stream.posts.sort();
                 deferred.resolve(data);
