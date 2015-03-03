@@ -56,7 +56,7 @@
           </div>
           <!-- reply link panel -->
           <div class="post_item_share_panel web" ng-show="shouldShowSharePanel($index)">
-            <input class="post_item_share_panel-input" value="https://vtaiwan.tw/#!/closelyheld/{{focusCategory}}/{{currentDiscussion.id}}" id="input_{{$index}}" />
+            <input class="post_item_share_panel-input" value="https://vtaiwan.tw/#!/{{currentProposal.title_eng}}/{{focusCategory}}/{{currentDiscussion.id}}" id="input_{{$index}}" />
             <div class="post_item_share_panel-remove-bottom" ng-click="setSharePanel(false)"><i class="fa fa-times"></i></div>
           </div>
 
@@ -66,7 +66,7 @@
         <div class="post_item_share_panel mobile" ng-show="shouldShowSharePanel($index)">
           <div class="post_item_share_panel-mobile">
               連結到這個討論串：
-              <a href="https://vtaiwan.tw/#!/closelyheld/{{focusCategory}}/{{currentDiscussion.id}}" target="new">https://vtaiwan.tw/#!/closelyheld/{{focusCategory}}/{{currentDiscussion.id}}</a>
+              <a href="https://vtaiwan.tw/#!/{{currentProposal.title_eng}}/{{focusCategory}}/{{currentDiscussion.id}}" target="_blank">https://vtaiwan.tw/#!/{{currentProposal.title_eng}}/{{focusCategory}}/{{currentDiscussion.id}}</a>
           </div>
           <div class="post_item_share_panel-remove-top" ng-click="setSharePanel(false)"><i class="fa fa-times"></i></div>
         </div>
