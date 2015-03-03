@@ -297,7 +297,7 @@ a.button--wide {
   top: 0px;
   left: -100%;
   overflow: scroll;
-  position: absolute;
+  position: fixed;
   text-align: center;
 
   -moz-transition: .2s;
@@ -834,7 +834,7 @@ a.nav_item_sidebar--sub:hover {
 .Stage-content {
   overflow: hidden;
   _overflow:visible;
-  zoom:1; 
+  zoom:1;
   padding-left: 5px;
 }
 .Stage-index-number {
@@ -1362,7 +1362,7 @@ a.more {
   padding-bottom: 5px;
   display: inline-block;
   vertical-align: top;
-  
+
 }
 @media screen and (min-width: 400px){
   .Proposal-title {
