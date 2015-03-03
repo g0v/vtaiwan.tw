@@ -23,7 +23,9 @@ var PREFIXES =
 var app = angular.module("app", [
   "angular-carousel",
   "ngRoute",
-  "meta"
+  "meta",
+  "angulartics",
+  "angulartics.google.analytics"
 ]);
 
 app.config(['$routeProvider','$locationProvider','$sceDelegateProvider','MetaProvider',
