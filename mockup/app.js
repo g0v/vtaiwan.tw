@@ -325,7 +325,9 @@ app.factory('DataService', function ($http, $q){
             success(function (pageData) {
               data.post_stream.posts = data.post_stream.posts.concat(pageData.post_stream.posts);
               if (data.post_stream.posts.length === data.posts_count) {
-                data.post_stream.posts.sort();
+                data.post_stream.posts.sort(function (a, b) {
+                  return +a.id - +b.id;
+                });
                 deferred.resolve(data);
               }
             }).
