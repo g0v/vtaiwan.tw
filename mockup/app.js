@@ -312,12 +312,29 @@ app.factory('DataService', function ($http, $q){
   DataService.getPostData = function(topicID){
     var deferred = $q.defer();
     $http.get('https://talk.vtaiwan.tw/t/topic/'+topicID+'.json').
-    success(function(data, status, headers, config) {
-          deferred.resolve(data);
-        }).
-        error(function(data, status, headers, config) {
-          deferred.resolve(data);
-        });
+      success(function(data, status, headers, config) {
+        if (data.posts_count <= 20) {
+          return deferred.resolve(data);
+        }
+        for (var i = 2; i <= parseInt(data.posts_count/20)+1; i++) {
+          $http.get('https://talk.vtaiwan.tw/t/topic/'+topicID+'.json?page=' + i).
+            success(function (pageData) {
+              data.post_stream.posts = data.post_stream.posts.concat(pageData.post_stream.posts);
+              if (data.post_stream.posts.length === data.posts_count) {
+                data.post_stream.posts.sort(function (a, b) {
+                  return +a.id - +b.id;
+                });
+                deferred.resolve(data);
+              }
+            }).
+            error(function(data) {
+              deferred.resolve(data);
+            });
+        }
+      }).
+      error(function(data, status, headers, config) {
+        deferred.resolve(data);
+      });
     return deferred.promise;
   };
 
