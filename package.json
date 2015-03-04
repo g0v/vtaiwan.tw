@@ -4,8 +4,15 @@
   "description": "vtaiwan.tw",
   "main": "server.js",
   "dependencies": {
+    "ansi-regex": "^1.1.1",
     "express": "^4.10.7",
     "prerender-node": "^1.2.0"
+    "lodash": "^3.3.1",
+    "minimist": "^1.1.0",
+    "prerender-node": "^1.2.0",
+    "readable-stream": "^1.0.33",
+    "tar-stream": "^1.1.2",
+    "through2": "^0.6.3"
   },
   "devDependencies": {
     "del": "^1.1.1",
