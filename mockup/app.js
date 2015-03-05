@@ -469,6 +469,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
             var left = (item.step1_end_date.getTime() - now.getTime());
             item.left_day = Math.round(left / (3600*1000) / 24);
             item.percentage = Math.round(item.passed_hour / total_hours * 100);
+            if (item.percentage > 100) { item.percentage = 100; item.left_day = 0 }
 
             console.log(item.percentage);
 
