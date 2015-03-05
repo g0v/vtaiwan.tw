@@ -36,6 +36,11 @@
   <div ng-show="currentCategory.nextid" class="navigation navigation--next" ng-click="toggleCategory(currentCategory.nextid)"><i class="fa fa-chevron-right"></i></div>
 
   </div><!-- wrapper -->
+        <div class="l_center" ng-hide="currentCategory.preid">
+            <a style="white-space: nowrap; font-size: 20px; margin-top: 15px" target="_blank"
+                class="about_item_button" href="https://talk.vtaiwan.tw/c/{{
+                currentProposal.title_eng }}">展開所有話題</a>
+        </div>
   
   <!-- . . . . . . . . . . . . -->
 </div><!-- content -->
