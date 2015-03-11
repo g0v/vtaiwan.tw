@@ -10,7 +10,9 @@
     "gitbook_url": "https://g0v.github.io/crowdfunding-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "February 1, 2015 00:00:00",
-    "step1_end_date" : "March 12, 2015 23:59:59",
+    "step1_end_date" : "March 13, 2015 23:59:59",
+    "step2_start_date" : "March 15, 2015 00:00:00",
+    "step2_end_date" : "March 31, 2015 23:59:59",
     "current_step": 1
   },
   {
@@ -24,8 +26,8 @@
     "gitbook_url": "https://g0v.github.io/closelyheld-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "February 1, 2015 00:00:00",
-    "step1_end_date" : "March 12, 2015 23:59:59",
-    "step2_start_date" : "March 1, 2015 00:00:00",
+    "step1_end_date" : "March 13, 2015 23:59:59",
+    "step2_start_date" : "March 15, 2015 00:00:00",
     "step2_end_date" : "March 31, 2015 23:59:59",
     "current_step": 1
   },
@@ -54,7 +56,9 @@
     "gitbook_url": "https://g0v.github.io/etax-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "February 1, 2015 00:00:00",
-    "step1_end_date" : "March 12, 2015 23:59:59",
+    "step1_end_date" : "March 13, 2015 23:59:59",
+    "step2_start_date" : "March 15, 2015 00:00:00",
+    "step2_end_date" : "March 31, 2015 23:59:59",
     "current_step": 1
   },
   {
