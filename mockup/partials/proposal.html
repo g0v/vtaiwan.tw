@@ -16,12 +16,16 @@
   <!-- Category -->  
   <div class="q_content" id="q_content">
 
-  <div class="q_breadcrumbs" ><sapn class="q_breadcrumbs_link" ng-click="go('proposals', true)">主題</sapn> &gt; <sapn class="q_breadcrumbs_link" ng-click="go(currentProposal.title_eng, true)">{{currentProposal.title_cht}}</sapn></div>
+  <img style="width: 60px; height: 60px; position: absolute; right: 10px"
+  ng-src="images/proposer/{{meta[currentProposal.title_eng].proposer_abbr_eng}}.png"
+  alt="{{meta[currentProposal.title_eng].proposer_abbr_cht}}"
+  title="{{meta[currentProposal.title_eng].proposer_abbr_cht}}">
+  <div class="q_breadcrumbs"><span class="q_breadcrumbs_link" ng-click="go('proposals', true)">主題</span>&nbsp;&gt;&nbsp;<span class="q_breadcrumbs_link" ng-click="go(currentProposal.title_eng, true)">{{currentProposal.title_cht}}</span></div>
     <div class="q_title">{{currentCategory.title}}</div>
     <div ng-bind-html="toTrusted(currentCategory.content)"></div>
   
     <div class="issue_item md-whiteframe-z1" ng-repeat="i in currentCategory.children" ng-click="toggleDiscussion(i.index)" id="issue_item_{{i.index}}">
-        <div class="issue_item_title"><span class="prompt">討論話題：</span>{{i.title}} <i class="fa fa-comments-o"></i><span class="issue_item_discuss_count">{{i.post_count}}</sapn></div>
+        <div class="issue_item_title"><span class="prompt">討論話題：</span>{{i.title}} <i class="fa fa-comments-o"></i><span class="issue_item_discuss_count">{{i.post_count}}</span></div>
 
         <div class="q_text" ng-bind-html="toTrusted(i.content)"></div>
         <ul>

@@ -38,8 +38,8 @@
                     </div>
                     <div class="ProgressBAr-infoContent">
                         <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta[t].left_day}} 天</div></div>
-                        <div class="ProgressBar-stat">討論話題<div class="ProgressBar-statHighlight">{{proposalMeta[t].TopicCount}}</div></div>
-                        <div class="ProgressBar-stat">意見數<div class="ProgressBar-statHighlight">{{proposalMeta[t].PostCount}}</div></div>
+                        <div class="ProgressBar-stat" ng-show="proposalMeta[t].TopicCount">討論話題<div class="ProgressBar-statHighlight">{{proposalMeta[t].TopicCount}}</div></div>
+                        <div class="ProgressBar-stat" ng-show="proposalMeta[t].PostCount">意見數<div class="ProgressBar-statHighlight">{{proposalMeta[t].PostCount}}</div></div>
                     </div>
                 </div>
                 <!-- step 2 info -->
@@ -54,7 +54,7 @@
                     <div class="ProgressBAr-infoContent">
                     <ul>
                         <li>版主群寄出工作組聚會邀請</li>
-                        <li>3/13-3/15 工作組第一次聚會</li>
+                        <li>3/14 工作組第一次聚會</li>
                         <li>3/15-3/31 工作組第二次聚會</li>
                         <li>4/1 提案方決定是否繼續提出多次修正版草案，若是，則繼續工作組聚會</li>
                     </ul>
