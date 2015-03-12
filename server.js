@@ -25,7 +25,10 @@ app.use('/', function (req, res) {
   var protocol = (process.env.USE_HTTPS)? 'https://' : 'http://';
 
   res.type('text/html; charset=UTF-8');
-  res.send(html.replace(/\{\{base\}\}/g, protocol + req.headers.host));
+  res.send(html.replace(/\{\{base\}\}/g, protocol + req.headers.host)
+      .replace(/\{\{meta.title\}\}/g, 'vTaiwan 線上法規討論平台')
+      .replace(/\{\{meta.description\}\}/g, '這是行政院虛擬世界發展法規調適規劃方案的線上法規討論平台，由資策會科技法律研究所與 g0v vTaiwan.tw 專案參與者共同建置。')
+  );
 
 });
 
