@@ -36,7 +36,7 @@
                         <div class="ProgressBar-endDate">{{ proposalMeta[t].step1_end_date | date:'M/d' }}</div>
                     <div class="ProgressBar-barProgress" style="width:{{proposalMeta[t].percentage}}%;"></div>
                     </div>
-                    <div class="ProgressBAr-infoContent">
+                    <div class="ProgressBar-infoContent">
                         <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta[t].left_day}} 天</div></div>
                         <div class="ProgressBar-stat" ng-show="proposalMeta[t].TopicCount">討論話題<div class="ProgressBar-statHighlight">{{proposalMeta[t].TopicCount}}</div></div>
                         <div class="ProgressBar-stat" ng-show="proposalMeta[t].PostCount">意見數<div class="ProgressBar-statHighlight">{{proposalMeta[t].PostCount}}</div></div>
@@ -45,31 +45,40 @@
                 <!-- step 2 info -->
                 <div ng-show="isFocusTab(t,'step2')">
                 <!-- ProgressBar -->
-                    <div class="ProgressBar-barBackground">
-                        <div class="ProgressBar-startDate">最快 3/13</div>
-                        <div class="ProgressBar-endDate">最快 4/1</div>
+                    <div class="ProgressBar-barBackground" ng-if="!proposalMeta[t].step2_start_date">
+                        <div class="ProgressBar-startDate">最快 4/13</div>
+                        <div class="ProgressBar-endDate">最快 5/1</div>
                         <div class="ProgressBar-barProgress" style="width:0%;"></div>
                     </div>
-                    <div class="ProgressBar-infoTitle">本階段尚未開始，目前規劃時程如下：</div>
-                    <div class="ProgressBAr-infoContent">
+                    <div class="ProgressBar-infoTitle" ng-if="!proposalMeta[t].step2_start_date">本階段尚未開始，目前規劃如下：</div>
+                    <div class="ProgressBar-infoContent" ng-if="!proposalMeta[t].step2_start_date">
                     <ul>
                         <li>版主群寄出工作組聚會邀請</li>
-                        <li>3/14 工作組第一次聚會</li>
-                        <li>3/15-3/31 工作組第二次聚會</li>
-                        <li>4/1 提案方決定是否繼續提出多次修正版草案，若是，則繼續工作組聚會</li>
+                        <li>工作組第一次聚會，彙整具體建議</li>
+                        <li>提案方決定是否繼續提出多次修正版草案，若是，則繼續工作組聚會</li>
                     </ul>
+                    </div>
+                    <div class="ProgressBar-barBackground" ng-if="proposalMeta[t].step2_start_date">
+                        <div class="ProgressBar-startDate">{{ proposalMeta[t].step2_start_date | date:'M/d' }}</div>
+                        <div class="ProgressBar-endDate">{{ proposalMeta[t].step2_end_date | date:'M/d' }}</div>
+                        <div class="ProgressBar-barProgress" style="width:0%;"></div>
+                    </div>
+                    <div class="ProgressBar-infoContent" ng-if="proposalMeta[t].step2_start_date">
+                        <div class="ProgressBar-stat">本階段還有<div class="ProgressBar-statHighlight">{{proposalMeta[t].left_day_2}} 天</div></div>
+                        <div class="ProgressBar-stat" ng-show="proposalMeta[t].TopicCount">討論話題<div class="ProgressBar-statHighlight">{{proposalMeta[t].TopicCount}}</div></div>
+                        <div class="ProgressBar-stat" ng-show="proposalMeta[t].PostCount">意見數<div class="ProgressBar-statHighlight">{{proposalMeta[t].PostCount}}</div></div>
                     </div>
                 </div>
                 <!-- step 3 info -->
                 <div ng-show="isFocusTab(t,'step3')">
                     <!-- ProgressBar -->
                     <div class="ProgressBar-barBackground">
-                        <div class="ProgressBar-startDate">最快 4/1</div>
+                        <div class="ProgressBar-startDate">未定</div>
                         <div class="ProgressBar-endDate">未定</div>
                         <div class="ProgressBar-barProgress" style="width:0%;"></div>
                     </div>
                     <div class="ProgressBar-infoTitle">本階段尚未開始，目前規劃時程如下</div>
-                    <div class="ProgressBAr-infoContent">
+                    <div class="ProgressBar-infoContent">
                     <ul>
                         <li>4/1 提案方決定是否繼續提出多次修正版草案，若否，則收斂成定案，進入本階段</li>
                     </ul>
