@@ -1,5 +1,5 @@
 var TOPICS =
-    [ 'crowdfunding', 'closelyheld', 'closelyheld-ref1', 'etax'
+    [ 'crowdfunding-spec', 'closelyheld-spec', 'closelyheld-ref1', 'etax-spec'
     , 'distant-education', 'telework', 'telemedicine'
     , 'data-levy', 'consumer-protection', 'personal-data-protection'
     ];
@@ -478,6 +478,25 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
           }else{
             item.left_day = Math.round(total_hours / 24);
             item.percentage = 0;
+          }
+
+          if (item.step2_start_date) {
+              item.step2_start_date = new Date(item.step2_start_date);
+              item.step2_end_date = new Date(item.step2_end_date);
+          //Count times left from start date (in percentage)
+          var total_hours = (item.step2_end_date.getTime() - item.step2_start_date.getTime())/ (3600*1000);
+          if(now >= item.step2_start_date){
+            var passed =  (now.getTime() - item.step2_start_date.getTime());
+            item.passed_hour_2 = passed / (3600*1000);
+            var left = (item.step2_end_date.getTime() - now.getTime());
+            item.left_day_2 = Math.round(left / (3600*1000) / 24);
+            item.percentage_2 = Math.round(item.passed_hour_2 / total_hours * 100);
+            if (item.percentage > 100) { item.percentage = 100; item.left_day_2 = 0 }
+
+          }else{
+            item.left_day_2 = Math.round(total_hours / 24);
+            item.percentage_2 = 0;
+          }
           }
       });
   });
