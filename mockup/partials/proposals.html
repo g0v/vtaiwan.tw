@@ -5,7 +5,12 @@
             <div class="Proposal-mainText">
                 <div class="Proposal-header">
                     <div class="Proposal-proposer">
-                      <img class="Proposal-proposerImg" ng-src="images/proposer/{{proposalMeta[t].proposer_abbr_eng}}.png">
+                      <img class="Proposal-proposerImg"
+                      ng-src="images/proposer/{{proposalMeta[t].proposer_abbr_eng}}.png"
+                      ng-if="isFocusTab(t,'step1')">
+                      <img class="Proposal-proposerImg"
+                      ng-src="images/proposer/spec.png"
+                      ng-if="!isFocusTab(t,'step1')">
                     </div>
                     <div class="Proposal-title">
                     {{proposalMeta[t].proposer_abbr_cht}}：{{proposalMeta[t].title_cht}}
@@ -21,7 +26,7 @@
                     <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab(t,'step1');$event.stopPropagation();" ng-class="{'is-active':isFocusTab(t,'step1'),'is-inactive':!isFocusTab(t,'step1')}">討論
                         <div ng-class="{'ProgressBar-triangleRight':isFocusTab(t,'step1'),'ProgressBar-triangleRight-inactive':!isFocusTab(t,'step1')}"></div>
                     </div>
-                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab(t,'step2');$event.stopPropagation();" ng-class="{'is-active':isFocusTab(t,'step2'),'is-inactive':!isFocusTab(t,'step2')}">草案
+                    <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab(t,'step2');$event.stopPropagation();" ng-class="{'is-active':isFocusTab(t,'step2'),'is-inactive':!isFocusTab(t,'step2')}">建議
                         <div ng-class="{'ProgressBar-triangleRight':isFocusTab(t,'step2'),'ProgressBar-triangleRight-inactive':!isFocusTab(t,'step2')}"></div>
                     </div>
                     <div class="ProgressBar-stepTitle-tab" ng-click="setFocusTab(t,'step3');$event.stopPropagation();" ng-class="{'is-active':isFocusTab(t,'step3'),'is-inactive':!isFocusTab(t,'step3')}">定案
