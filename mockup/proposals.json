@@ -16,6 +16,20 @@
     "current_step": 2
   },
   {
+    "title_cht": "群眾募資：草案 #1",
+    "title_eng": "crowdfunding-ref1",
+    "proposer_abbr_eng":"sfb",
+    "proposer_abbr_cht":"金管會",
+    "category_num": 56,
+    "prefix_cht": "數位商務模式：",
+    "prefix_eng": "commerce",
+    "gitbook_url": "https://g0v.github.io/crowdfunding-ref1-gitbook",
+    "discourse_url": "https://talk.vtaiwan.tw",
+    "step1_start_date" : "March 20, 2015 00:00:00",
+    "step1_end_date" : "April 19, 2015 23:59:59",
+    "current_step": 1
+  },
+  {
     "title_cht": "閉鎖型公司",
     "title_eng": "closelyheld-spec",
     "proposer_abbr_eng":"DOCMOEA",

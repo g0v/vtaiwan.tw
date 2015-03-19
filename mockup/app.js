@@ -1,7 +1,8 @@
 "use strict";
 var PROPOSALS = {{proposals}};
 var TOPICS =
-    [ 'crowdfunding-spec', 'closelyheld-spec', 'closelyheld-ref1', 'etax-spec'
+    [ 'crowdfunding-spec', 'crowdfunding-ref1'
+    , 'closelyheld-spec', 'closelyheld-ref1', 'etax-spec'
     , 'distant-education', 'telework', 'telemedicine'
     , 'data-levy', 'consumer-protection', 'personal-data-protection'
     ];
