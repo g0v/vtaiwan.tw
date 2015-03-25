@@ -464,8 +464,9 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
           var now = new Date();
 
           //Count times left from start date (in percentage)
-          var total_hours = (item.step1_end_date.getTime() - item.step1_start_date.getTime())/ (3600*1000);
           if(now >= item.step1_start_date){
+            var total_hours = (item.step1_end_date.getTime() - item.step1_start_date.getTime())/ (3600*1000);
+          
             var passed =  (now.getTime() - item.step1_start_date.getTime());
             item.passed_hour = passed / (3600*1000);
             var left = (item.step1_end_date.getTime() - now.getTime());
@@ -473,7 +474,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
             item.percentage = Math.round(item.passed_hour / total_hours * 100);
             if (item.percentage > 100) { item.percentage = 100; item.left_day = 0 }
 
-            console.log(item.percentage);
+            //console.log(item.percentage);
 
           }else{
             item.left_day = Math.round(total_hours / 24);
@@ -483,20 +484,21 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
           if (item.step2_start_date) {
               item.step2_start_date = new Date(item.step2_start_date);
               item.step2_end_date = new Date(item.step2_end_date);
-          //Count times left from start date (in percentage)
-          var total_hours = (item.step2_end_date.getTime() - item.step2_start_date.getTime())/ (3600*1000);
-          if(now >= item.step2_start_date){
-            var passed =  (now.getTime() - item.step2_start_date.getTime());
-            item.passed_hour_2 = passed / (3600*1000);
-            var left = (item.step2_end_date.getTime() - now.getTime());
-            item.left_day_2 = Math.round(left / (3600*1000) / 24);
-            item.percentage_2 = Math.round(item.passed_hour_2 / total_hours * 100);
-            if (item.percentage > 100) { item.percentage = 100; item.left_day_2 = 0 }
+              //Count times left from start date (in percentage)
+              var total_hours = (item.step2_end_date.getTime() - item.step2_start_date.getTime())/ (3600*1000);
+              if(now >= item.step2_start_date){
+                var passed =  (now.getTime() - item.step2_start_date.getTime());
+                item.passed_hour_2 = passed / (3600*1000);
+                var left = (item.step2_end_date.getTime() - now.getTime());
+                item.left_day_2 = Math.round(left / (3600*1000) / 24);
+                item.percentage_2 = Math.round(item.passed_hour_2 / total_hours * 100);
+                if (item.percentage_2 > 100) { item.percentage_2 = 100; item.left_day_2 = 0 }
 
-          }else{
-            item.left_day_2 = Math.round(total_hours / 24);
-            item.percentage_2 = 0;
-          }
+              }else{
+                item.left_day_2 = Math.round(total_hours / 24);
+                item.percentage_2 = 0;
+              }
+              console.log(item.percentage_2);
           }
       });
   });
@@ -538,7 +540,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
     var key = $location.url().replace(/\/+/g, '');
     if (key === 'proposals' || !$scope.proposalMeta) { return TOPICS; }
     return TOPICS.filter(function(t){
-        console.log($scope.proposalMeta[t]);
+        //console.log($scope.proposalMeta[t]);
         return($scope.proposalMeta[t].prefix_eng === key);
     });
   };
