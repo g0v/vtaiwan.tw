@@ -1306,13 +1306,12 @@ a.more {
 }
 @media screen and (min-width: 1200px){
   .navigation {
-    
     position: fixed;
     top: 0vh;
     padding-top: 40vh;
     width: 100px;
     height: 100%;
-    background: gray;
+  
 
   }
 }
