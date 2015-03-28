@@ -5,12 +5,7 @@ var TOPICS =
     , 'data-levy', 'consumer-protection', 'personal-data-protection'
     ];
 var PREFIXES =
-    [ { key: "commerce"
-      , title: "可以不去開曼設公司嗎？"
-      , description: "台灣許多新創公司都會跑去開曼群島之類的地方設立，為什麼不願意留在台灣呢？"
-      , issue: "群眾募資、閉鎖型公司、網路交易課稅"
-      }
-    , { key: "lifestyle"
+    [ { key: "lifestyle"
       , title: "踏進充滿想像的任意門。"
       , description: "在數位化生活的時代，要怎樣利用網路無遠弗屆的特性，創造更多的想像空間？"
       , issue: "遠距教育、勞動、健康照護"
@@ -19,6 +14,11 @@ var PREFIXES =
       , title: "黑盒子打開之後..."
       , description: "透過網路發展的公民社會，應該如何同時營造自由且安全的數位環境？"
       , issue: "開放資料、消費者保護、個人資料去識別化"
+      }
+    , { key: "commerce"
+      , title: "可以不去開曼設公司嗎？"
+      , description: "台灣許多新創公司都會跑去開曼群島之類的地方設立，為什麼不願意留在台灣呢？"
+      , issue: "群眾募資、閉鎖型公司、網路交易課稅"
       }
     ];
 var app = angular.module("app", [
@@ -425,7 +425,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
     }
   };
   DataService.getCatchedData().then(function (d) { $scope.safeApply(function(){
-    $scope.idx = 1;
+    $scope.idx = 0;
     Object.keys(d).map(function (title){
       var blockquote = d[title].categories[0].content.match(/<blockquote>\n((?:.+\n)+)<\/blockquote>\n/);
       $scope.proposal[title] = (blockquote)? blockquote[1] : "";
