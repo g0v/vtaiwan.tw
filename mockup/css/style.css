@@ -1307,8 +1307,12 @@ a.more {
 @media screen and (min-width: 1200px){
   .navigation {
     position: fixed;
-    top: 40vh;
+    top: 0vh;
+    padding-top: 40vh;
     width: 100px;
+    height: 100%;
+  
+
   }
 }
 .about_item_content a:hover, .topic_item:hover {

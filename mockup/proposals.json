@@ -86,7 +86,7 @@
     "gitbook_url": "https://g0v.github.io/distant-education-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "March 31, 2015 23:59:59",
+    "step1_end_date" : "April 24, 2015 23:59:59",
     "current_step": 1
   },
   {
@@ -100,7 +100,7 @@
     "gitbook_url": "https://g0v.github.io/telework-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "March 31, 2015 23:59:59",
+    "step1_end_date" : "April 24, 2015 23:59:59",
     "current_step": 1
   },
   {
@@ -114,7 +114,7 @@
     "gitbook_url": "https://g0v.github.io/telemedicine-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "March 31, 2015 23:59:59",
+    "step1_end_date" : "April 24, 2015 23:59:59",
     "current_step": 1
   },
   {
@@ -128,7 +128,7 @@
     "gitbook_url": "https://g0v.github.io/data-levy-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "March 31, 2015 23:59:59",
+    "step1_end_date" : "April 24, 2015 23:59:59",
     "current_step": 1
   },
   {
@@ -142,7 +142,7 @@
     "gitbook_url": "https://g0v.github.io/consumer-protection-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "March 31, 2015 23:59:59",
+    "step1_end_date" : "April 24, 2015 23:59:59",
     "current_step": 1
   },
   {
@@ -156,7 +156,7 @@
     "gitbook_url": "https://g0v.github.io/personal-data-protection-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "March 31, 2015 23:59:59",
+    "step1_end_date" : "April 24, 2015 23:59:59",
     "current_step": 1
   }
 ]
