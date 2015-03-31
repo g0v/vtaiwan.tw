@@ -319,6 +319,10 @@ app.factory('DataService', function ($http, $q){
 
   DataService.getPostData = function(topicID){
     var deferred = $q.defer();
+    if (''+topicID === 'undefined') {
+        deferred.resolve({post_stream: { posts: [] }});
+        return deferred.promise;
+    }
     $http.get('https://talk.vtaiwan.tw/t/topic/'+topicID+'.json').
       success(function(data, status, headers, config) {
         if (data.posts_count <= 20) {
