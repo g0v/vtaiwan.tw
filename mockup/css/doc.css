@@ -165,6 +165,11 @@ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-s
 .md-shadow-animated.md-shadow {
   transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
 
+a.md-whiteframe-z1.issue_item {
+    display: block;
+    color: inherit;
+}
+
 .md-whiteframe-z1 {
   box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26); }
 
