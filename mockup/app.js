@@ -287,16 +287,23 @@ app.factory('DataService', function ($http, $q){
     return deferred.promise;
   };
 
-  DataService.getBookData = function(path){
+  var timestamp = '1427704596';
+  DataService.getBookData = function(path, gitbook_url){
     var deferred = $q.defer();
-    var b64 = localStorage.getItem(path);
+    var b64 = localStorage.getItem(path + timestamp);
     if (b64) {
         deferred.resolve(JSON.parse(window.atob(b64)));
         return deferred.promise;
     }
-    $http.get('https://api.github.com/repos/g0v/'+ path + '-gitbook/contents/content.json?ref=gh-pages').
+    var url = 'https://api.github.com/repos/g0v/'+ path + '-gitbook';
+    if (gitbook_url) {
+        url = gitbook_url
+                .replace('//', '//api.github.com/repos/')
+                .replace('.github.io', '');
+    }
+    $http.get(url + '/contents/content.json?ref=gh-pages').
         success(function(data, status, headers, config) {
-            localStorage.setItem(path, data.content);
+            localStorage.setItem(path + timestamp, data.content);
             deferred.resolve(JSON.parse(window.atob(data.content)));
         }).
         error(function(data, status, headers, config) {
