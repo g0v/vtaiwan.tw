@@ -289,7 +289,8 @@ app.factory('DataService', function ($http, $q){
     return deferred.promise;
   };
 
-  DataService.getBookData = function(path){
+  var timestamp = '1427704596';
+  DataService.getBookData = function(path, gitbook_url){
     var deferred = $q.defer();
     $http.get('/' + path + '/content.json').
         success(function(data, status, headers, config) {
