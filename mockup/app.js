@@ -411,7 +411,7 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scop
 
   };
 
-  if($( window ).width() > 768){
+  if ( ($( window ).width() > 768) && ($location.path() === '/') ) {
           $scope.safeApply(function(){ $scope.sidebar = true; $scope.setProposal(null) });
   }
 
