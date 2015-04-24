@@ -64,7 +64,12 @@ a {
   height: 100vh;
   overflow: scroll;
 }
+.sidebar-show + div + #content--cover {
+  margin-left: 255px;
+  will-change: margin-left;
+}
 #content--cover {
+  will-change: margin-left;
   margin-top: 50px;
   min-height: 600px;
 }
@@ -162,7 +167,7 @@ header {
   -ms-transition: .2s;
   -webkit-transition: .2s;
   transition: .2s;
-  transition-duration: .5s;
+  transition-duration: .2s;
 
   padding: 10px;
   width: 100%;
@@ -304,7 +309,7 @@ a.button--wide {
   -ms-transition: .2s;
   -webkit-transition: .2s;
   transition: .2s;
-  transition-duration: .5s;
+  transition-duration: .2s;
 
 
 }
@@ -322,7 +327,7 @@ a.button--wide {
   -ms-transition: .2s;
   -webkit-transition: .2s;
   transition: .2s;
-  transition-duration: .5s;
+  transition-duration: .2s;
 
 }
 @media screen and (min-width: 600px){
@@ -352,7 +357,7 @@ a.button--wide {
   -ms-transition: .2s;
   -webkit-transition: .2s;
   transition: .2s;
-  transition-duration: .5s;
+  transition-duration: .2s;
 
 }
 #sidebar-container--top.show {
@@ -362,7 +367,7 @@ a.button--wide {
   -ms-transition: .2s;
   -webkit-transition: .2s;
   transition: .2s;
-  transition-duration: .5s;
+  transition-duration: .2s;
 
 
 }
@@ -380,7 +385,7 @@ a.button--wide {
   -ms-transition: .2s;
   -webkit-transition: .2s;
   transition: .2s;
-  transition-duration: .5s;
+  transition-duration: .2s;
 
 
 }
@@ -393,7 +398,7 @@ a.button--wide {
   -ms-transition: .2s;
   -webkit-transition: .2s;
   transition: .2s;
-  transition-duration: .5s;
+  transition-duration: .2s;
 
 }
 #focus-discussion{
@@ -406,7 +411,7 @@ a.button--wide {
   -ms-transition: .2s;
   -webkit-transition: .2s;
   transition: .2s;
-  transition-duration: .5s;
+  transition-duration: .2s;
 
   /* [transition-property] [transition-duration] [transition-timing-function] [transition-delay] */
 
@@ -425,8 +430,8 @@ a.button--wide {
   right: 0px;
   width: 100%;
 
-  -webkit-transition: right .5s ease-in-out;
-  transition: right .5s ease-in-out;
+  -webkit-transition: right .2s ease-in-out;
+  transition: right .2s ease-in-out;
 
 }
 
@@ -444,7 +449,7 @@ a.button--wide {
   -ms-transition: .2s;
   -webkit-transition: .2s;
   transition: .2s;
-  transition-duration: .5s;
+  transition-duration: .2s;
 }
 .q_content_nav_remove {
   display: inline-block;
@@ -478,7 +483,7 @@ a.nav_item_sidebar {
 a.nav_item_sidebar--right {
   border-bottom: 1px solid rgb(240,240,240);
   transition-property: all;
-  transition-duration: .5s;
+  transition-duration: .2s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 a.nav_item_sidebar--inner {
@@ -652,7 +657,7 @@ a.nav_item_sidebar--sub:hover {
 .nav_list_function_item_hide {
   opacity: 0;
   transition-property: all;
-  transition-duration: .5s;
+  transition-duration: .2s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 .nav_list_function_item_inner {
@@ -769,7 +774,7 @@ a.nav_item_sidebar--sub:hover {
   background: rgba(0,0,0,0.5);
 
   transition-property: background;
-  transition-duration: .5s;
+  transition-duration: .2s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 
 }
@@ -778,7 +783,7 @@ a.nav_item_sidebar--sub:hover {
   color: rgb(53,55,54);
 
   transition-property: background;
-  transition-duration: .5s;
+  transition-duration: .2s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);transition-property: all;
 
 }
@@ -1201,7 +1206,7 @@ blockquote > *:last-child {
   -ms-transition: .2s;
   -webkit-transition: .2s;
   transition: .2s;
-  transition-duration: .5s;
+  transition-duration: .2s;
 
   box-sizing: border-box;
 
@@ -1210,8 +1215,8 @@ blockquote > *:last-child {
 .post_reply_item.show {
   bottom: 0px;
   box-sizing: border-box;
-  -webkit-transition: bottom .5s ease-in-out;
-  transition: bottom .5s ease-in-out;
+  -webkit-transition: bottom .2s ease-in-out;
+  transition: bottom .2s ease-in-out;
 
 }
 .post_reply_item_title {
@@ -1285,7 +1290,7 @@ a.more {
   margin-bottom: 100px;
 
   transition-property: all;
-  transition-duration: .5s;
+  transition-duration: .2s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 
 }
@@ -1293,7 +1298,7 @@ a.more {
   color: rgb(53,55,128);
 
   transition-property: all;
-  transition-duration: .5s;
+  transition-duration: .2s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 .navigation--pre {

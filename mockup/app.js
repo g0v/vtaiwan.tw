@@ -411,6 +411,10 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', function ($scop
 
   };
 
+  if($( window ).width() > 768){
+          $scope.safeApply(function(){ $scope.sidebar = true; $scope.setProposal(null) });
+  }
+
   $scope.isProposalSet = function () {
     return $scope.proposal;
   };
