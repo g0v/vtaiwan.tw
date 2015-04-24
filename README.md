@@ -9,7 +9,7 @@ vTaiwan.tw
  * This require a manual merge and will take effect in 1hr (after CloudFlare cache expiry)
 
 目前已如期在 2/1 上線！FB: https://www.facebook.com/vtaiwan.tw
-上線後繼續每周二小松更新系統，下次大幅更新（可能要另開 branch）預期在 3/1。
+上線後繼續每周五小松更新系統，下次大幅更新（可能要另開 branch）預期在五月。
 
 ## 部署機的範例設定
 
