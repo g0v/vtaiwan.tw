@@ -1,8 +1,8 @@
 var TOPICS =
     [ 'crowdfunding-spec', 'crowdfunding-ref1'
-    , 'closelyheld-spec', 'closelyheld-ref1', 'etax-spec'
-    , 'distant-education', 'telework', 'telemedicine'
-    , 'data-levy', 'consumer-protection', 'personal-data-protection'
+    , 'closelyheld-spec', 'closelyheld-act1', 'etax-spec'
+    , 'distant-education-spec', 'telework', 'telemedicine'
+    , 'data-levy-spec', 'consumer-protection', 'personal-data-protection'
     ];
 var PREFIXES =
     [ { key: "lifestyle"
