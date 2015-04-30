@@ -8,11 +8,12 @@
     "prefix_cht": "數位商務模式：",
     "prefix_eng": "commerce",
     "gitbook_url": "https://g0v.github.io/crowdfunding-spec-gitbook",
+    "gitbook_url_step1": "https://g0v.github.io/crowdfunding-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "February 1, 2015 00:00:00",
     "step1_end_date" : "March 13, 2015 23:59:59",
     "step2_start_date" : "March 17, 2015 00:00:00",
-    "step2_end_date" : "April 17, 2015 23:59:59",
+    "step2_end_date" : "May 31, 2015 23:59:59",
     "current_step": 2
   },
   {
@@ -26,7 +27,7 @@
     "gitbook_url": "https://g0v.github.io/crowdfunding-ref1-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 20, 2015 00:00:00",
-    "step1_end_date" : "April 19, 2015 23:59:59",
+    "step1_end_date" : "May 31, 2015 23:59:59",
     "current_step": 1
   },
   {
@@ -39,24 +40,25 @@
     "prefix_eng": "commerce",
     "gitbook_url": "https://g0v.github.io/closelyheld-spec-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
+    "gitbook_url_step1": "https://g0v.github.io/closelyheld-gitbook",
     "step1_start_date" : "February 1, 2015 00:00:00",
     "step1_end_date" : "March 13, 2015 23:59:59",
     "step2_start_date" : "March 17, 2015 00:00:00",
-    "step2_end_date" : "April 17, 2015 23:59:59",
+    "step2_end_date" : "May 31, 2015 23:59:59",
     "current_step": 2
   },
   {
-    "title_cht": "閉鎖型公司：草案 #1",
-    "title_eng": "closelyheld-ref1",
-    "proposer_abbr_eng":"vtaiwan",
-    "proposer_abbr_cht":"邵慶平",
-    "category_num": 36,
+    "title_cht": "閉鎖型公司：公司法修正草案",
+    "title_eng": "closelyheld-act1",
+    "proposer_abbr_eng":"DOCMOEA",
+    "proposer_abbr_cht":"經濟部商業司",
+    "category_num": 72,
     "prefix_cht": "數位商務模式：",
     "prefix_eng": "commerce",
-    "gitbook_url": "https://g0v.github.io/closelyheld-ref1-gitbook",
+    "gitbook_url": "https://g0v.github.io/closelyheld-act1-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
-    "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "March 31, 2015 23:59:59",
+    "step1_start_date" : "May 1, 2015 00:00:00",
+    "step1_end_date" : "May 31, 2015 23:59:59",
     "current_step": 1
   },
   {
@@ -68,26 +70,30 @@
     "prefix_cht": "數位商務模式：",
     "prefix_eng": "commerce",
     "gitbook_url": "https://g0v.github.io/etax-spec-gitbook",
+    "gitbook_url_step1": "https://g0v.github.io/etax-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "February 1, 2015 00:00:00",
     "step1_end_date" : "March 13, 2015 23:59:59",
     "step2_start_date" : "March 17, 2015 00:00:00",
-    "step2_end_date" : "April 17, 2015 23:59:59",
+    "step2_end_date" : "May 31, 2015 23:59:59",
     "current_step": 2
   },
   {
     "title_cht": "遠距教育",
-    "title_eng": "distant-education",
+    "title_eng": "distant-education-spec",
     "proposer_abbr_eng":"MOE",
     "proposer_abbr_cht":"教育部",
-    "category_num": 17,
+    "category_num": 70,
     "prefix_cht": "數位生活：",
     "prefix_eng": "lifestyle",
-    "gitbook_url": "https://g0v.github.io/distant-education-gitbook",
+    "gitbook_url": "https://g0v.github.io/distant-education-spec-gitbook",
+    "gitbook_url_step1": "https://g0v.github.io/distant-education-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
     "step1_end_date" : "April 24, 2015 23:59:59",
-    "current_step": 1
+    "step2_start_date" : "May 1, 2015 00:00:00",
+    "step2_end_date" : "May 31, 2015 23:59:59",
+    "current_step": 2
   },
   {
     "title_cht": "電傳勞動",
@@ -100,7 +106,7 @@
     "gitbook_url": "https://g0v.github.io/telework-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "April 24, 2015 23:59:59",
+    "step1_end_date" : "May 31, 2015 23:59:59",
     "current_step": 1
   },
   {
@@ -114,22 +120,25 @@
     "gitbook_url": "https://g0v.github.io/telemedicine-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "April 24, 2015 23:59:59",
+    "step1_end_date" : "May 31, 2015 23:59:59",
     "current_step": 1
   },
   {
     "title_cht": "開放資料例外收費原則",
-    "title_eng": "data-levy",
+    "title_eng": "data-levy-spec",
     "proposer_abbr_eng":"opendata_mis_ndc",
     "proposer_abbr_cht":"國發會",
-    "category_num": 20,
+    "category_num": 68,
     "prefix_cht": "數位公民環境：",
     "prefix_eng": "civic",
-    "gitbook_url": "https://g0v.github.io/data-levy-gitbook",
+    "gitbook_url": "https://g0v.github.io/data-levy-spec-gitbook",
+    "gitbook_url_step1": "https://g0v.github.io/data-levy-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "April 24, 2015 23:59:59",
-    "current_step": 1
+    "step1_end_date" : "May 24, 2015 23:59:59",
+    "step2_start_date" : "May 1, 2015 00:00:00",
+    "step2_end_date" : "May 31, 2015 23:59:59",
+    "current_step": 2
   },
   {
     "title_cht": "零售業網路定型化契約",
@@ -142,7 +151,7 @@
     "gitbook_url": "https://g0v.github.io/consumer-protection-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "April 24, 2015 23:59:59",
+    "step1_end_date" : "May 31, 2015 23:59:59",
     "current_step": 1
   },
   {
@@ -156,7 +165,7 @@
     "gitbook_url": "https://g0v.github.io/personal-data-protection-gitbook",
     "discourse_url": "https://talk.vtaiwan.tw",
     "step1_start_date" : "March 1, 2015 00:00:00",
-    "step1_end_date" : "April 24, 2015 23:59:59",
+    "step1_end_date" : "May 31, 2015 23:59:59",
     "current_step": 1
   }
 ]
