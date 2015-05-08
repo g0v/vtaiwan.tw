@@ -1,10 +1,16 @@
 "use strict";
 var PROPOSALS = {{proposals}};
 var TOPICS =
-    [ 'crowdfunding-spec', 'crowdfunding-ref1'
-    , 'closelyheld-spec', 'closelyheld-act1', 'etax-spec'
-    , 'distant-education-spec', 'telework', 'telemedicine'
-    , 'data-levy-spec', 'consumer-protection', 'personal-data-protection'
+[ 'infosecurity'
+, 'telework'
+, 'consumer-protection'
+, 'telemedicine'
+, 'personal-data-protection'
+, 'data-levy-spec', 'data-levy'
+, 'distant-education-spec', 'distant-education'
+, 'etax-spec', 'etax'
+, 'crowdfunding-ref1', 'crowdfunding-spec', 'crowdfunding'
+, 'closelyheld-act1', 'closelyheld-spec', 'closelyheld-ref1', 'closelyheld'
     ];
 var PREFIXES =
     [ { key: "lifestyle"
@@ -15,7 +21,7 @@ var PREFIXES =
     , { key: "civic"
       , title: "黑盒子打開之後..."
       , description: "透過網路發展的公民社會，應該如何同時營造自由且安全的數位環境？"
-      , issue: "開放資料、消費者保護、個人資料去識別化"
+      , issue: "資安管理、開放資料、消費者保護、個資去識別化"
       }
     , { key: "commerce"
       , title: "可以不去開曼設公司嗎？"
