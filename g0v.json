@@ -1,0 +1,27 @@
+{
+  "author": "vtaiwan.tw",
+  "status": "",
+  "name": "vtaiwan.tw",
+  "name_zh": "行政院法規線上諮詢系統 1.0",
+  "description": "",
+  "description_zh": "這是行政院數位法制議題的線上法規討論平台，由專案參與者共同建置，國發會及資策會協力支援。",
+  "homepage": "https://vtaiwan.tw/",
+  "document": "https://vtaiwan.tw/tutorial/",
+  "thumbnail": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/g0v/vtaiwan.tw"
+  },
+  "keywords": [
+    "vtaiwan",
+    "g0v"
+  ],
+  "contributors": [
+    "audreyt",
+    "soidid",
+    "pm5",
+    "yhsiang",
+    "billy3321",
+    "muan"
+  ]
+}
