@@ -1,9 +1,9 @@
-開發請改到這裡： http://github.com/g0v/react.vtaiwan.tw
+開發請改到這裡： http://github.com/g0v/vue.vtaiwan.tw
 
 This repository is not actively maintained; the current
 https://vtaiwan.tw/ site is being developed in this repository:
 
-http://github.com/g0v/react.vtaiwan.tw
+http://github.com/g0v/vue.vtaiwan.tw
 
 vTaiwan.tw
 ==========
